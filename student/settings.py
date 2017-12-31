@@ -9,7 +9,8 @@ https://docs.djangoproject.com/en/1.8/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.8/ref/settings/
 """
-
+import pymysql
+pymysql.install_as_MySQLdb()
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
@@ -37,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'quantization',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -76,8 +78,12 @@ WSGI_APPLICATION = 'student.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'student',
+        'USER': 'root',
+        'PASSWORD': 'lik',
+        'HOST': '192.168.76.129',
+        'PORT': '3306',
     }
 }
 

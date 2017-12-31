@@ -27,4 +27,7 @@ urlpatterns = [
     url(r'^index/$', views.index, name='index'),
     url(r'^index2/$', views.index2, name='index2'),
 
+    url(r'^index_handler/$', views.index_handler, name='index_handler'),
+    url(r'^base/$', views.base, name='base'),
+
 ]
