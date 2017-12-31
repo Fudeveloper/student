@@ -24,5 +24,7 @@ urlpatterns = [
     url(r'^dy/$', views.dy, name='dy'),
     url(r'^index/$', views.index, name='index'),
     url(r'^common/$', views.common, name='common'),
+    url(r'^index/$', views.index, name='index'),
+    url(r'^index2/$', views.index2, name='index2'),
 
 ]

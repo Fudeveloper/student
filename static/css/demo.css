@@ -39,11 +39,11 @@ a:hover, a:focus {
 
 .content {
 	font-size: 150%;
-	padding: 3em 0;
+	padding: 1em 0;
 }
 
 .content h2 {
-	margin: 0 0 2em;
+	margin: 0 0 1em;
 	opacity: 0.1;
 }
 
@@ -68,13 +68,13 @@ body .nomargin-bottom {
 
 /* Header */
 .codrops-header {
-	padding: 3em 190px 4em;
+	padding: 1em 190px 1em;
 	letter-spacing: -1px;
 }
 
 .codrops-header h1 {
-	font-weight: 800;
-	font-size: 4em;
+	font-weight: 400;
+	font-size: 3em;
 	line-height: 1;
 	margin-bottom: 0;
 }
@@ -83,8 +83,8 @@ body .nomargin-bottom {
 	display: block;
 	font-size: 50%;
 	font-weight: 400;
-	padding: 0.325em 0 0.5em 0;
-	color: #c3c8cd;
+	/*padding: 0.325em 0 0.5em 0;*/
+	/*color: #c3c8cd;*/
 }
 
 /* Top Navigation Style */
@@ -175,7 +175,7 @@ body .nomargin-bottom {
 
 @media screen and (max-width: 50em) {
 	.codrops-header {
-		padding: 3em 10% 4em;
+		padding: 1em 10% 1em;
 	}
 }
 

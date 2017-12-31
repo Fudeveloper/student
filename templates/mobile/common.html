@@ -1,119 +1,117 @@
-
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>高校学生家庭经济情况量化测评表</title>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1,user-scalable=no">
-<meta name="format-detection" content="telephone=no" />
-<meta property="og:type" content="article"/>
-<meta property="og:release_date" content="2017-12-29"/>
-<meta property="og:image" content="https://image.wjx.cn/images/wlogo.png"/>
-<meta property="og:title" content="高校学生家庭经济情况量化测评表"/>
-<meta name="applicable-device" content="mobile" />
+    <title>高校学生家庭经济情况量化测评表</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1,user-scalable=no">
+    <meta name="format-detection" content="telephone=no"/>
+    <meta property="og:type" content="article"/>
+    <meta property="og:release_date" content="2017-12-29"/>
+    <meta property="og:image" content="https://image.wjx.cn/images/wlogo.png"/>
+    <meta property="og:title" content="高校学生家庭经济情况量化测评表"/>
+    <meta name="applicable-device" content="mobile"/>
 
-<script type="text/javascript">
-    var maxCheatTimes = 0;
-    var activityId =19776764;
-    if (window.location.hash) {
-        window.location.hash = "";
-        window.location.href = window.location.href.replace("#", "");
-    }
-    var isWeiXin=0;
-</script>
-<link rel="stylesheet" href="https://www.wjx.cn/css/jqmobo.css?v=19" />
-
-<script src="https://staticfile.qnssl.com/jquery/1.10.1/jquery.min.js"></script>
-<script type="text/javascript">
-    !window.jQuery && document.write('<script src="/js/mobile/jquery-1.10.1.min.js"><\/script>');
-</script>
-
-<script type="text/javascript">
-
-    function openDialogByIframe(width, height, url,fullScreen) {  
-        var winWinth = $(window).width(), winHeight = $(document).height();
-        if(url=="divImgPop"||url.indexOf("divVCode")>-1||url=="divTimeUp"){
-            height=height+30;
+    <script type="text/javascript">
+        var maxCheatTimes = 0;
+        var activityId = 19776764;
+        if (window.location.hash) {
+            window.location.hash = "";
+            window.location.href = window.location.href.replace("#", "");
         }
-        else{
-            width=Math.min(winWinth,400)-30;
-            if(url.indexOf("divDesc_")==0)
-                height=height+30;
-            else if(url.indexOf("setcity")==-1)
-                height=Math.min($(window).height(),400)-20;
-            if(url.indexOf("amap.aspx")>-1||url.indexOf("school.aspx")>-1||fullScreen){
-                height=$(window).height()-30;
-                width=$(window).width()-20;
+        var isWeiXin = 0;
+    </script>
+    <link rel="stylesheet" href="https://www.wjx.cn/css/jqmobo.css?v=19"/>
+
+    <script src="https://staticfile.qnssl.com/jquery/1.10.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        !window.jQuery && document.write('<script src="/js/mobile/jquery-1.10.1.min.js"><\/script>');
+    </script>
+
+    <script type="text/javascript">
+
+        function openDialogByIframe(width, height, url, fullScreen) {
+            var winWinth = $(window).width(), winHeight = $(document).height();
+            if (url == "divImgPop" || url.indexOf("divVCode") > -1 || url == "divTimeUp") {
+                height = height + 30;
             }
+            else {
+                width = Math.min(winWinth, 400) - 30;
+                if (url.indexOf("divDesc_") == 0)
+                    height = height + 30;
+                else if (url.indexOf("setcity") == -1)
+                    height = Math.min($(window).height(), 400) - 20;
+                if (url.indexOf("amap.aspx") > -1 || url.indexOf("school.aspx") > -1 || fullScreen) {
+                    height = $(window).height() - 30;
+                    width = $(window).width() - 20;
+                }
+            }
+            $("body").append("<div id='yz_popIframeDiv'></div>");
+            var eleOb = document.getElementById(url);
+            var cHtml = "<div id='yz_popTanChu'><div style='position:relative;'><a id='yz_popTanChuClose' style='background:url(/images/bt_closed.gif) no-repeat;width:30px;height:30px;margin:-15px -18px 0 0;display:inline;float:right;cursor:pointer;position:absolute;right:0;'></a></div>";
+            if (!eleOb) {
+                cHtml += "<iframe id='yz_popwinIframe' frameborder='0' hspace='0' src=" + url + "></iframe>";
+            }
+            else
+                cHtml += "<div id='yz_popdivData' style='padding:10px;height:" + (height - 30) + "px;overflow:auto;width:" + width + "px;'></div>";
+            cHtml += "</div>";
+            $("body").append(cHtml);
+            $("#yz_popIframeDiv").css({
+                width: winWinth,
+                height: winHeight,
+                background: "#000",
+                position: "absolute",
+                left: "0",
+                top: "0"
+            });
+            $("#yz_popIframeDiv").fadeTo(0, 0.5);
+            var yz_popTanChuLeft = $(window).width() / 2 - width / 2;
+            var yz_popTanChuTop = $(window).height() / 2 - height / 2
+                + $(window).scrollTop();
+            $("#yz_popTanChu").css({
+                width: width,
+                height: height,
+                left: yz_popTanChuLeft,
+                top: yz_popTanChuTop,
+                background: "#fff",
+                position: "absolute",
+                zIndex: 2
+            });
+            if (eleOb) {
+                $("#yz_popdivData").html(eleOb.innerHTML);
+            }
+            var winIframeHeight = height;
+            $("#yz_popwinIframe").css({
+                width: width,
+                height: winIframeHeight,
+                "border-bottom": "1px #ccc solid",
+                background: "#ffffff"
+            });
+            $("#yz_popTanChuClose,#yz_popIframeDiv").click(function () {
+                $("#yz_popIframeDiv").remove();
+                $("#yz_popTanChu").remove();
+            });
         }
-        $("body").append("<div id='yz_popIframeDiv'></div>");  
-        var eleOb=document.getElementById(url);
-        var cHtml= "<div id='yz_popTanChu'><div style='position:relative;'><a id='yz_popTanChuClose' style='background:url(/images/bt_closed.gif) no-repeat;width:30px;height:30px;margin:-15px -18px 0 0;display:inline;float:right;cursor:pointer;position:absolute;right:0;'></a></div>";
-        if(!eleOb){
-            cHtml+="<iframe id='yz_popwinIframe' frameborder='0' hspace='0' src="+ url + "></iframe>";
-        }
-        else
-            cHtml+="<div id='yz_popdivData' style='padding:10px;height:"+(height-30)+"px;overflow:auto;width:"+width+"px;'></div>";
-        cHtml+="</div>";
-        $("body").append(cHtml);
-        $("#yz_popIframeDiv").css({  
-            width : winWinth,  
-            height : winHeight,  
-            background : "#000",  
-            position : "absolute",  
-            left : "0",  
-            top : "0"  
-        });  
-        $("#yz_popIframeDiv").fadeTo(0, 0.5);  
-        var yz_popTanChuLeft = $(window).width() / 2 - width / 2;  
-        var yz_popTanChuTop = $(window).height() / 2 - height / 2  
-                + $(window).scrollTop();  
-        $("#yz_popTanChu").css({  
-            width : width,  
-            height : height,   
-            left : yz_popTanChuLeft,  
-            top : yz_popTanChuTop,  
-            background : "#fff",  
-            position : "absolute",
-            zIndex:2
-        });  
-        if(eleOb){
-            $("#yz_popdivData").html(eleOb.innerHTML);
-        }
-        var winIframeHeight = height;  
-        $("#yz_popwinIframe").css({  
-            width : width,  
-            height : winIframeHeight,  
-            "border-bottom" : "1px #ccc solid",  
-            background : "#ffffff"
-        });   
-        $("#yz_popTanChuClose,#yz_popIframeDiv").click(function() {  
-            $("#yz_popIframeDiv").remove();  
-            $("#yz_popTanChu").remove();  
-        });  
-    }  
-</script>
+    </script>
 
- <script src="https://www.wjx.cn/js/hintinfo.js?v=2" type="text/javascript"></script>
- <script src="/static/js/jqmobo2.js" type="text/javascript"></script>
- <style>
-  
+    <script src="https://www.wjx.cn/js/hintinfo.js?v=2" type="text/javascript"></script>
+    <script src="/static/js/jqmobo2.js" type="text/javascript"></script>
+    <style>
 
 
     </style>
-    
+
 </head>
 <body>
-    
-   
-    <form id="form1" method="post" action="https://www.wjx.cn/handler/processjq.ashx?curid=19776764">
-    
-    
-    <div id="toptitle" >
+
+
+<form id="form1" method="post" action="https://www.wjx.cn/handler/processjq.ashx?curid=19776764">
+
+
+    <div id="toptitle">
         <div class="header_left">
-            
+
         </div>
         <h1 class="htitle">
             高校学生家庭经济情况量化测评表</h1>
@@ -121,30 +119,545 @@
     <div id="divTip" style="background:#fdfbcb; padding:15px;
         text-align: left; font-size: 16px; color: #ff3300; line-height:22px;display:none;">
     </div>
-     <div id="divLoadAnswer" style="display:none;background:#fffaea;padding:15px 10px;">
-         <b style="color:red;">提示：</b>您上次作答没有成功提交，<a href="javascript:" onclick="loadAnswer();">加载上次答案</a>
-     </div>
-     
-    
-     <div id="divBackgroundWrap"></div>
+    <div id="divLoadAnswer" style="display:none;background:#fffaea;padding:15px 10px;">
+        <b style="color:red;">提示：</b>您上次作答没有成功提交，<a href="javascript:" onclick="loadAnswer();">加载上次答案</a>
+    </div>
+
+
+    <div id="divBackgroundWrap"></div>
     <div id="divContent">
         <div id="divDesc" class="formfield">
             <span class="description">
                 <div align="center">高校学生家庭经济情况量化测评表</div></span>
         </div>
-        
-        
-        
-        
-        
-       
+
+
         <div id="divQuestion">
-            <fieldset class='fieldset' style='' id='fieldset1' ><div class='field ui-field-contain' id='div1' req='1' topic='1'  data-role='fieldcontain' type='1'><div class='field-label'>1. 姓名：<span class='req'>*</span></div><div class='ui-input-text' style='position:relative;'><input type='text' id='q1' value='' name='q1' verify='姓名' style='padding-left:27px;'/><img src='/static/img/name.png' alt='' style='position:absolute;top:3px;left:3px;' /></div><div class='errorMessage'></div></div><div class='field ui-field-contain' id='div2'  topic='2'  data-role='fieldcontain' type='1'><div class='field-label'>2. 身份证号码</div><div class='ui-input-text' style='position:relative;'><input type='text' id='q2' value='' name='q2' verify='身份证号'/></div><div class='errorMessage'></div></div><div class='field ui-field-contain' id='div3' req='1' topic='3'  data-role='fieldcontain' type='3'><div class='field-label'>3. 性别：<span class='req'>*</span></div><div class='ui-controlgroup'><div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='1' id='q3_1' name='q3' style='display:none;'/><a  class='jqradio' href='javascript:;'></a></span><div class='label'  for='q3_1'>男</div></div><div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='2' id='q3_2' name='q3' style='display:none;'/><a  class='jqradio' href='javascript:;'></a></span><div class='label'  for='q3_2'>女</div></div></div><div class='errorMessage'></div></div><div class='field ui-field-contain' id='div4'  topic='4'  data-role='fieldcontain' type='1'><div class='field-label'>4. 民族</div><div class='ui-input-text' style='position:relative;'><input type='text' id='q4' value='' name='q4'/></div><div class='errorMessage'></div></div><div class='field ui-field-contain' id='div5' req='1' topic='5'  data-role='fieldcontain' type='1'><div class='field-label'>5. 院系<span class='req'>*</span></div><div class='ui-input-text' style='position:relative;'><input type='text' id='q5' value='' name='q5'/></div><div class='errorMessage'></div></div><div class='field ui-field-contain' id='div6'  topic='6'  data-role='fieldcontain' type='1'><div class='field-label'>6. 专业</div><div class='ui-input-text' style='position:relative;'><input type='text' id='q6' value='' name='q6'/></div><div class='errorMessage'></div></div><div class='field ui-field-contain' id='div7'  topic='7'  data-role='fieldcontain' type='1'><div class='field-label'>7. 班级</div><div class='ui-input-text' style='position:relative;'><input type='text' id='q7' value='' name='q7'/></div><div class='errorMessage'></div></div><div class='field ui-field-contain' id='div8'  topic='8'  data-role='fieldcontain' type='1'><div class='field-label'>8. 学号</div><div class='ui-input-text' style='position:relative;'><input type='text' id='q8' value='' name='q8'/></div><div class='errorMessage'></div></div><div class='cutfield' id='divCut1' qtopic='9' topic='c1'><div style='margin:7px 12px;'><span style="color:#ff483f;">一 . 学生基本情况</span></div></div><div class='field ui-field-contain' id='div9' req='1' topic='9'  data-role='fieldcontain' type='4'><div class='field-label'>9. 政策兜底资助类型<span class='req'>*</span><span class='qtypetip'>&nbsp;[多选题]</span></div><div class='ui-controlgroup'><div class='ui-checkbox'><span class='jqcheckwrapper'><input type='checkbox' value='1' id='q9_1' name='q9' style='display:none;'/><a  class='jqcheck' href='javascript:;'></a></span><div class='label'  for='q9_1'>城乡低保家庭（含特困供养人员）子女</div></div><div class='ui-checkbox'><span class='jqcheckwrapper'><input type='checkbox' value='2' id='q9_2' name='q9' style='display:none;'/><a  class='jqcheck' href='javascript:;'></a></span><div class='label'  for='q9_2'>建档立卡贫困户子女</div></div><div class='ui-checkbox'><span class='jqcheckwrapper'><input type='checkbox' value='3' id='q9_3' name='q9' style='display:none;'/><a  class='jqcheck' href='javascript:;'></a></span><div class='label'  for='q9_3'>家庭经济困难残疾学生</div></div><div class='ui-checkbox'><span class='jqcheckwrapper'><input type='checkbox' value='4' id='q9_4' name='q9' style='display:none;'/><a  class='jqcheck' href='javascript:;'></a></span><div class='label'  for='q9_4'>烈士子女或优抚家庭子女</div></div><div class='ui-checkbox'><span class='jqcheckwrapper'><input type='checkbox' value='5' id='q9_5' name='q9' style='display:none;'/><a  class='jqcheck' href='javascript:;'></a></span><div class='label'  for='q9_5'>孤儿</div></div></div><div class='qinsert'>提示：<b><span style="color:#ff483f;font-size:18px;">需提供相应的证明材料</span></b></div><div class='errorMessage'></div></div><div class='field ui-field-contain' id='div10' req='1' topic='10'  style='display:none;' relation='9,1;2;3;4;5'  ext='.gif|.png|.jpg|.jpeg|.bmp|.doc|.docx|.pdf|.xls|.xlsx|.ppt|.pptx|.txt|.rar|.zip|.gzip'  data-role='fieldcontain' type='13'><div class='field-label'>10. 相关证明材料：<span class='req'>*</span></div><iframe id='uploadFrame10' frameborder='0' scrolling='no' src='/wjx/join/UploadqiniuMobo2.aspx?activity=19776764&q=10&ms=4096&pid=div10' height='50px' width='100%'></iframe><div style='word-wrap:break-word;overflow:hidden;margin-top:8px;width:90%;display:none;' class='fileext'>请选择文件上传，扩展名为 .gif .png .jpg .jpeg .bmp .doc .docx .pdf .xls .xlsx .ppt .pptx .txt .rar .zip .gzip</div><div class='uploadmsg' style='color:red;'></div><div class='errorMessage'></div></div><div class='field ui-field-contain' id='div11'  topic='11'  data-role='fieldcontain' type='1'><div class='field-label'>11. 请在此输入问题标题</div><div class='ui-input-text' style='position:relative;'><input type='text' id='q11' value='' name='q11'/></div><div class='errorMessage'></div></div><div class='field ui-field-contain' id='div12'  topic='12'  data-role='fieldcontain' type='1'><div class='field-label'>12. 请在此输入问题标题</div><div class='ui-input-text' style='position:relative;'><input type='text' id='q12' value='' name='q12'/></div><div class='errorMessage'></div></div><div class='field ui-field-contain' id='div13'  topic='13'  data-role='fieldcontain' type='1'><div class='field-label'>13. 请选择省份城市与地区:</div><div class='ui-input-text' style='position:relative;'><input type='text' id='q13' value='' name='q13' verify='省市区' style='padding-left:27px;' onclick='openCityBox(this,3,event,13);'  readonly='readonly' /><img src='/images/form/city.png' alt='' style='position:absolute;top:3px;left:3px;' /></div><div class='errorMessage'></div></div><div class='field ui-field-contain' id='div14' req='1' topic='14'  data-role='fieldcontain' type='3'><div class='field-label'>14. 家庭住地<span class='req'>*</span></div><div class='ui-controlgroup'><div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='1' id='q14_1' name='q14' style='display:none;'/><a  class='jqradio' href='javascript:;'></a></span><div class='label'  for='q14_1'>近两年家庭实际住地在县城及以上</div></div><div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='2' id='q14_2' name='q14' style='display:none;'/><a  class='jqradio' href='javascript:;'></a></span><div class='label'  for='q14_2'>近两年家庭实际住地在乡镇及以下</div></div></div><div class='errorMessage'></div></div><div class='field ui-field-contain' id='div15' req='1' topic='15'  data-role='fieldcontain' type='1'><div class='field-label'>15. 每年学费标准<span class='req'>*</span></div><div class='ui-input-text' style='position:relative;'><input type='text' id='q15' value='' name='q15'/></div><div class='qinsert'>提示：学校提供（填写院系/专业后自动填写）</div><div class='errorMessage'></div></div><div class='cutfield' id='divCut2' qtopic='16' topic='c2'><div style='margin:7px 12px;'><span style="font-size:18px;color:#ff483f;">二 . 父母收入情况</span></div></div><div class='field ui-field-contain' id='div16' req='1' topic='16'  data-role='fieldcontain' type='3'><div class='field-label'>16. 父亲职业<span class='req'>*</span></div><div class='ui-controlgroup'><div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='1' id='q16_1' name='q16' style='display:none;'/><a  class='jqradio' href='javascript:;'></a></span><div class='label'  for='q16_1'>公司股东或高管、私营业主</div></div><div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='2' id='q16_2' name='q16' style='display:none;'/><a  class='jqradio' href='javascript:;'></a></span><div class='label'  for='q16_2'>公务员、事业单位或国有企业工作人员、个体经营户</div></div><div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='3' id='q16_3' name='q16' style='display:none;'/><a  class='jqradio' href='javascript:;'></a></span><div class='label'  for='q16_3'>进城务工人员或合同制工作人员</div></div><div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='4' id='q16_4' name='q16' style='display:none;'/><a  class='jqradio' href='javascript:;'></a></span><div class='label'  for='q16_4'>务农或临时务工</div></div><div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='5' id='q16_5' name='q16' style='display:none;'/><a  class='jqradio' href='javascript:;'></a></span><div class='label'  for='q16_5'>因身体或其他原因无法就业、失踪（联）或去世</div></div></div><div class='errorMessage'></div></div><div class='field ui-field-contain' id='div17' req='1' topic='17'  data-role='fieldcontain' type='3'><div class='field-label'>17. 母亲职业<span class='req'>*</span></div><div class='ui-controlgroup'><div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='1' id='q17_1' name='q17' style='display:none;'/><a  class='jqradio' href='javascript:;'></a></span><div class='label'  for='q17_1'>公司股东或高管、私营业主、全职太太</div></div><div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='2' id='q17_2' name='q17' style='display:none;'/><a  class='jqradio' href='javascript:;'></a></span><div class='label'  for='q17_2'>公务员、事业单位或国有企业工作人员、个体经营户</div></div><div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='3' id='q17_3' name='q17' style='display:none;'/><a  class='jqradio' href='javascript:;'></a></span><div class='label'  for='q17_3'>进城务工人员或合同制工作人员</div></div><div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='4' id='q17_4' name='q17' style='display:none;'/><a  class='jqradio' href='javascript:;'></a></span><div class='label'  for='q17_4'>务农或临时务工</div></div><div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='5' id='q17_5' name='q17' style='display:none;'/><a  class='jqradio' href='javascript:;'></a></span><div class='label'  for='q17_5'>因身体或其他原因无法就业、失踪（联）或去世</div></div></div><div class='errorMessage'></div></div><div class='field ui-field-contain' id='div18' req='1' topic='18'  data-role='fieldcontain' type='3'><div class='field-label'>18. 父亲劳动能力<span class='req'>*</span></div><div class='ui-controlgroup'><div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='1' id='q18_1' name='q18' style='display:none;'/><a  class='jqradio' href='javascript:;'></a></span><div class='label'  for='q18_1'>身体健康且有一技之长</div></div><div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='2' id='q18_2' name='q18' style='display:none;'/><a  class='jqradio' href='javascript:;'></a></span><div class='label'  for='q18_2'>身体健康但无一技之长</div></div><div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='3' id='q18_3' name='q18' style='display:none;'/><a  class='jqradio' href='javascript:;'></a></span><div class='label'  for='q18_3'>3-4级伤残，或有一定劳动能力</div></div><div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='4' id='q18_4' name='q18' style='display:none;'/><a  class='jqradio' href='javascript:;'></a></span><div class='label'  for='q18_4'>1-2级伤残</div></div><div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='5' id='q18_5' name='q18' style='display:none;'/><a  class='jqradio' href='javascript:;'></a></span><div class='label'  for='q18_5'>完全丧失劳动能力、失踪（联）或去世</div></div></div><div class='errorMessage'></div></div><div class='field ui-field-contain' id='div19' req='1' topic='19'  data-role='fieldcontain' type='3'><div class='field-label'>19. 母亲劳动能力<span class='req'>*</span></div><div class='ui-controlgroup'><div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='1' id='q19_1' name='q19' style='display:none;'/><a  class='jqradio' href='javascript:;'></a></span><div class='label'  for='q19_1'>身体健康且有一技之长</div></div><div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='2' id='q19_2' name='q19' style='display:none;'/><a  class='jqradio' href='javascript:;'></a></span><div class='label'  for='q19_2'>身体健康但无一技之长</div></div><div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='3' id='q19_3' name='q19' style='display:none;'/><a  class='jqradio' href='javascript:;'></a></span><div class='label'  for='q19_3'>3-4级伤残，或有一定劳动能力</div></div><div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='4' id='q19_4' name='q19' style='display:none;'/><a  class='jqradio' href='javascript:;'></a></span><div class='label'  for='q19_4'>1-2级伤残</div></div><div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='5' id='q19_5' name='q19' style='display:none;'/><a  class='jqradio' href='javascript:;'></a></span><div class='label'  for='q19_5'>完全丧失劳动能力、失踪（联）或去世</div></div></div><div class='errorMessage'></div></div><div class='field ui-field-contain' id='div20' req='1' topic='20'  data-role='fieldcontain' type='3'><div class='field-label'>20. 除父母亲之外其他家庭成员劳动能力<span class='req'>*</span></div><div class='ui-controlgroup'><div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='1' id='q20_1' name='q20' style='display:none;'/><a  class='jqradio' href='javascript:;'></a></span><div class='label'  for='q20_1'>无其他成员；或有其他成员且有劳动能力或固定收入</div></div><div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='2' id='q20_2' name='q20' style='display:none;'/><a  class='jqradio' href='javascript:;'></a></span><div class='label'  for='q20_2'>其他家庭成员中部分有劳动能力或固定收入</div></div><div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='3' id='q20_3' name='q20' style='display:none;'/><a  class='jqradio' href='javascript:;'></a></span><div class='label'  for='q20_3'>其他成员均无劳动能力或固定收入</div></div></div><div class='errorMessage'></div></div><div class='cutfield' id='divCut3' qtopic='21' topic='c3'><div style='margin:7px 12px;'><span style="color:#ff483f;font-size:18px;">三 . 家庭情况</span></div></div><div class='field ui-field-contain' id='div21' req='1' topic='21'  data-role='fieldcontain' type='3'><div class='field-label'>21. 房屋情况<span class='req'>*</span></div><div class='ui-controlgroup'><div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='1' id='q21_1' name='q21' style='display:none;'/><a  class='jqradio' href='javascript:;'></a></span><div class='label'  for='q21_1'>无房</div></div><div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='2' id='q21_2' name='q21' style='display:none;'/><a  class='jqradio' href='javascript:;'></a></span><div class='label'  for='q21_2'>农村简易房或城市民房</div></div><div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='3' id='q21_3' name='q21' style='display:none;'/><a  class='jqradio' href='javascript:;'></a></span><div class='label'  for='q21_3'>农村简易砖瓦房或城市廉租房、公租房</div></div><div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='4' id='q21_4' name='q21' style='display:none;'/><a  class='jqradio' href='javascript:;'></a></span><div class='label'  for='q21_4'>其他房屋或两套及以上</div></div></div><div class='errorMessage'></div></div><div class='field ui-field-contain' id='div22' req='1' topic='22'  data-role='fieldcontain' type='3'><div class='field-label'>22. 就学人口<span class='req'>*</span></div><div class='ui-controlgroup'><div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='1' id='q22_1' name='q22' style='display:none;'/><a  class='jqradio' href='javascript:;'></a></span><div class='label'  for='q22_1'>1人</div></div><div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='2' id='q22_2' name='q22' style='display:none;'/><a  class='jqradio' href='javascript:;'></a></span><div class='label'  for='q22_2'>2人</div></div><div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='3' id='q22_3' name='q22' style='display:none;'/><a  class='jqradio' href='javascript:;'></a></span><div class='label'  for='q22_3'>3人及以上</div></div></div><div class='errorMessage'></div></div><div class='field ui-field-contain' id='div23' req='1' topic='23'  data-role='fieldcontain' type='3'><div class='field-label'>23. 赡养人口<span class='req'>*</span></div><div class='ui-controlgroup'><div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='1' id='q23_1' name='q23' style='display:none;'/><a  class='jqradio' href='javascript:;'></a></span><div class='label'  for='q23_1'>0人</div></div><div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='2' id='q23_2' name='q23' style='display:none;'/><a  class='jqradio' href='javascript:;'></a></span><div class='label'  for='q23_2'>1人</div></div><div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='3' id='q23_3' name='q23' style='display:none;'/><a  class='jqradio' href='javascript:;'></a></span><div class='label'  for='q23_3'>2人及以上</div></div></div><div class='errorMessage'></div></div><div class='field ui-field-contain' id='div24'  topic='24'  data-role='fieldcontain' type='3'><div class='field-label'>24. 医疗支出</div><div class='ui-controlgroup'><div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='1' id='q24_1' name='q24' style='display:none;'/><a  class='jqradio' href='javascript:;'></a></span><div class='label'  for='q24_1'>家庭成员医疗费用个人负担部分在2000元及以内</div></div><div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='2' id='q24_2' name='q24' style='display:none;'/><a  class='jqradio' href='javascript:;'></a></span><div class='label'  for='q24_2'>家庭成员医疗费用个人负担部分在2000-1万（含1万）</div></div><div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='3' id='q24_3' name='q24' style='display:none;'/><a  class='jqradio' href='javascript:;'></a></span><div class='label'  for='q24_3'>家庭成员医疗费用个人负担部分在1万-3万（含3万）</div></div><div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='4' id='q24_4' name='q24' style='display:none;'/><a  class='jqradio' href='javascript:;'></a></span><div class='label'  for='q24_4'>家庭成员医疗费用个人负担部分在3万以上或患重大疾病</div></div></div><div class='errorMessage'></div></div><div class='field ui-field-contain' id='div25' req='1' topic='25'  style='display:none;' relation='24,1;2;3;4'  ext='.gif|.png|.jpg|.jpeg|.bmp|.doc|.docx|.pdf|.xls|.xlsx|.ppt|.pptx|.txt|.rar|.zip|.gzip'  data-role='fieldcontain' type='13'><div class='field-label'>25. 医疗支出证明材料<span class='req'>*</span></div><iframe id='uploadFrame25' frameborder='0' scrolling='no' src='/wjx/join/UploadqiniuMobo2.aspx?activity=19776764&q=25&ms=4096&pid=div25' height='50px' width='100%'></iframe><div style='word-wrap:break-word;overflow:hidden;margin-top:8px;width:90%;display:none;' class='fileext'>请选择文件上传，扩展名为 .gif .png .jpg .jpeg .bmp .doc .docx .pdf .xls .xlsx .ppt .pptx .txt .rar .zip .gzip</div><div class='uploadmsg' style='color:red;'></div><div class='errorMessage'></div></div><div class='field ui-field-contain' id='div26' req='1' topic='26'  data-role='fieldcontain' type='3'><div class='field-label'>26. 家庭受灾<span class='req'>*</span></div><div class='ui-controlgroup'><div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='1' id='q26_1' name='q26' style='display:none;'/><a  class='jqradio' href='javascript:;'></a></span><div class='label'  for='q26_1'>近两年内未遭受自然灾害</div></div><div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='2' id='q26_2' name='q26' style='display:none;'/><a  class='jqradio' href='javascript:;'></a></span><div class='label'  for='q26_2'>近两年内遭受一般自然灾害，影响家庭收入</div></div><div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='3' id='q26_3' name='q26' style='display:none;'/><a  class='jqradio' href='javascript:;'></a></span><div class='label'  for='q26_3'>近两年内遭受较重自然灾害，影响家庭收入且造成财产损失</div></div><div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='4' id='q26_4' name='q26' style='display:none;'/><a  class='jqradio' href='javascript:;'></a></span><div class='label'  for='q26_4'>近两年内遭受严重自然灾害，造成人身伤害和财产重大损失</div></div></div><div class='errorMessage'></div></div><div class='field ui-field-contain' id='div27' req='1' topic='27'  style='display:none;' relation='26,2;3;4'  ext='.gif|.png|.jpg|.jpeg|.bmp|.doc|.docx|.pdf|.xls|.xlsx|.ppt|.pptx|.txt|.rar|.zip|.gzip'  data-role='fieldcontain' type='13'><div class='field-label'>27. 家庭受灾证明材料<span class='req'>*</span></div><iframe id='uploadFrame27' frameborder='0' scrolling='no' src='/wjx/join/UploadqiniuMobo2.aspx?activity=19776764&q=27&ms=4096&pid=div27' height='50px' width='100%'></iframe><div style='word-wrap:break-word;overflow:hidden;margin-top:8px;width:90%;display:none;' class='fileext'>请选择文件上传，扩展名为 .gif .png .jpg .jpeg .bmp .doc .docx .pdf .xls .xlsx .ppt .pptx .txt .rar .zip .gzip</div><div class='uploadmsg' style='color:red;'></div><div class='errorMessage'></div></div><div class='field ui-field-contain' id='div28' req='1' topic='28'  data-role='fieldcontain' type='3'><div class='field-label'>28. 家庭变故<span class='req'>*</span></div><div class='ui-controlgroup'><div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='1' id='q28_1' name='q28' style='display:none;'/><a  class='jqradio' href='javascript:;'></a></span><div class='label'  for='q28_1'>近两年内未出现家庭变故</div></div><div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='2' id='q28_2' name='q28' style='display:none;'/><a  class='jqradio' href='javascript:;'></a></span><div class='label'  for='q28_2'>近两年内家庭成员出现伤残、失踪或意外事故造成财产损失等情况</div></div><div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='3' id='q28_3' name='q28' style='display:none;'/><a  class='jqradio' href='javascript:;'></a></span><div class='label'  for='q28_3'>近两年内家庭成员出现重大伤残、意外死亡或重大变故</div></div></div><div class='errorMessage'></div></div><div class='field ui-field-contain' id='div29' req='1' topic='29'  style='display:none;' relation='28,2;3'  ext='.gif|.png|.jpg|.jpeg|.bmp|.doc|.docx|.pdf|.xls|.xlsx|.ppt|.pptx|.txt|.rar|.zip|.gzip'  data-role='fieldcontain' type='13'><div class='field-label'>29. 家庭变故证明材料<span class='req'>*</span></div><iframe id='uploadFrame29' frameborder='0' scrolling='no' src='/wjx/join/UploadqiniuMobo2.aspx?activity=19776764&q=29&ms=4096&pid=div29' height='50px' width='100%'></iframe><div style='word-wrap:break-word;overflow:hidden;margin-top:8px;width:90%;display:none;' class='fileext'>请选择文件上传，扩展名为 .gif .png .jpg .jpeg .bmp .doc .docx .pdf .xls .xlsx .ppt .pptx .txt .rar .zip .gzip</div><div class='uploadmsg' style='color:red;'></div><div class='errorMessage'></div></div><div class='cutfield' id='divCut4' qtopic='30' topic='c4'><div style='margin:7px 12px;'>四 . 学生获奖助贷、勤工俭学情况</div></div><div class='field ui-field-contain' id='div30' req='1' topic='30'  data-role='fieldcontain' type='3'><div class='field-label'>30. 在校期间获得国家或学校资助情况<span class='req'>*</span></div><div class='ui-controlgroup'><div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='1' id='q30_1' name='q30' style='display:none;'/><a  class='jqradio' href='javascript:;'></a></span><div class='label'  for='q30_1'>曾经获得过一项资助</div></div><div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='2' id='q30_2' name='q30' style='display:none;'/><a  class='jqradio' href='javascript:;'></a></span><div class='label'  for='q30_2'>连续三年获得过资助</div></div><div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='3' id='q30_3' name='q30' style='display:none;'/><a  class='jqradio' href='javascript:;'></a></span><div class='label'  for='q30_3'>连续五年获得过资助</div></div></div><div class='qinsert'>提示：国家助学贷款、高校国家助学金、高校国家励志奖学金、学费减免、校内勤工俭学、普通高中/中职国家助学金</div><div class='errorMessage'></div></div></fieldset>
+            <fieldset class='fieldset' style='' id='fieldset1'>
+                <div class='field ui-field-contain' id='div1' req='1' topic='1' data-role='fieldcontain' type='1'>
+                    <div class='field-label'>1. 姓名：<span class='req'>*</span></div>
+                    <div class='ui-input-text' style='position:relative;'><input type='text' id='q1' value='' name='q1'
+                                                                                 verify='姓名'
+                                                                                 style='padding-left:27px;'/><img
+                            src='/static/img/name.png' alt='' style='position:absolute;top:3px;left:3px;'/></div>
+                    <div class='errorMessage'></div>
+                </div>
+                <div class='field ui-field-contain' id='div2' topic='2' data-role='fieldcontain' type='1'>
+                    <div class='field-label'>2. 身份证号码</div>
+                    <div class='ui-input-text' style='position:relative;'><input type='text' id='q2' value='' name='q2'
+                                                                                 verify='身份证号'/></div>
+                    <div class='errorMessage'></div>
+                </div>
+                <div class='field ui-field-contain' id='div3' req='1' topic='3' data-role='fieldcontain' type='3'>
+                    <div class='field-label'>3. 性别：<span class='req'>*</span></div>
+                    <div class='ui-controlgroup'>
+                        <div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='1' id='q3_1'
+                                                                                  name='q3' style='display:none;'/><a
+                                class='jqradio' href='javascript:;'></a></span>
+                            <div class='label' for='q3_1'>男</div>
+                        </div>
+                        <div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='2' id='q3_2'
+                                                                                  name='q3' style='display:none;'/><a
+                                class='jqradio' href='javascript:;'></a></span>
+                            <div class='label' for='q3_2'>女</div>
+                        </div>
+                    </div>
+                    <div class='errorMessage'></div>
+                </div>
+                <div class='field ui-field-contain' id='div4' topic='4' data-role='fieldcontain' type='1'>
+                    <div class='field-label'>4. 民族</div>
+                    <div class='ui-input-text' style='position:relative;'><input type='text' id='q4' value=''
+                                                                                 name='q4'/></div>
+                    <div class='errorMessage'></div>
+                </div>
+                <div class='field ui-field-contain' id='div5' req='1' topic='5' data-role='fieldcontain' type='1'>
+                    <div class='field-label'>5. 院系<span class='req'>*</span></div>
+                    <div class='ui-input-text' style='position:relative;'><input type='text' id='q5' value=''
+                                                                                 name='q5'/></div>
+                    <div class='errorMessage'></div>
+                </div>
+                <div class='field ui-field-contain' id='div6' topic='6' data-role='fieldcontain' type='1'>
+                    <div class='field-label'>6. 专业</div>
+                    <div class='ui-input-text' style='position:relative;'><input type='text' id='q6' value=''
+                                                                                 name='q6'/></div>
+                    <div class='errorMessage'></div>
+                </div>
+                <div class='field ui-field-contain' id='div7' topic='7' data-role='fieldcontain' type='1'>
+                    <div class='field-label'>7. 班级</div>
+                    <div class='ui-input-text' style='position:relative;'><input type='text' id='q7' value=''
+                                                                                 name='q7'/></div>
+                    <div class='errorMessage'></div>
+                </div>
+                <div class='field ui-field-contain' id='div8' topic='8' data-role='fieldcontain' type='1'>
+                    <div class='field-label'>8. 学号</div>
+                    <div class='ui-input-text' style='position:relative;'><input type='text' id='q8' value=''
+                                                                                 name='q8'/></div>
+                    <div class='errorMessage'></div>
+                </div>
+                <div class='cutfield' id='divCut1' qtopic='9' topic='c1'>
+                    <div style='margin:7px 12px;'><span style="color:#ff483f;">一 . 学生基本情况</span></div>
+                </div>
+                <div class='field ui-field-contain' id='div9' req='1' topic='9' data-role='fieldcontain' type='4'>
+                    <div class='field-label'>9. 政策兜底资助类型<span class='req'>*</span><span
+                            class='qtypetip'>&nbsp;[多选题]</span></div>
+                    <div class='ui-controlgroup'>
+                        <div class='ui-checkbox'><span class='jqcheckwrapper'><input type='checkbox' value='1' id='q9_1'
+                                                                                     name='q9' style='display:none;'/><a
+                                class='jqcheck' href='javascript:;'></a></span>
+                            <div class='label' for='q9_1'>城乡低保家庭（含特困供养人员）子女</div>
+                        </div>
+                        <div class='ui-checkbox'><span class='jqcheckwrapper'><input type='checkbox' value='2' id='q9_2'
+                                                                                     name='q9' style='display:none;'/><a
+                                class='jqcheck' href='javascript:;'></a></span>
+                            <div class='label' for='q9_2'>建档立卡贫困户子女</div>
+                        </div>
+                        <div class='ui-checkbox'><span class='jqcheckwrapper'><input type='checkbox' value='3' id='q9_3'
+                                                                                     name='q9' style='display:none;'/><a
+                                class='jqcheck' href='javascript:;'></a></span>
+                            <div class='label' for='q9_3'>家庭经济困难残疾学生</div>
+                        </div>
+                        <div class='ui-checkbox'><span class='jqcheckwrapper'><input type='checkbox' value='4' id='q9_4'
+                                                                                     name='q9' style='display:none;'/><a
+                                class='jqcheck' href='javascript:;'></a></span>
+                            <div class='label' for='q9_4'>烈士子女或优抚家庭子女</div>
+                        </div>
+                        <div class='ui-checkbox'><span class='jqcheckwrapper'><input type='checkbox' value='5' id='q9_5'
+                                                                                     name='q9' style='display:none;'/><a
+                                class='jqcheck' href='javascript:;'></a></span>
+                            <div class='label' for='q9_5'>孤儿</div>
+                        </div>
+                    </div>
+                    <div class='qinsert'>提示：<b><span style="color:#ff483f;font-size:18px;">需提供相应的证明材料</span></b></div>
+                    <div class='errorMessage'></div>
+                </div>
+                <div class='field ui-field-contain' id='div10' req='1' topic='10' style='display:none;'
+                     relation='9,1;2;3;4;5'
+                     ext='.gif|.png|.jpg|.jpeg|.bmp|.doc|.docx|.pdf|.xls|.xlsx|.ppt|.pptx|.txt|.rar|.zip|.gzip'
+                     data-role='fieldcontain' type='13'>
+                    <div class='field-label'>10. 相关证明材料：<span class='req'>*</span></div>
+                    <iframe id='uploadFrame10' frameborder='0' scrolling='no'
+                            src='/wjx/join/UploadqiniuMobo2.aspx?activity=19776764&q=10&ms=4096&pid=div10' height='50px'
+                            width='100%'></iframe>
+                    <div style='word-wrap:break-word;overflow:hidden;margin-top:8px;width:90%;display:none;'
+                         class='fileext'>请选择文件上传，扩展名为 .gif .png .jpg .jpeg .bmp .doc .docx .pdf .xls .xlsx .ppt .pptx
+                        .txt .rar .zip .gzip
+                    </div>
+                    <div class='uploadmsg' style='color:red;'></div>
+                    <div class='errorMessage'></div>
+                </div>
+                <div class='field ui-field-contain' id='div11' topic='11' data-role='fieldcontain' type='1'>
+                    <div class='field-label'>11. 请在此输入问题标题</div>
+                    <div class='ui-input-text' style='position:relative;'><input type='text' id='q11' value=''
+                                                                                 name='q11'/></div>
+                    <div class='errorMessage'></div>
+                </div>
+                <div class='field ui-field-contain' id='div12' topic='12' data-role='fieldcontain' type='1'>
+                    <div class='field-label'>12. 请在此输入问题标题</div>
+                    <div class='ui-input-text' style='position:relative;'><input type='text' id='q12' value=''
+                                                                                 name='q12'/></div>
+                    <div class='errorMessage'></div>
+                </div>
+                <div class='field ui-field-contain' id='div13' topic='13' data-role='fieldcontain' type='1'>
+                    <div class='field-label'>13. 请选择省份城市与地区:</div>
+                    <div class='ui-input-text' style='position:relative;'><input type='text' id='q13' value=''
+                                                                                 name='q13' verify='省市区'
+                                                                                 style='padding-left:27px;'
+                                                                                 onclick='openCityBox(this,3,event,13);'
+                                                                                 readonly='readonly'/><img
+                            src='/images/form/city.png' alt='' style='position:absolute;top:3px;left:3px;'/></div>
+                    <div class='errorMessage'></div>
+                </div>
+                <div class='field ui-field-contain' id='div14' req='1' topic='14' data-role='fieldcontain' type='3'>
+                    <div class='field-label'>14. 家庭住地<span class='req'>*</span></div>
+                    <div class='ui-controlgroup'>
+                        <div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='1' id='q14_1'
+                                                                                  name='q14' style='display:none;'/><a
+                                class='jqradio' href='javascript:;'></a></span>
+                            <div class='label' for='q14_1'>近两年家庭实际住地在县城及以上</div>
+                        </div>
+                        <div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='2' id='q14_2'
+                                                                                  name='q14' style='display:none;'/><a
+                                class='jqradio' href='javascript:;'></a></span>
+                            <div class='label' for='q14_2'>近两年家庭实际住地在乡镇及以下</div>
+                        </div>
+                    </div>
+                    <div class='errorMessage'></div>
+                </div>
+                <div class='field ui-field-contain' id='div15' req='1' topic='15' data-role='fieldcontain' type='1'>
+                    <div class='field-label'>15. 每年学费标准<span class='req'>*</span></div>
+                    <div class='ui-input-text' style='position:relative;'><input type='text' id='q15' value=''
+                                                                                 name='q15'/></div>
+                    <div class='qinsert'>提示：学校提供（填写院系/专业后自动填写）</div>
+                    <div class='errorMessage'></div>
+                </div>
+                <div class='cutfield' id='divCut2' qtopic='16' topic='c2'>
+                    <div style='margin:7px 12px;'><span style="font-size:18px;color:#ff483f;">二 . 父母收入情况</span></div>
+                </div>
+                <div class='field ui-field-contain' id='div16' req='1' topic='16' data-role='fieldcontain' type='3'>
+                    <div class='field-label'>16. 父亲职业<span class='req'>*</span></div>
+                    <div class='ui-controlgroup'>
+                        <div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='1' id='q16_1'
+                                                                                  name='q16' style='display:none;'/><a
+                                class='jqradio' href='javascript:;'></a></span>
+                            <div class='label' for='q16_1'>公司股东或高管、私营业主</div>
+                        </div>
+                        <div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='2' id='q16_2'
+                                                                                  name='q16' style='display:none;'/><a
+                                class='jqradio' href='javascript:;'></a></span>
+                            <div class='label' for='q16_2'>公务员、事业单位或国有企业工作人员、个体经营户</div>
+                        </div>
+                        <div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='3' id='q16_3'
+                                                                                  name='q16' style='display:none;'/><a
+                                class='jqradio' href='javascript:;'></a></span>
+                            <div class='label' for='q16_3'>进城务工人员或合同制工作人员</div>
+                        </div>
+                        <div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='4' id='q16_4'
+                                                                                  name='q16' style='display:none;'/><a
+                                class='jqradio' href='javascript:;'></a></span>
+                            <div class='label' for='q16_4'>务农或临时务工</div>
+                        </div>
+                        <div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='5' id='q16_5'
+                                                                                  name='q16' style='display:none;'/><a
+                                class='jqradio' href='javascript:;'></a></span>
+                            <div class='label' for='q16_5'>因身体或其他原因无法就业、失踪（联）或去世</div>
+                        </div>
+                    </div>
+                    <div class='errorMessage'></div>
+                </div>
+                <div class='field ui-field-contain' id='div17' req='1' topic='17' data-role='fieldcontain' type='3'>
+                    <div class='field-label'>17. 母亲职业<span class='req'>*</span></div>
+                    <div class='ui-controlgroup'>
+                        <div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='1' id='q17_1'
+                                                                                  name='q17' style='display:none;'/><a
+                                class='jqradio' href='javascript:;'></a></span>
+                            <div class='label' for='q17_1'>公司股东或高管、私营业主、全职太太</div>
+                        </div>
+                        <div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='2' id='q17_2'
+                                                                                  name='q17' style='display:none;'/><a
+                                class='jqradio' href='javascript:;'></a></span>
+                            <div class='label' for='q17_2'>公务员、事业单位或国有企业工作人员、个体经营户</div>
+                        </div>
+                        <div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='3' id='q17_3'
+                                                                                  name='q17' style='display:none;'/><a
+                                class='jqradio' href='javascript:;'></a></span>
+                            <div class='label' for='q17_3'>进城务工人员或合同制工作人员</div>
+                        </div>
+                        <div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='4' id='q17_4'
+                                                                                  name='q17' style='display:none;'/><a
+                                class='jqradio' href='javascript:;'></a></span>
+                            <div class='label' for='q17_4'>务农或临时务工</div>
+                        </div>
+                        <div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='5' id='q17_5'
+                                                                                  name='q17' style='display:none;'/><a
+                                class='jqradio' href='javascript:;'></a></span>
+                            <div class='label' for='q17_5'>因身体或其他原因无法就业、失踪（联）或去世</div>
+                        </div>
+                    </div>
+                    <div class='errorMessage'></div>
+                </div>
+                <div class='field ui-field-contain' id='div18' req='1' topic='18' data-role='fieldcontain' type='3'>
+                    <div class='field-label'>18. 父亲劳动能力<span class='req'>*</span></div>
+                    <div class='ui-controlgroup'>
+                        <div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='1' id='q18_1'
+                                                                                  name='q18' style='display:none;'/><a
+                                class='jqradio' href='javascript:;'></a></span>
+                            <div class='label' for='q18_1'>身体健康且有一技之长</div>
+                        </div>
+                        <div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='2' id='q18_2'
+                                                                                  name='q18' style='display:none;'/><a
+                                class='jqradio' href='javascript:;'></a></span>
+                            <div class='label' for='q18_2'>身体健康但无一技之长</div>
+                        </div>
+                        <div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='3' id='q18_3'
+                                                                                  name='q18' style='display:none;'/><a
+                                class='jqradio' href='javascript:;'></a></span>
+                            <div class='label' for='q18_3'>3-4级伤残，或有一定劳动能力</div>
+                        </div>
+                        <div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='4' id='q18_4'
+                                                                                  name='q18' style='display:none;'/><a
+                                class='jqradio' href='javascript:;'></a></span>
+                            <div class='label' for='q18_4'>1-2级伤残</div>
+                        </div>
+                        <div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='5' id='q18_5'
+                                                                                  name='q18' style='display:none;'/><a
+                                class='jqradio' href='javascript:;'></a></span>
+                            <div class='label' for='q18_5'>完全丧失劳动能力、失踪（联）或去世</div>
+                        </div>
+                    </div>
+                    <div class='errorMessage'></div>
+                </div>
+                <div class='field ui-field-contain' id='div19' req='1' topic='19' data-role='fieldcontain' type='3'>
+                    <div class='field-label'>19. 母亲劳动能力<span class='req'>*</span></div>
+                    <div class='ui-controlgroup'>
+                        <div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='1' id='q19_1'
+                                                                                  name='q19' style='display:none;'/><a
+                                class='jqradio' href='javascript:;'></a></span>
+                            <div class='label' for='q19_1'>身体健康且有一技之长</div>
+                        </div>
+                        <div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='2' id='q19_2'
+                                                                                  name='q19' style='display:none;'/><a
+                                class='jqradio' href='javascript:;'></a></span>
+                            <div class='label' for='q19_2'>身体健康但无一技之长</div>
+                        </div>
+                        <div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='3' id='q19_3'
+                                                                                  name='q19' style='display:none;'/><a
+                                class='jqradio' href='javascript:;'></a></span>
+                            <div class='label' for='q19_3'>3-4级伤残，或有一定劳动能力</div>
+                        </div>
+                        <div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='4' id='q19_4'
+                                                                                  name='q19' style='display:none;'/><a
+                                class='jqradio' href='javascript:;'></a></span>
+                            <div class='label' for='q19_4'>1-2级伤残</div>
+                        </div>
+                        <div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='5' id='q19_5'
+                                                                                  name='q19' style='display:none;'/><a
+                                class='jqradio' href='javascript:;'></a></span>
+                            <div class='label' for='q19_5'>完全丧失劳动能力、失踪（联）或去世</div>
+                        </div>
+                    </div>
+                    <div class='errorMessage'></div>
+                </div>
+                <div class='field ui-field-contain' id='div20' req='1' topic='20' data-role='fieldcontain' type='3'>
+                    <div class='field-label'>20. 除父母亲之外其他家庭成员劳动能力<span class='req'>*</span></div>
+                    <div class='ui-controlgroup'>
+                        <div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='1' id='q20_1'
+                                                                                  name='q20' style='display:none;'/><a
+                                class='jqradio' href='javascript:;'></a></span>
+                            <div class='label' for='q20_1'>无其他成员；或有其他成员且有劳动能力或固定收入</div>
+                        </div>
+                        <div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='2' id='q20_2'
+                                                                                  name='q20' style='display:none;'/><a
+                                class='jqradio' href='javascript:;'></a></span>
+                            <div class='label' for='q20_2'>其他家庭成员中部分有劳动能力或固定收入</div>
+                        </div>
+                        <div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='3' id='q20_3'
+                                                                                  name='q20' style='display:none;'/><a
+                                class='jqradio' href='javascript:;'></a></span>
+                            <div class='label' for='q20_3'>其他成员均无劳动能力或固定收入</div>
+                        </div>
+                    </div>
+                    <div class='errorMessage'></div>
+                </div>
+                <div class='cutfield' id='divCut3' qtopic='21' topic='c3'>
+                    <div style='margin:7px 12px;'><span style="color:#ff483f;font-size:18px;">三 . 家庭情况</span></div>
+                </div>
+                <div class='field ui-field-contain' id='div21' req='1' topic='21' data-role='fieldcontain' type='3'>
+                    <div class='field-label'>21. 房屋情况<span class='req'>*</span></div>
+                    <div class='ui-controlgroup'>
+                        <div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='1' id='q21_1'
+                                                                                  name='q21' style='display:none;'/><a
+                                class='jqradio' href='javascript:;'></a></span>
+                            <div class='label' for='q21_1'>无房</div>
+                        </div>
+                        <div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='2' id='q21_2'
+                                                                                  name='q21' style='display:none;'/><a
+                                class='jqradio' href='javascript:;'></a></span>
+                            <div class='label' for='q21_2'>农村简易房或城市民房</div>
+                        </div>
+                        <div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='3' id='q21_3'
+                                                                                  name='q21' style='display:none;'/><a
+                                class='jqradio' href='javascript:;'></a></span>
+                            <div class='label' for='q21_3'>农村简易砖瓦房或城市廉租房、公租房</div>
+                        </div>
+                        <div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='4' id='q21_4'
+                                                                                  name='q21' style='display:none;'/><a
+                                class='jqradio' href='javascript:;'></a></span>
+                            <div class='label' for='q21_4'>其他房屋或两套及以上</div>
+                        </div>
+                    </div>
+                    <div class='errorMessage'></div>
+                </div>
+                <div class='field ui-field-contain' id='div22' req='1' topic='22' data-role='fieldcontain' type='3'>
+                    <div class='field-label'>22. 就学人口<span class='req'>*</span></div>
+                    <div class='ui-controlgroup'>
+                        <div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='1' id='q22_1'
+                                                                                  name='q22' style='display:none;'/><a
+                                class='jqradio' href='javascript:;'></a></span>
+                            <div class='label' for='q22_1'>1人</div>
+                        </div>
+                        <div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='2' id='q22_2'
+                                                                                  name='q22' style='display:none;'/><a
+                                class='jqradio' href='javascript:;'></a></span>
+                            <div class='label' for='q22_2'>2人</div>
+                        </div>
+                        <div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='3' id='q22_3'
+                                                                                  name='q22' style='display:none;'/><a
+                                class='jqradio' href='javascript:;'></a></span>
+                            <div class='label' for='q22_3'>3人及以上</div>
+                        </div>
+                    </div>
+                    <div class='errorMessage'></div>
+                </div>
+                <div class='field ui-field-contain' id='div23' req='1' topic='23' data-role='fieldcontain' type='3'>
+                    <div class='field-label'>23. 赡养人口<span class='req'>*</span></div>
+                    <div class='ui-controlgroup'>
+                        <div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='1' id='q23_1'
+                                                                                  name='q23' style='display:none;'/><a
+                                class='jqradio' href='javascript:;'></a></span>
+                            <div class='label' for='q23_1'>0人</div>
+                        </div>
+                        <div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='2' id='q23_2'
+                                                                                  name='q23' style='display:none;'/><a
+                                class='jqradio' href='javascript:;'></a></span>
+                            <div class='label' for='q23_2'>1人</div>
+                        </div>
+                        <div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='3' id='q23_3'
+                                                                                  name='q23' style='display:none;'/><a
+                                class='jqradio' href='javascript:;'></a></span>
+                            <div class='label' for='q23_3'>2人及以上</div>
+                        </div>
+                    </div>
+                    <div class='errorMessage'></div>
+                </div>
+                <div class='field ui-field-contain' id='div24' topic='24' data-role='fieldcontain' type='3'>
+                    <div class='field-label'>24. 医疗支出</div>
+                    <div class='ui-controlgroup'>
+                        <div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='1' id='q24_1'
+                                                                                  name='q24' style='display:none;'/><a
+                                class='jqradio' href='javascript:;'></a></span>
+                            <div class='label' for='q24_1'>家庭成员医疗费用个人负担部分在2000元及以内</div>
+                        </div>
+                        <div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='2' id='q24_2'
+                                                                                  name='q24' style='display:none;'/><a
+                                class='jqradio' href='javascript:;'></a></span>
+                            <div class='label' for='q24_2'>家庭成员医疗费用个人负担部分在2000-1万（含1万）</div>
+                        </div>
+                        <div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='3' id='q24_3'
+                                                                                  name='q24' style='display:none;'/><a
+                                class='jqradio' href='javascript:;'></a></span>
+                            <div class='label' for='q24_3'>家庭成员医疗费用个人负担部分在1万-3万（含3万）</div>
+                        </div>
+                        <div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='4' id='q24_4'
+                                                                                  name='q24' style='display:none;'/><a
+                                class='jqradio' href='javascript:;'></a></span>
+                            <div class='label' for='q24_4'>家庭成员医疗费用个人负担部分在3万以上或患重大疾病</div>
+                        </div>
+                    </div>
+                    <div class='errorMessage'></div>
+                </div>
+                <div class='field ui-field-contain' id='div25' req='1' topic='25' style='display:none;'
+                     relation='24,1;2;3;4'
+                     ext='.gif|.png|.jpg|.jpeg|.bmp|.doc|.docx|.pdf|.xls|.xlsx|.ppt|.pptx|.txt|.rar|.zip|.gzip'
+                     data-role='fieldcontain' type='13'>
+                    <div class='field-label'>25. 医疗支出证明材料<span class='req'>*</span></div>
+                    <iframe id='uploadFrame25' frameborder='0' scrolling='no'
+                            src='/wjx/join/UploadqiniuMobo2.aspx?activity=19776764&q=25&ms=4096&pid=div25' height='50px'
+                            width='100%'></iframe>
+                    <div style='word-wrap:break-word;overflow:hidden;margin-top:8px;width:90%;display:none;'
+                         class='fileext'>请选择文件上传，扩展名为 .gif .png .jpg .jpeg .bmp .doc .docx .pdf .xls .xlsx .ppt .pptx
+                        .txt .rar .zip .gzip
+                    </div>
+                    <div class='uploadmsg' style='color:red;'></div>
+                    <div class='errorMessage'></div>
+                </div>
+                <div class='field ui-field-contain' id='div26' req='1' topic='26' data-role='fieldcontain' type='3'>
+                    <div class='field-label'>26. 家庭受灾<span class='req'>*</span></div>
+                    <div class='ui-controlgroup'>
+                        <div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='1' id='q26_1'
+                                                                                  name='q26' style='display:none;'/><a
+                                class='jqradio' href='javascript:;'></a></span>
+                            <div class='label' for='q26_1'>近两年内未遭受自然灾害</div>
+                        </div>
+                        <div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='2' id='q26_2'
+                                                                                  name='q26' style='display:none;'/><a
+                                class='jqradio' href='javascript:;'></a></span>
+                            <div class='label' for='q26_2'>近两年内遭受一般自然灾害，影响家庭收入</div>
+                        </div>
+                        <div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='3' id='q26_3'
+                                                                                  name='q26' style='display:none;'/><a
+                                class='jqradio' href='javascript:;'></a></span>
+                            <div class='label' for='q26_3'>近两年内遭受较重自然灾害，影响家庭收入且造成财产损失</div>
+                        </div>
+                        <div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='4' id='q26_4'
+                                                                                  name='q26' style='display:none;'/><a
+                                class='jqradio' href='javascript:;'></a></span>
+                            <div class='label' for='q26_4'>近两年内遭受严重自然灾害，造成人身伤害和财产重大损失</div>
+                        </div>
+                    </div>
+                    <div class='errorMessage'></div>
+                </div>
+                <div class='field ui-field-contain' id='div27' req='1' topic='27' style='display:none;'
+                     relation='26,2;3;4'
+                     ext='.gif|.png|.jpg|.jpeg|.bmp|.doc|.docx|.pdf|.xls|.xlsx|.ppt|.pptx|.txt|.rar|.zip|.gzip'
+                     data-role='fieldcontain' type='13'>
+                    <div class='field-label'>27. 家庭受灾证明材料<span class='req'>*</span></div>
+                    <iframe id='uploadFrame27' frameborder='0' scrolling='no'
+                            src='/wjx/join/UploadqiniuMobo2.aspx?activity=19776764&q=27&ms=4096&pid=div27' height='50px'
+                            width='100%'></iframe>
+                    <div style='word-wrap:break-word;overflow:hidden;margin-top:8px;width:90%;display:none;'
+                         class='fileext'>请选择文件上传，扩展名为 .gif .png .jpg .jpeg .bmp .doc .docx .pdf .xls .xlsx .ppt .pptx
+                        .txt .rar .zip .gzip
+                    </div>
+                    <div class='uploadmsg' style='color:red;'></div>
+                    <div class='errorMessage'></div>
+                </div>
+                <div class='field ui-field-contain' id='div28' req='1' topic='28' data-role='fieldcontain' type='3'>
+                    <div class='field-label'>28. 家庭变故<span class='req'>*</span></div>
+                    <div class='ui-controlgroup'>
+                        <div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='1' id='q28_1'
+                                                                                  name='q28' style='display:none;'/><a
+                                class='jqradio' href='javascript:;'></a></span>
+                            <div class='label' for='q28_1'>近两年内未出现家庭变故</div>
+                        </div>
+                        <div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='2' id='q28_2'
+                                                                                  name='q28' style='display:none;'/><a
+                                class='jqradio' href='javascript:;'></a></span>
+                            <div class='label' for='q28_2'>近两年内家庭成员出现伤残、失踪或意外事故造成财产损失等情况</div>
+                        </div>
+                        <div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='3' id='q28_3'
+                                                                                  name='q28' style='display:none;'/><a
+                                class='jqradio' href='javascript:;'></a></span>
+                            <div class='label' for='q28_3'>近两年内家庭成员出现重大伤残、意外死亡或重大变故</div>
+                        </div>
+                    </div>
+                    <div class='errorMessage'></div>
+                </div>
+                <div class='field ui-field-contain' id='div29' req='1' topic='29' style='display:none;'
+                     relation='28,2;3'
+                     ext='.gif|.png|.jpg|.jpeg|.bmp|.doc|.docx|.pdf|.xls|.xlsx|.ppt|.pptx|.txt|.rar|.zip|.gzip'
+                     data-role='fieldcontain' type='13'>
+                    <div class='field-label'>29. 家庭变故证明材料<span class='req'>*</span></div>
+                    <iframe id='uploadFrame29' frameborder='0' scrolling='no'
+                            src='/wjx/join/UploadqiniuMobo2.aspx?activity=19776764&q=29&ms=4096&pid=div29' height='50px'
+                            width='100%'></iframe>
+                    <div style='word-wrap:break-word;overflow:hidden;margin-top:8px;width:90%;display:none;'
+                         class='fileext'>请选择文件上传，扩展名为 .gif .png .jpg .jpeg .bmp .doc .docx .pdf .xls .xlsx .ppt .pptx
+                        .txt .rar .zip .gzip
+                    </div>
+                    <div class='uploadmsg' style='color:red;'></div>
+                    <div class='errorMessage'></div>
+                </div>
+                <div class='cutfield' id='divCut4' qtopic='30' topic='c4'>
+                    <div style='margin:7px 12px;'>四 . 学生获奖助贷、勤工俭学情况</div>
+                </div>
+                <div class='field ui-field-contain' id='div30' req='1' topic='30' data-role='fieldcontain' type='3'>
+                    <div class='field-label'>30. 在校期间获得国家或学校资助情况<span class='req'>*</span></div>
+                    <div class='ui-controlgroup'>
+                        <div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='1' id='q30_1'
+                                                                                  name='q30' style='display:none;'/><a
+                                class='jqradio' href='javascript:;'></a></span>
+                            <div class='label' for='q30_1'>曾经获得过一项资助</div>
+                        </div>
+                        <div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='2' id='q30_2'
+                                                                                  name='q30' style='display:none;'/><a
+                                class='jqradio' href='javascript:;'></a></span>
+                            <div class='label' for='q30_2'>连续三年获得过资助</div>
+                        </div>
+                        <div class='ui-radio'><span class='jqradiowrapper'><input type='radio' value='3' id='q30_3'
+                                                                                  name='q30' style='display:none;'/><a
+                                class='jqradio' href='javascript:;'></a></span>
+                            <div class='label' for='q30_3'>连续五年获得过资助</div>
+                        </div>
+                    </div>
+                    <div class='qinsert'>提示：国家助学贷款、高校国家助学金、高校国家励志奖学金、学费减免、校内勤工俭学、普通高中/中职国家助学金</div>
+                    <div class='errorMessage'></div>
+                </div>
+            </fieldset>
         </div>
         <div id="divMatrixRel" style="position: absolute; display: none; width: 80%; margin: 0 10%;"
-            class="ui-input-text">
+             class="ui-input-text">
             <input type="text" placeholder="请注明..." id="matrixinput" style="min-height: 2em;
-                width: 100%; padding: 0.3em 0.6em;" />
+                width: 100%; padding: 0.3em 0.6em;"/>
         </div>
         <div id="divMatrixHeader" style="position: absolute; display: none;font-size:12px;color:#8c8c8c">
 
@@ -159,185 +672,193 @@
                     <table>
                         <tr>
                             <td class="ui-input-text nofocus">
-                                <input id="yucinput" size="14" maxlength="10" type="text" name="yucinput" />
+                                <input id="yucinput" size="14" maxlength="10" type="text" name="yucinput"/>
                             </td>
                             <td>
                                 <div id="divCaptcha" style="display: none;">
                                     <img alt="验证码" title="看不清吗？点击可以刷新" captchaid="" instanceid="">
                                 </div>
-                                
+
                             </td>
                             <td>
                                 &nbsp;&nbsp;<img id="imgCode" alt="验证码" title="看不清吗？点击可以刷新" style="vertical-align: bottom;
-                                    cursor: pointer; display: none;" />
+                                    cursor: pointer; display: none;"/>
                             </td>
                         </tr>
                     </table>
                 </div>
-                
-                <a id="ctlNext" href="javascript:;" class="button blue" >
+
+                <a id="ctlNext" href="javascript:;" class="button blue">
                     提交</a>
-                
+
             </div>
-            
+
             <div id='divMaxTime' style="display: none; background: #f5faf2;  color: #7c7c7c; font-size: 18px; height: 42px;
                 left: 0; line-height: 40px; position: fixed; text-align: center; top: 0; width: 100%;
                 z-index: 100;">
-                <span id="spanTimeTip">本页剩余作答时间</span>&nbsp;<span style="color: Red; font-size: 16px; display: inline-block;"
+                <span id="spanTimeTip">本页剩余作答时间</span>&nbsp;<span
+                    style="color: Red; font-size: 16px; display: inline-block;"
                     id='spanMaxTime'></span>
             </div>
             <div id="divSearch" style="background:#020d15;color: #7c7c7c; font-size: 18px; height:50px;
                 left: 0; line-height:50px; position: fixed; text-align: center; bottom: 0; width: 100%;
                 z-index: 100;display:none;">
-                
+
             </div>
-            
+
         </div>
-       
+
     </div>
-   
-     
-
-    
 
 
-    
-        <div id="divTimeUp" style="display: none;">
-            <div style="padding: 10px; overflow: auto; line-height: 20px; font-size: 16px; text-align: center;" id="divTimeUpTip"></div>
-        </div>
+    <div id="divTimeUp" style="display: none;">
+        <div style="padding: 10px; overflow: auto; line-height: 20px; font-size: 16px; text-align: center;"
+             id="divTimeUpTip"></div>
+    </div>
 
-    <input type="hidden" value="1" id="action" name="action" />
-    <input type="hidden" value="2017/12/30 10:59:56" id="starttime" name="starttime" />
-    <input type="hidden" value="directphone" id="source" name="source" />
-    </form>
-    <a id='lnkCity' style="display: none;"></a>
-    <a href="javascript:;" class="scrolltop" style="display:none;"></a>
-    <script type="text/javascript">
-        var isYdb=0;
-        var isPub=1;
-        var cqType=1;
-        var isDingDing=0;
-        var ddcorpid="";
-        var sojumpParm='';
-        var isKaoShi=0;
-     var lastTopic=0;
-        var Password = "";
-        var PasswordExt = "";
-        var guid = "";
-        var udsid=0;var fromsour="";
-     var langVer=0;
-    var cProvince="";
-    var cCity="";
-    var cIp="";
-    var divTip=document.getElementById("divTip");
-    var displayPrevPage="none";
-    var inviteid='';
-    var access_token="";
+    <input type="hidden" value="1" id="action" name="action"/>
+    <input type="hidden" value="2017/12/30 10:59:56" id="starttime" name="starttime"/>
+    <input type="hidden" value="directphone" id="source" name="source"/>
+</form>
+<a id='lnkCity' style="display: none;"></a>
+<a href="javascript:;" class="scrolltop" style="display:none;"></a>
+<script type="text/javascript">
+    var isYdb = 0;
+    var isPub = 1;
+    var cqType = 1;
+    var isDingDing = 0;
+    var ddcorpid = "";
+    var sojumpParm = '';
+    var isKaoShi = 0;
+    var lastTopic = 0;
+    var Password = "";
+    var PasswordExt = "";
+    var guid = "";
+    var udsid = 0;
+    var fromsour = "";
+    var langVer = 0;
+    var cProvince = "";
+    var cCity = "";
+    var cIp = "";
+    var divTip = document.getElementById("divTip");
+    var displayPrevPage = "none";
+    var inviteid = '';
+    var access_token = "";
     var openid = "";
-    var wxUserId = ""; 
-    var isQQLogin=0;
-    var wxthird=0;
-    var parterts="";
-    var parterjoiner="";
-    var partersign="";
-    var parterrealname="";
-    var parterextf="";
-    var relusername="";
-    var relts="";
-    var relsign="";
-    var relrealname="";
-    var isPvw=0;
-    var user_token="";
+    var wxUserId = "";
+    var isQQLogin = 0;
+    var wxthird = 0;
+    var parterts = "";
+    var parterjoiner = "";
+    var partersign = "";
+    var parterrealname = "";
+    var parterextf = "";
+    var relusername = "";
+    var relts = "";
+    var relsign = "";
+    var relrealname = "";
+    var isPvw = 0;
+    var user_token = "";
 
-    var hashb=0;
-    var sjUser='';
-    var outuser='';
-    var outsign='';
-     var sourceurl = '';
-    var sourcename="";
-    var isSimple='';
-     var jiFenBao=0;var cAlipayAccount="";
-        var isRunning=1;
-     var SJBack='';var jiFen="0";
-     var ItemDicData="";
-      var rndnum="3704415568";
-      var totalPage=1;
-      var totalCut=4;
-       var cepingCandidate="";
-        var cpid="";
-        var needSaveJoin=0;
-        var isChuangGuan=0;
-        var maxOpTime=0;
-        var qBeginDate="1514558856347";
-        var randomMode=0;
-        var fisrtLoadTime=new Date().getTime();
-        var notFinishTip="http://passport.fanli.com/mark?c=nstzk4f7xc;6瓶莫斯利安酸奶";
-        var isVip=1;
-        
+    var hashb = 0;
+    var sjUser = '';
+    var outuser = '';
+    var outsign = '';
+    var sourceurl = '';
+    var sourcename = "";
+    var isSimple = '';
+    var jiFenBao = 0;
+    var cAlipayAccount = "";
+    var isRunning = 1;
+    var SJBack = '';
+    var jiFen = "0";
+    var ItemDicData = "";
+    var rndnum = "3704415568";
+    var totalPage = 1;
+    var totalCut = 4;
+    var cepingCandidate = "";
+    var cpid = "";
+    var needSaveJoin = 0;
+    var isChuangGuan = 0;
+    var maxOpTime = 0;
+    var qBeginDate = "1514558856347";
+    var randomMode = 0;
+    var fisrtLoadTime = new Date().getTime();
+    var isVip = 1;
 
-        var needHBAlert=0;
-        if(needHBAlert){
-            if(needHBAlert==-1)
-                alert("请注意：此问卷红"+"包已被之前参与的用户领取完");
-            else if(needHBAlert==-2)
-                alert("请注意：抽中红"+"包后答卷还需要发布者审核，通过审核后才能发放红"+"包！");
-            else if(needHBAlert==-3)
-                alert("提示：只有通过微信作答才能抽取红"+"包");
-            else if(needHBAlert==-4){
-                alert("提示：此问卷限制了每天领取的红包数量，今天红包已被全部领完！");
-            }
-            else if(needHBAlert<0){
-                alert("请注意：每个参与者填完问卷后有"+(needHBAlert*-1)+"%的概率抽中红"+"包");
-            }
-            else
-                alert("请注意：每个参与者填完问卷后有1/" + needHBAlert + "的概率抽中红"+"包");
+
+    var needHBAlert = 0;
+    if (needHBAlert) {
+        if (needHBAlert == -1)
+            alert("请注意：此问卷红" + "包已被之前参与的用户领取完");
+        else if (needHBAlert == -2)
+            alert("请注意：抽中红" + "包后答卷还需要发布者审核，通过审核后才能发放红" + "包！");
+        else if (needHBAlert == -3)
+            alert("提示：只有通过微信作答才能抽取红" + "包");
+        else if (needHBAlert == -4) {
+            alert("提示：此问卷限制了每天领取的红包数量，今天红包已被全部领完！");
         }
-         var needAwardAlert=0;
-        if(needAwardAlert){
-            var divawardalert=document.getElementById("divawardalert");
-            var awt=$.trim($(divawardalert).text());
-            if(awt)
-                alert(awt);
-            //if(needAwardAlert==-1)
-            //    alert("请注意：此问卷奖品已被之前参与的用户领取完");
-            //else  if(needAwardAlert==-4)
-            //    alert("提示：此问卷限制了每天领取的奖品数量，今天奖品已被全部领完！");
-            //else if(needAwardAlert<0){
-            //    alert("请注意：每个参与者填完问卷后有"+(needHBAlert*-1)+"%的概率抽中奖品");
-            //}
-            //else if(needAwardAlert==999)
-            //    alert("请注意：此问卷平均每天低于1人抽中奖品");
-            //else if(needAwardAlert%1000==0)
-            //    alert("请注意：此问卷平均每天会有" + (needAwardAlert/1000) + "人抽中奖品");
-            //else
-            //    alert("请注意：每个参与者填完问卷后有1/" + needAwardAlert + "的概率抽中奖品");
+        else if (needHBAlert < 0) {
+            alert("请注意：每个参与者填完问卷后有" + (needHBAlert * -1) + "%的概率抽中红" + "包");
         }
-    </script>
-   
-    
-    <script type="text/javascript">
-        var needAvoidCrack=0;
-        var tdCode="tdCode";
-        var imgCode = $("#imgCode")[0];
-        var submit_text = $("#yucinput")[0];
-        var tCode = $("#"+tdCode)[0];
-        var hasTouPiao=0;
-    </script>
-     
-    
-    
-    
-    <div style="display:none;"><script src="https://s13.cnzz.com/z_stat.php?id=4478442&web_id=4478442" language="JavaScript"  async onload="if(window.loadCzc)loadCzc();"></script><script>var _hmt = _hmt || [];(function() {var hm = document.createElement("script");hm.src = "https://hm.baidu.com/hm.js?21be24c80829bd7a683b2c536fcf520b";var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s);})();</script></div>
-      <script>
-         
-          function loadCzc(){
-              if (window._czc) {
-                  var evvtype="企业版";if(isVip)evvtype="企业版";
-                  _czc.push(["_trackEvent", "移动端JQ", evvtype, cqType]);
-              }
-          }
-    </script>
+        else
+            alert("请注意：每个参与者填完问卷后有1/" + needHBAlert + "的概率抽中红" + "包");
+    }
+    var needAwardAlert = 0;
+    if (needAwardAlert) {
+        var divawardalert = document.getElementById("divawardalert");
+        var awt = $.trim($(divawardalert).text());
+        if (awt)
+            alert(awt);
+        //if(needAwardAlert==-1)
+        //    alert("请注意：此问卷奖品已被之前参与的用户领取完");
+        //else  if(needAwardAlert==-4)
+        //    alert("提示：此问卷限制了每天领取的奖品数量，今天奖品已被全部领完！");
+        //else if(needAwardAlert<0){
+        //    alert("请注意：每个参与者填完问卷后有"+(needHBAlert*-1)+"%的概率抽中奖品");
+        //}
+        //else if(needAwardAlert==999)
+        //    alert("请注意：此问卷平均每天低于1人抽中奖品");
+        //else if(needAwardAlert%1000==0)
+        //    alert("请注意：此问卷平均每天会有" + (needAwardAlert/1000) + "人抽中奖品");
+        //else
+        //    alert("请注意：每个参与者填完问卷后有1/" + needAwardAlert + "的概率抽中奖品");
+    }
+</script>
 
-   
+
+<script type="text/javascript">
+    var needAvoidCrack = 0;
+    var tdCode = "tdCode";
+    var imgCode = $("#imgCode")[0];
+    var submit_text = $("#yucinput")[0];
+    var tCode = $("#" + tdCode)[0];
+    var hasTouPiao = 0;
+</script>
+
+
+<div style="display:none;">
+    <script src="https://s13.cnzz.com/z_stat.php?id=4478442&web_id=4478442" language="JavaScript" async
+            onload="if(window.loadCzc)loadCzc();"></script>
+    <script>var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?21be24c80829bd7a683b2c536fcf520b";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();</script>
+</div>
+<script>
+
+    function loadCzc() {
+        if (window._czc) {
+            var evvtype = "企业版";
+            if (isVip) evvtype = "企业版";
+            _czc.push(["_trackEvent", "移动端JQ", evvtype, cqType]);
+        }
+    }
+</script>
+
+
 </body>
 </html>

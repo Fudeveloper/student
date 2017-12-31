@@ -11,8 +11,7 @@ def test(request):
 
 
 
-def index(request):
-    return render(request, 'mobile/index.html')
+
 
 def dy(request):
     return render(request, 'mobile/dy.html')
@@ -20,3 +19,8 @@ def dy(request):
 def common(request):
     return render(request, 'mobile/common.html')
 
+
+def index(request):
+    return render(request, 'quantization/index.html')
+def index2(request):
+    return render(request, 'quantization/index2.html')

@@ -1,355 +1,243 @@
 <!DOCTYPE html>
 <html lang="zh" class="no-js">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>14种CSS3炫酷表单input输入框美化效果_jQuery之家-自由分享jQuery、html5、css3的插件库</title>
-		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
-		<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.2.0/css/font-awesome.min.css" />
-		<link rel="stylesheet" type="text/css" href="css/demo.css" />
-		<link rel="stylesheet" type="text/css" href="css/component.css" />
-		<!--[if IE]>
-  		<script src="http://libs.useso.com/js/html5shiv/3.7/html5shiv.min.js"></script>
-		<![endif]-->
-	</head>
-	<body>
-		<div class="container">
-			<header class="codrops-header">
-				<h1>Text Input Effects <span>Simple ideas for enhancing text input interactions</span></h1>
-				<p>更多精彩内容请关注：<a href="http://www.htmleaf.com/" target="_blank">jQuery之家</a></p>
-			</header>
-			<section class="content bgcolor-1">
-				<h2 class="nomargin-bottom">Haruki</h2>
-				<span class="input input--haruki">
-					<input class="input__field input__field--haruki" type="text" id="input-1" />
-					<label class="input__label input__label--haruki" for="input-1">
-						<span class="input__label-content input__label-content--haruki">First Name</span>
-					</label>
-				</span>
-				<span class="input input--haruki">
-					<input class="input__field input__field--haruki" type="text" id="input-2" />
-					<label class="input__label input__label--haruki" for="input-2">
-						<span class="input__label-content input__label-content--haruki">Last Name</span>
-					</label>
-				</span>
-				<span class="input input--haruki">
-					<input class="input__field input__field--haruki" type="text" id="input-3" />
-					<label class="input__label input__label--haruki" for="input-3">
-						<span class="input__label-content input__label-content--haruki">Email</span>
-					</label>
-				</span>
-			</section>
-			<section class="content">
-				<h2>Hoshi</h2>
-				<span class="input input--hoshi">
-					<input class="input__field input__field--hoshi" type="text" id="input-4" />
-					<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="input-4">
-						<span class="input__label-content input__label-content--hoshi">Name</span>
-					</label>
-				</span>
-				<span class="input input--hoshi">
-					<input class="input__field input__field--hoshi" type="text" id="input-5" />
-					<label class="input__label input__label--hoshi input__label--hoshi-color-2" for="input-5">
-						<span class="input__label-content input__label-content--hoshi">Street</span>
-					</label>
-				</span>
-				<span class="input input--hoshi">
-					<input class="input__field input__field--hoshi" type="text" id="input-6" />
-					<label class="input__label input__label--hoshi input__label--hoshi-color-3" for="input-6">
-						<span class="input__label-content input__label-content--hoshi">Town</span>
-					</label>
-				</span>
-				<p>Inspired by Andrej Radisic's <a href="https://dribbble.com/shots/1785176-Jawbreaker-input-field">Jawbreaker input field</a></p>
-			</section>
-			<section class="content bgcolor-4">
-				<h2>Kuro</h2>
-				<span class="input input--kuro">
-					<input class="input__field input__field--kuro" type="text" id="input-7" />
-					<label class="input__label input__label--kuro" for="input-7">
-						<span class="input__label-content input__label-content--kuro">Username</span>
-					</label>
-				</span>
-				<span class="input input--kuro">
-					<input class="input__field input__field--kuro" type="text" id="input-8" />
-					<label class="input__label input__label--kuro" for="input-8">
-						<span class="input__label-content input__label-content--kuro">Website</span>
-					</label>
-				</span>
-				<span class="input input--kuro">
-					<input class="input__field input__field--kuro" type="text" id="input-9" />
-					<label class="input__label input__label--kuro" for="input-9">
-						<span class="input__label-content input__label-content--kuro">Invitation Code</span>
-					</label>
-				</span>
-			</section>
-			<section class="content bgcolor-7">
-				<h2>Jiro</h2>
-				<span class="input input--jiro">
-					<input class="input__field input__field--jiro" type="text" id="input-10" />
-					<label class="input__label input__label--jiro" for="input-10">
-						<span class="input__label-content input__label-content--jiro">Cat's Name</span>
-					</label>
-				</span>
-				<span class="input input--jiro">
-					<input class="input__field input__field--jiro" type="text" id="input-11" />
-					<label class="input__label input__label--jiro" for="input-11">
-						<span class="input__label-content input__label-content--jiro">Dog's Name</span>
-					</label>
-				</span>
-				<span class="input input--jiro">
-					<input class="input__field input__field--jiro" type="text" id="input-12" />
-					<label class="input__label input__label--jiro" for="input-12">
-						<span class="input__label-content input__label-content--jiro">Hamster's Name</span>
-					</label>
-				</span>
-			</section>
-			<section class="content">
-				<h2>Minoru</h2>
-				<span class="input input--minoru">
-					<input class="input__field input__field--minoru" type="text" id="input-13" />
-					<label class="input__label input__label--minoru" for="input-13">
-						<span class="input__label-content input__label-content--minoru">First Name</span>
-					</label>
-				</span>
-				<span class="input input--minoru">
-					<input class="input__field input__field--minoru" type="text" id="input-14" />
-					<label class="input__label input__label--minoru" for="input-14">
-						<span class="input__label-content input__label-content--minoru">Middle Name</span>
-					</label>
-				</span>
-				<span class="input input--minoru">
-					<input class="input__field input__field--minoru" type="text" id="input-15" />
-					<label class="input__label input__label--minoru" for="input-15">
-						<span class="input__label-content input__label-content--minoru">Last Name</span>
-					</label>
-				</span>
-			</section>
-			<section class="content bgcolor-5">
-				<h2>Yoko</h2>
-				<span class="input input--minoru">
-					<input class="input__field input__field--yoko" type="text" id="input-16" />
-					<label class="input__label input__label--yoko" for="input-16">
-						<span class="input__label-content input__label-content--yoko">Street</span>
-					</label>
-				</span>
-				<span class="input input--minoru">
-					<input class="input__field input__field--yoko" type="text" id="input-17" />
-					<label class="input__label input__label--yoko" for="input-17">
-						<span class="input__label-content input__label-content--yoko">City</span>
-					</label>
-				</span>
-				<span class="input input--minoru">
-					<input class="input__field input__field--yoko" type="text" id="input-18" />
-					<label class="input__label input__label--yoko" for="input-18">
-						<span class="input__label-content input__label-content--yoko">Region</span>
-					</label>
-				</span>
-			</section>
-			<section class="content">
-				<h2>Hideo</h2>
-				<span class="input input--hideo">
-					<input class="input__field input__field--hideo" type="text" id="input-41" />
-					<label class="input__label input__label--hideo" for="input-41">
-						<i class="fa fa-fw fa-user icon icon--hideo"></i>
-						<span class="input__label-content input__label-content--hideo">Username</span>
-					</label>
-				</span>
-				<span class="input input--hideo">
-					<input class="input__field input__field--hideo" type="text" id="input-42" />
-					<label class="input__label input__label--hideo" for="input-42">
-						<i class="fa fa-fw fa-envelope icon icon--hideo"></i>
-						<span class="input__label-content input__label-content--hideo">Email</span>
-					</label>
-				</span>
-				<span class="input input--hideo">
-					<input class="input__field input__field--hideo" type="text" id="input-43" />
-					<label class="input__label input__label--hideo" for="input-43">
-						<i class="fa fa-fw fa-lock icon icon--hideo"></i>
-						<span class="input__label-content input__label-content--hideo">Password</span>
-					</label>
-				</span>
-			</section>
-			<section class="content bgcolor-3">
-				<h2>Kyo</h2>
-				<span class="input input--kyo">
-					<input class="input__field input__field--kyo" type="text" id="input-19" />
-					<label class="input__label input__label--kyo" for="input-19">
-						<span class="input__label-content input__label-content--kyo">What's your email?</span>
-					</label>
-				</span>
-			</section>
-			<section class="content bgcolor-4">
-				<h2>Akira</h2>
-				<span class="input input--akira">
-					<input class="input__field input__field--akira" type="text" id="input-22" />
-					<label class="input__label input__label--akira" for="input-22">
-						<span class="input__label-content input__label-content--akira">First Name</span>
-					</label>
-				</span>
-				<span class="input input--akira">
-					<input class="input__field input__field--akira" type="text" id="input-23" />
-					<label class="input__label input__label--akira" for="input-23">
-						<span class="input__label-content input__label-content--akira">Last Name</span>
-					</label>
-				</span>
-				<span class="input input--akira">
-					<input class="input__field input__field--akira" type="text" id="input-24" />
-					<label class="input__label input__label--akira" for="input-24">
-						<span class="input__label-content input__label-content--akira">Maiden Name</span>
-					</label>
-				</span>
-			</section>
-			<section class="content">
-				<h2>Ichiro</h2>
-				<span class="input input--ichiro">
-					<input class="input__field input__field--ichiro" type="text" id="input-25" />
-					<label class="input__label input__label--ichiro" for="input-25">
-						<span class="input__label-content input__label-content--ichiro">Bird's Color</span>
-					</label>
-				</span>
-				<span class="input input--ichiro">
-					<input class="input__field input__field--ichiro" type="text" id="input-26" />
-					<label class="input__label input__label--ichiro" for="input-26">
-						<span class="input__label-content input__label-content--ichiro">Wing Span</span>
-					</label>
-				</span>
-				<span class="input input--ichiro">
-					<input class="input__field input__field--ichiro" type="text" id="input-27" />
-					<label class="input__label input__label--ichiro" for="input-27">
-						<span class="input__label-content input__label-content--ichiro">Beak Length</span>
-					</label>
-				</span>
-			</section>
-			<section class="content bgcolor-6">
-				<h2>Juro</h2>
-				<span class="input input--juro">
-					<input class="input__field input__field--juro" type="text" id="input-28" />
-					<label class="input__label input__label--juro" for="input-28">
-						<span class="input__label-content input__label-content--juro">First Name</span>
-					</label>
-				</span>
-				<span class="input input--juro">
-					<input class="input__field input__field--juro" type="text" id="input-29" />
-					<label class="input__label input__label--juro" for="input-29">
-						<span class="input__label-content input__label-content--juro">Last Name</span>
-					</label>
-				</span>
-				<span class="input input--juro">
-					<input class="input__field input__field--juro" type="text" id="input-30" />
-					<label class="input__label input__label--juro" for="input-30">
-						<span class="input__label-content input__label-content--juro">Maiden Name</span>
-					</label>
-				</span>
-			</section>
-			<section class="content bgcolor-4">
-				<h2>Madoka</h2>
-				<span class="input input--madoka">
-					<input class="input__field input__field--madoka" type="text" id="input-31" />
-					<label class="input__label input__label--madoka" for="input-31">
-						<svg class="graphic graphic--madoka" width="100%" height="100%" viewBox="0 0 404 77" preserveAspectRatio="none">
-							<path d="m0,0l404,0l0,77l-404,0l0,-77z"/>
-						</svg>
-						<span class="input__label-content input__label-content--madoka">Frequency</span>
-					</label>
-				</span>
-				<span class="input input--madoka">
-					<input class="input__field input__field--madoka" type="text" id="input-32" />
-					<label class="input__label input__label--madoka" for="input-32">
-						<svg class="graphic graphic--madoka" width="100%" height="100%" viewBox="0 0 404 77" preserveAspectRatio="none">
-							<path d="m0,0l404,0l0,77l-404,0l0,-77z"/>
-						</svg>
-						<span class="input__label-content input__label-content--madoka">Weight</span>
-					</label>
-				</span>
-				<span class="input input--madoka">
-					<input class="input__field input__field--madoka" type="text" id="input-33" />
-					<label class="input__label input__label--madoka" for="input-33">
-						<svg class="graphic graphic--madoka" width="100%" height="100%" viewBox="0 0 404 77" preserveAspectRatio="none">
-							<path d="m0,0l404,0l0,77l-404,0l0,-77z"/>
-						</svg>
-						<span class="input__label-content input__label-content--madoka">Strength</span>
-					</label>
-				</span>
-			</section>
-			<section class="content">
-				<h2>Kaede</h2>
-				<span class="input input--kaede">
-					<input class="input__field input__field--kaede" type="text" id="input-35" />
-					<label class="input__label input__label--kaede" for="input-35">
-						<span class="input__label-content input__label-content--kaede">First Name</span>
-					</label>
-				</span>
-				<span class="input input--kaede">
-					<input class="input__field input__field--kaede" type="text" id="input-36" />
-					<label class="input__label input__label--kaede" for="input-36">
-						<span class="input__label-content input__label-content--kaede">Last Name</span>
-					</label>
-				</span>
-				<span class="input input--kaede">
-					<input class="input__field input__field--kaede" type="text" id="input-37" />
-					<label class="input__label input__label--kaede" for="input-37">
-						<span class="input__label-content input__label-content--kaede">Website</span>
-					</label>
-				</span>
-			</section>
-			<section class="content bgcolor-8">
-				<h2>Isao</h2>
-				<span class="input input--isao">
-					<input class="input__field input__field--isao" type="text" id="input-38" />
-					<label class="input__label input__label--isao" for="input-38" data-content="First Name">
-						<span class="input__label-content input__label-content--isao">First Name</span>
-					</label>
-				</span>
-				<span class="input input--isao">
-					<input class="input__field input__field--isao" type="text" id="input-39" />
-					<label class="input__label input__label--isao" for="input-39" data-content="Middle Name">
-						<span class="input__label-content input__label-content--isao">Middle Name</span>
-					</label>
-				</span>
-				<span class="input input--isao">
-					<input class="input__field input__field--isao" type="text" id="input-40" />
-					<label class="input__label input__label--isao" for="input-40" data-content="Last Name">
-						<span class="input__label-content input__label-content--isao">Last Name</span>
-					</label>
-				</span>
-			</section>
-		</div><!-- /container -->
-		<script src="js/classie.js"></script>
-		<script>
-			(function() {
-				// trim polyfill : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/Trim
-				if (!String.prototype.trim) {
-					(function() {
-						// Make sure we trim BOM and NBSP
-						var rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
-						String.prototype.trim = function() {
-							return this.replace(rtrim, '');
-						};
-					})();
-				}
+<head>
+    <meta charset="UTF-8"/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>高校学生家庭经济情况量化测评表</title>
+    <style>
 
-				[].slice.call( document.querySelectorAll( 'input.input__field' ) ).forEach( function( inputEl ) {
-					// in case the input is already filled..
-					if( inputEl.value.trim() !== '' ) {
-						classie.add( inputEl.parentNode, 'input--filled' );
-					}
 
-					// events:
-					inputEl.addEventListener( 'focus', onInputFocus );
-					inputEl.addEventListener( 'blur', onInputBlur );
-				} );
+    </style>
+    <link rel="stylesheet" href="/static/plugins/layui/css/layui.css" media="all">
+    <link rel="stylesheet" type="text/css" href="/static/css/normalize.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/fonts/font-awesome-4.2.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/demo.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/component.css"/>
+    <!--[if IE]>
+    <!--<script src="http://libs.useso.com/js/html5shiv/3.7/html5shiv.min.js"></script>-->
+    <![endif]-->
 
-				function onInputFocus( ev ) {
-					classie.add( ev.target.parentNode, 'input--filled' );
-				}
+</head>
+<body>
+<div class="container">
+    <header class="codrops-header">
+        <h1><span>高校学生家庭经济情况量化测评表</span></h1>
+    </header>
+    <section class="content">
+        <h2>基本信息</h2>
+        <span class="input input--kaede">
 
-				function onInputBlur( ev ) {
-					if( ev.target.value.trim() === '' ) {
-						classie.remove( ev.target.parentNode, 'input--filled' );
-					}
-				}
-			})();
-		</script>
-	</body>
+					<input class="input__field input__field--kaede" type="text" id="input-1"/>
+					<label class="input__label input__label--kaede" for="input-1">
+						<span class="input__label-content input__label-content--kaede">姓名<div
+                                style="float: right" id="div-1"></div></span>
+					</label>
+				</span>
+        <span class="input input--kaede">
+					<input class="input__field input__field--kaede" type="text" id="input-2"/>
+					<label class="input__label input__label--kaede" for="input-2">
+						<span class="input__label-content input__label-content--kaede">身份证号码<div
+                                style="float: right" id="div-2"></div></span>
+					</label>
+				</span>
+        <span class="input input--kaede">
+					<form class="layui-form layui-form-pane" action="">
+      <div class="layui-form-item " pane style="border: 0px">
+        <label class="layui-form-label "
+               style="color: #6a7989;font-weight: bold;font-size: 70.25%;float: none;background-color: transparent;text-align: left;border: 0px;">性别</label>
+        <div class="layui-input-block">
+          <input type="radio" name="sex" value="男" title="男">
+          <input type="radio" name="sex" value="女" title="女">
+        </div>
+      </div>
+    </form>
+				</span>
+
+        <span class="input input--kaede">
+					            <select class="input__field input__field--kaede" id="select_nation" style="font-size: 70%"></select>
+					<label class="input__label input__label--kaede" for="select_nation">
+						<span class="input__label-content input__label-content--kaede">民族<div
+                                style="float: right;padding: -0.5em" id="div_nation"></div></span>
+					</label>
+				</span>
+        <span class="input input--kaede">
+            <select class="input__field input__field--kaede" id="select_department" style="font-size: 70%"></select>
+					<label class="input__label input__label--kaede" for="select_department">
+						<span class="input__label-content input__label-content--kaede">院系<div
+                                style="float: right;padding: -0.5em" id="div_department"></div></span>
+					</label>
+				</span>
+        <span class="input input--kaede">
+            <select class="input__field input__field--kaede" type="text" id="select_major"
+                    style="font-size: 70%"></select>
+					<label class="input__label input__label--kaede" for="select_major">
+						<span class="input__label-content input__label-content--kaede">专业<div
+                                style="float: right;padding: -0.5em" id="div_major"></div></span>
+					</label>
+				</span>
+        <span class="input input--kaede">
+            <select class="input__field input__field--kaede" type="text" id="select_class"
+                    style="font-size: 70%"></select>
+					<label class="input__label input__label--kaede" for="select_class">
+						<span class="input__label-content input__label-content--kaede">班级<div
+                                style="float: right;padding: -0.5em" id="div_class"></div></span>
+					</label>
+				</span>
+
+        <span class="input input--kaede">
+					<input class="input__field input__field--kaede" type="text" id="input_id"/>
+					<label class="input__label input__label--kaede" for="input_id">
+						<span class="input__label-content input__label-content--kaede">学号<div
+                                style="float: right;padding: -0.5em" id="div_id"></div></span>
+					</label>
+				</span>
+
+        <button id="btn_submit" class="layui-btn layui-btn-lg layui-btn-radius layui-btn-normal"
+                style="background-color: #A9E8DC">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp提交 &nbsp;&nbsp;&nbsp;&nbsp
+            &nbsp;&nbsp;&nbsp;&nbsp
+        </button>
+
+    </section>
+
+
+</div><!-- /container -->
+
+
+<script src="/static/plugins/layui/layui.js"></script>
+<!--<script src="/static/js/classie.js"></script>-->
+
+<script>
+    layui.use(['layer', 'form'], function () {
+        var layer = layui.layer;
+        var form = layui.form;
+        var $ = layui.jquery;
+        layer.msg('Hello World');
+
+
+        setSelect_department();
+        setSelect_nation();
+        setSelect_major();
+        setSelect_class();
+//        姓名框
+        $("#input-1").blur(function () {
+            var name = $(this).val();
+            $('#div-1').text(name)
+        });
+
+//        身份证号码框
+        $("#input_id").blur(function () {
+            var name = $(this).val();
+            $('#div_id').text(name)
+        });
+
+//        学号框
+        $("#input-2").blur(function () {
+            var name = $(this).val();
+            $('#div-2').text(name)
+        });
+
+//        民族下拉框
+        function setSelect_nation() {
+            var nation = $('#select_nation');
+            var nations = ["汉族", "蒙古族", "回族", "藏族", "维吾尔族", "苗族", "彝族", "壮族", "布依族", "朝鲜族", "满族", "侗族", "瑶族", "白族", "土家族",
+                "哈尼族", "哈萨克族", "傣族", "黎族", "傈僳族", "佤族", "畲族", "高山族", "拉祜族", "水族", "东乡族", "纳西族", "景颇族", "柯尔克孜族",
+                "土族", "达斡尔族", "仫佬族", "羌族", "布朗族", "撒拉族", "毛南族", "仡佬族", "锡伯族", "阿昌族", "普米族", "塔吉克族", "怒族", "乌孜别克族",
+                "俄罗斯族", "鄂温克族", "德昂族", "保安族", "裕固族", "京族", "塔塔尔族", "独龙族", "鄂伦春族", "赫哲族", "门巴族", "珞巴族", "基诺族"];
+            for (var i = 0; i < nations.length; i++) {
+                var a = nations[i];
+                console.log(nations[i]);
+                nation.append("<option value=" + a + ">" + a + "</option>");
+            }
+            nation.blur(function () {
+                var name = nation.val();
+                $('#div_nation').text(name)
+            });
+        }
+
+//        院系下拉框
+        function setSelect_department() {
+            var select_department = $('#select_department');
+            var departments = ["计算机工程系", "电子系", "传媒系"];
+            for (var i = 0; i < departments.length; i++) {
+                var a = departments[i];
+                select_department.append("<option value=" + a + ">" + a + "</option>");
+            }
+            select_department.blur(function () {
+                var name = select_department.val();
+                $('#div_department').text(name)
+            });
+        }
+
+//        专业下拉框
+        function setSelect_major() {
+            var select_major = $('#select_major');
+            var majors = ["软件技术", "物联网", "移动互联"];
+            for (var i = 0; i < majors.length; i++) {
+                var a = majors[i];
+                select_major.append("<option value=" + a + ">" + a + "</option>");
+            }
+            select_major.blur(function () {
+                var name = select_major.val();
+                $('#div_major').text(name)
+            })
+        }
+
+//        班级下拉框
+        function setSelect_class() {
+            var select_class = $('#select_class');
+            var classes = ["软件技术1611", "软件技术1612", "移动互联1611", "移动互联1612"];
+            for (var i = 0; i < classes.length; i++) {
+                var a = classes[i];
+                select_class.append("<option value=" + a + ">" + a + "</option>");
+            }
+            select_class.blur(function () {
+                var name = select_class.val();
+                $('#div_class').text(name)
+            })
+        }
+
+        $("#btn_submit").click(function () {
+        })
+
+//        form.on('submit(formDemo)', function (data) {
+//            layer.msg(JSON.stringify(data.field));
+//
+//            (function () {
+//                // trim polyfill : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/Trim
+//                if (!String.prototype.trim) {
+//                    (function () {
+//                        // Make sure we trim BOM and NBSP
+//                        var rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
+//                        String.prototype.trim = function () {
+//                            return this.replace(rtrim, '');
+//                        };
+//                    })();
+//                }
+//
+//                [].slice.call(document.querySelectorAll('input.input__field')).forEach(function (inputEl) {
+//                    // in case the input is already filled..
+//                    if (inputEl.value.trim() !== '') {
+//                        classie.add(inputEl.parentNode, 'input--filled');
+//                    }
+//
+//                    // events:
+//                    inputEl.addEventListener('focus', onInputFocus);
+//                    inputEl.addEventListener('blur', onInputBlur);
+//                });
+//
+//                function onInputFocus(ev) {
+//                    classie.add(ev.target.parentNode, 'input--filled');
+//                }
+//
+//                function onInputBlur(ev) {
+//                    if (ev.target.value.trim() === '') {
+//                        classie.remove(ev.target.parentNode, 'input--filled');
+//                    }
+//                }
+//            })();
+//        })
+    })
+</script>
+</body>
 </html>
