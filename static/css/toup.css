@@ -5,8 +5,8 @@
 .swiper-container {
 		width:100%;
 		height:100%;
-        margin-left: auto;
-        margin-right: auto;
+        margin-left: inherit;
+        margin-right: inherit;
     }
     .swiper-slide {
 		border:3px solid #fff;
