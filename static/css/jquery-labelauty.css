@@ -54,7 +54,7 @@ input.labelauty + label {
 input.labelauty + label > span.labelauty-unchecked,
 input.labelauty + label > span.labelauty-checked {
     text-align: center;
-    width: 210px;
+    width: 190px;
     display: inline-block;
     line-height: 16px;
     vertical-align: bottom;
