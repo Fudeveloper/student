@@ -17,20 +17,22 @@ from django.conf.urls import url
 
 from . import views
 
+
 urlpatterns = [
-    url(r'^main/$', views.main, name='main'),
-    url(r'^test/$', views.test, name='test'),
+                  url(r'^main/$', views.main, name='main'),
+                  url(r'^test/$', views.test, name='test'),
 
-    url(r'^dy/$', views.dy, name='dy'),
-    url(r'^index/$', views.index, name='index'),
-    url(r'^common/$', views.common, name='common'),
-    url(r'^index/$', views.index, name='index'),
-    url(r'^index2/$', views.index2, name='index2'),
+                  url(r'^dy/$', views.dy, name='dy'),
+                  url(r'^index/$', views.index, name='index'),
+                  url(r'^common/$', views.common, name='common'),
+                  url(r'^index/$', views.index, name='index'),
+                  url(r'^index2/$', views.index2, name='index2'),
 
-    url(r'^index_handler/$', views.index_handler, name='index_handler'),
-    url(r'^base/$', views.base, name='base'),
-    url(r'^income/$', views.income, name='income'),
-    url(r'^city/$', views.city, name='city'),
+                  url(r'^index_handler/$', views.index_handler, name='index_handler'),
+                  url(r'^base/$', views.base, name='base'),
+                  url(r'^income/$', views.income, name='income'),
+                  url(r'^city/$', views.city, name='city'),
 
+                  url(r'^uploadimg/$', views.uploadimg, name='uploadimg'),
 
-]
+              ]

@@ -63,6 +63,7 @@
                         </div>
                     </div>
                 </div>
+                <!--户籍所在县区-->
                 <div class="swiper-slide">
                     <div class="scores">
                         <div class="f"><span>2</span>户籍所在县区</div>
@@ -83,6 +84,7 @@
                         </div>
                     </div>
                 </div>
+                <!--家庭住地-->
                 <div class="swiper-slide">
                     <div class="scores">
                         <div class="f"><span>3</span>家庭住地</div>
@@ -111,6 +113,8 @@
         <!-- 上下end -->
     </div>
 </section>
+
+
 <section class="toup" id="t2">
     <!-- <div class="logo">
         <img src="images/logo.png"/>
@@ -124,7 +128,7 @@
                 <p></p>
             </div>
         </div>
-        <a href="javascript:;" class="tijiao">提交调查</a>
+        <a href="javascript:;" class="tijiao">提交</a>
     </div>
 </section>
 
@@ -135,8 +139,6 @@
 <script>
     layui.use(['layer', 'form'], function () {
         var layer = layui.layer;
-        $(':input:checkbox').labelauty();
-
         var mySwiper = new Swiper('.swiper-container', {
             pagination: '.swiper-pagination',
             nextButton: '.swiper-button-next',
@@ -153,15 +155,20 @@
         $("#t2,#t3").hide();
 
         $('#J_Address').click(function () {
+
             var height = $(window).height() + "px"
             var width = $(window).width() + "px"
             layer.open({
-                area: [width,height ],
+                title: "请选择户籍所在县区",
+                area: [width, height],
                 skin: 'demo-class',
                 type: 2,
                 content: '/quantization/city/' //这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content: ['http://sentsin.com', 'no']
             });
         })
+
+        $(':input:checkbox').labelauty();
+
     });
 
 
@@ -188,7 +195,7 @@
 
 <div style="text-align:center;margin:30px 0; font:normal 14px/24px 'MicroSoft YaHei';">
     <!--<p>适用浏览器：360、FireFox、Chrome、Safari、Opera、傲游、搜狗、世界之窗. 不支持IE8及以下浏览器。</p>-->
-    <p>Powered by：<a href="http://www.baidu.com">福信-易班开发团队</a></p>
+    <p>Powered by：<a>福信-易班开发团队</a></p>
 </div>
 </body>
 

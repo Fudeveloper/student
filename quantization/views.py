@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse, FileResponse, StreamingHttpResponse
-
+from .models import *
 from django.views.decorators.csrf import csrf_exempt
 
 
@@ -51,3 +51,14 @@ def income(request):
 
 def city(request):
     return render(request, 'quantization/city.html')
+
+
+@csrf_exempt
+def uploadimg(request):
+    if request.method == 'POST':
+        new_studentAnswer = StudentAnswer(
+            baseDatum=request.FILES.get('img'),
+            studentId=StudentInfo.objects.get(studentId="2016010978")
+        )
+        new_studentAnswer.save()
+    return render(request, 'uploadimg.html')

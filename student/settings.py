@@ -10,12 +10,14 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.8/ref/settings/
 """
 import pymysql
+
 pymysql.install_as_MySQLdb()
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+from django.conf.urls.static import static
+from django.conf import settings
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
@@ -27,7 +29,6 @@ SECRET_KEY = 'w=t!j8__n_s@md(rbz@18kc2i@h3557-lq@pwi1o%*ca(rl(7&'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -72,20 +73,19 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'student.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'student',
-#         'USER': 'root',
-#         'PASSWORD': 'lik',
-#         'HOST': '192.168.76.129',
-#         'PORT': '3306',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'student',
+        'USER': 'root',
+        'PASSWORD': 'lik',
+        'HOST': '192.168.76.129',
+        'PORT': '3306',
+    }
+}
 
 
 # Internationalization
@@ -106,8 +106,9 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'static')
-
+# 设置静态文件路径为主目录下的media文件夹
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media').replace('\\', '/')
+MEDIA_URL = '/media/'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
