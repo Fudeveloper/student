@@ -29,5 +29,7 @@ urlpatterns = [
 
     url(r'^index_handler/$', views.index_handler, name='index_handler'),
     url(r'^base/$', views.base, name='base'),
+    url(r'^income/$', views.income, name='income'),
+
 
 ]
