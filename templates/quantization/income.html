@@ -8,11 +8,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <link rel="stylesheet" href="/static/css/reset.css"/>
     <link rel="stylesheet" href="/static/css/toup.css"/>
-    <link rel="stylesheet" href="/static/js/swiper/swiper.min.css">
+    <link rel="stylesheet" href="/static/css/swiper.min.css">
     <link rel="stylesheet" href="/static/css/jquery-labelauty.css">
-    <!--<link href="http://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet">-->
-    <!--<link href="/static/css/city-picker.css" rel="stylesheet">-->
-    <!--<link href="/static/css/main.css" rel="stylesheet">-->
+    <script src="/static/plugins/layui/layui.js"></script>
+
+    <!--<link rel="stylesheet" href="/static/css/city.css">-->
+    <!--<script src="/static/js/ydui.flexible.js"></script>-->
     <style>
         ul {
             list-style-type: none;
@@ -66,8 +67,18 @@
                     <div class="scores">
                         <div class="f"><span>2</span>户籍所在县区</div>
                         <div class="choose">
+
+
                             <ul class="dowebok">
-                                <li><input type="text" name="checkbox" data-labelauty=""></li>
+                                <div class="m-cell">
+                                    <div class="cell-item">
+                                        <div class="cell-right cell-arrow">
+                                            <input type="text" class="cell-input" readonly id="J_Address"
+                                                   placeholder="请选择地址">
+                                        </div>
+                                    </div>
+                                </div>
+
                             </ul>
                         </div>
                     </div>
@@ -117,29 +128,41 @@
     </div>
 </section>
 
-<script src="/static/js/swiper/swiper.min.js"></script>
+<script src="/static/js/swiper.min.js"></script>
 <script src="/static/js/jquery-labelauty.js"></script>
-<script src="/static/js/city-picker/bootstrap.js"></script>
-<script src="/static/js/city-picker/city-picker.data.js"></script>
-<script src="/static/js/city-picker/city-picker.js"></script>
-<script src="/static/js/city-picker/main.js"></script>
+<!--<script type="text/javascript" src="/static/js/ydui.citys.js"></script>-->
+<!--<script type="text/javascript" src="/static/js/ydui.js"></script>-->
 <script>
-    $(':input:checkbox').labelauty();
+    layui.use(['layer', 'form'], function () {
+        var layer = layui.layer;
+        $(':input:checkbox').labelauty();
+        var mySwiper = new Swiper('.swiper-container', {
+            pagination: '.swiper-pagination',
+            nextButton: '.swiper-button-next',
+            prevButton: '.swiper-button-prev',
+            slidesPerView: 1,
+            paginationClickable: true,
+            spaceBetween: 30,
+            loop: true,
+            onReachEnd: function (swiper) {
+                $("#t1").hide();
+                $("#t2").show();
+            }
+        });
+        $("#t2,#t3").hide();
 
-    var mySwiper = new Swiper('.swiper-container', {
-        pagination: '.swiper-pagination',
-        nextButton: '.swiper-button-next',
-        prevButton: '.swiper-button-prev',
-        slidesPerView: 1,
-        paginationClickable: true,
-        spaceBetween: 30,
-        loop: true,
-        onReachEnd: function (swiper) {
-            $("#t1").hide();
-            $("#t2").show();
-        }
+        $('#J_Address').click(function () {
+
+             layer.open({
+                area: ['300px', '400px'],
+                skin: 'demo-class',
+                type: 2,
+                content: '/quantization/city/' //这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content: ['http://sentsin.com', 'no']
+            });
+        })
     });
-    $("#t2,#t3").hide();
+
+
     //    $("a.jion").on("click", function () {
     //        $("#t1").hide();
     //        $("#t2").show();
@@ -163,7 +186,7 @@
 
 <div style="text-align:center;margin:30px 0; font:normal 14px/24px 'MicroSoft YaHei';">
     <!--<p>适用浏览器：360、FireFox、Chrome、Safari、Opera、傲游、搜狗、世界之窗. 不支持IE8及以下浏览器。</p>-->
-    <p>Powered by：<a href="http://www.baidu.com">福信-易班开发团队 & 物联网工作室</a></p>
+    <p>Powered by：<a href="http://www.baidu.com">福信-易班开发团队</a></p>
 </div>
 </body>
 
