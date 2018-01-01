@@ -44,5 +44,10 @@ def index_handler(request):
 def base(request):
     return render(request, 'quantization/base.html')
 
+
 def income(request):
     return render(request, 'quantization/income.html')
+
+
+def city(request):
+    return render(request, 'quantization/city.html')
