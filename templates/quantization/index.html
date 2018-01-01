@@ -105,19 +105,19 @@
 </div><!-- /container -->
 <script src="/static/plugins/layui/layui.js"></script>
 <script src="/static/js/layuiConfig.js"></script>
-<!--<script src="/static/js/classie.js"></script>-->
-<script src="/static/js/jquery.cookie.js"></script>
-<script src="/static/js/csrftoken.js"></script>
+<script src="/static/plugins/layui/lay/modules/jquery_cookie.js"></script>
+<script src="/static/plugins/layui/lay/modules/csrftoken.js"></script>
 
 <script>
     var console_log = function (obj) {
         console.log(obj);
     };
-    layui.use(['layer', 'form'], function () {
+    layui.use(['layer', 'form','mymod','jquery_cookie','csrftoken'], function () {
+        var csrftoken = layui.csrftoken;
+        var jquery_cookie = layui.jquery_cookie;
         var layer = layui.layer;
         var form = layui.form;
         var $ = layui.jquery;
-
         var name;
         var id;
         var gender;

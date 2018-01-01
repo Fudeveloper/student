@@ -33,6 +33,7 @@ def index(request):
 @csrf_exempt
 def index_handler(request):
     data = request.POST
+    print(data)
     if data:
         result = "ok"
     else:

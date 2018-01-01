@@ -1,3 +1,6 @@
+layui.define(function(exports){
+	function csrftoken(jQuery){
+
 function csrfSafeMethod(method) {
     // these HTTP methods do not require CSRF protection
     return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
@@ -27,4 +30,10 @@ $.ajaxSetup({
             xhr.setRequestHeader("X-CSRFToken", csrftoken);
         }
     }
-}); 
+});
+
+		return jQuery;
+	};
+
+	exports('csrftoken', csrftoken);
+});
