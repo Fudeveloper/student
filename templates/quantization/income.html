@@ -136,6 +136,7 @@
     layui.use(['layer', 'form'], function () {
         var layer = layui.layer;
         $(':input:checkbox').labelauty();
+
         var mySwiper = new Swiper('.swiper-container', {
             pagination: '.swiper-pagination',
             nextButton: '.swiper-button-next',
@@ -152,9 +153,10 @@
         $("#t2,#t3").hide();
 
         $('#J_Address').click(function () {
-
-             layer.open({
-                area: ['300px', '400px'],
+            var height = $(window).height() + "px"
+            var width = $(window).width() + "px"
+            layer.open({
+                area: [width,height ],
                 skin: 'demo-class',
                 type: 2,
                 content: '/quantization/city/' //这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content: ['http://sentsin.com', 'no']
