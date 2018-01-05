@@ -42,21 +42,17 @@
 <body>
 
 <section class="toup" id="t1">
-    <!-- <div class="logo">
-        <img src="images/logo.png"/>
-    </div> -->
     <div class="swipers">
         <!-- 政策兜底资助类型 -->
-        <div class="swiper-container ">
-            <div class="swiper-wrapper">
+        <div class="swiper-container swiper-no-swiping">
+            <div class="swiper-wrapper swiper-no-swiping">
 
                 <div class="swiper-slide swiper-no-swiping">
                     <div class="scores">
-                        <div class="f"><span>1</span>政策兜底资助类型</div>
+                        <div class="f"><span>1</span>政策兜底资助类型(没有可不选)</div>
                         <div class="choose">
                             <ul class="dowebok">
-                                <li><input type="checkbox" name="checkbox_zcdd" data-labelauty="城乡低保家庭（含特困供养人员）子女"
-                                           id="haha">
+                                <li><input type="checkbox" name="checkbox_zcdd" data-labelauty="城乡低保家庭（含特困供养人员）子女">
                                 </li>
                                 <li><input type="checkbox" name="checkbox_zcdd" data-labelauty="建档立卡贫困户子女"></li>
                                 <li><input type="checkbox" name="checkbox_zcdd" data-labelauty="家庭经济困难残疾学生"></li>
@@ -278,6 +274,8 @@
                     </div>
                 </div>
             </div>
+
+            <!-- 上下start -->
             <div class="preNexts">
                 <div class="swiper-button-prev">
                     <div class="pre"></div>
@@ -316,24 +314,23 @@
 <!--<script type="text/javascript" src="/static/js/ydui.citys.js"></script>-->
 <!--<script type="text/javascript" src="/static/js/ydui.js"></script>-->
 <script>
+
+
     layui.use(['layer', 'form'], function () {
-        var value_array = [];
-        var zcdd = "";
+        var value_array = {};
+//        除了每年学费标准，测评得分
+        var value_name = ['zcdd', 'hjsz', 'jtzz', 'fqzy', 'mqzy', 'fqld', 'mqld', 'cfmq', 'fwqk', 'jxrk', 'syrk', 'ylzc', 'jtsz', 'jtbg', 'zxqj'];
 
         var layer = layui.layer;
         var mySwiper = new Swiper('.swiper-container', {
-            noSwiping : true,
+            noSwiping: true,
             pagination: '.swiper-pagination ',
-            nextButton: '.swiper-button-next',
+//            nextButton: '.swiper-button-next',
             prevButton: '.swiper-button-prev',
             slidesPerView: 1,
             paginationClickable: false,
             spaceBetween: 100,
-            loop: false,
-            onReachEnd: function (swiper) {
-                $("#t1").hide();
-                $("#t2").show();
-            }
+            loop: false
         });
         $("#t2,#t3").hide();
 
@@ -348,62 +345,79 @@
                 type: 2,
                 content: ['/quantization/city/', 'no'] //这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content: ['http://sentsin.com', 'no']
             });
-        })
+        });
 
         $(".swiper-container label,.swiper-container input[id!='J_Address']").click(function () {
             var this_active = $(this).parents(".swiper-slide").index();
             setTimeout(function () {
-//                mySwiper.slideTo(this_active + 1, 1000)
-                $('.swiper-button-next').click();
+                logic(mySwiper);
+//                mySwiper.activeIndex
+                mySwiper.slideTo(mySwiper.activeIndex + 1, 1000)
+//                $('.swiper-button-next').click();
             }, 500);
 
         });
         $('.swiper-button-next').click(function () {
-            if (mySwiper.activeIndex == 0) {
-                alert(0)
-                var selects = $(':input:checkbox:checked');
-                var label = $($(selects)[0]).next().children()[1];
-                zcdd = $(label).html();
-                console.log("0" + zcdd)
-            } else if (mySwiper.activeIndex == 2) {
-                var hjsz = $("J_Address").attr("placeholder");
-                console.log("1" + hjsz)
-            }
-
-            else {
-                alert(mySwiper.activeIndex)
-                var active_slide = mySwiper.slides[mySwiper.activeIndex];
-                var radio = $(active_slide).find($(':input:radio:checked'))[0];
-                var label = $($(radio)).next().children()[1];
-                var active_value = $(label).html();
-//                $(radio).innerHTML()
-                console.log(active_value)
-//                var active_select =
-//                var  active_value =
-//                value_array.push(1);
-//                console.log(value_array)
-//                if (mySwiper.isEnd) {
-//                    $("#t1").hide();
-//                    $("#t2").show();
-//                }
-            }
-
-
+            logic(mySwiper);
+            mySwiper.slideTo(mySwiper.activeIndex + 1, 1000)
         });
 
 
         $(':input:checkbox').labelauty();
         $(':input:radio').labelauty();
 
+        function logic(mySwiper) {
+            if (mySwiper.activeIndex == 0) {
+                alert(0);
 
+                var selects = $(':input:checkbox:checked');
+                var label = $($(selects)[0]).next().children()[1];
+                zcdd = $(label).html();
+
+                if (typeof(zcdd) == 'undefined') {
+                    zcdd = "";
+                }
+                value_array['zcdd'] = zcdd;
+                console.log(value_array)
+            } else if (mySwiper.activeIndex == 1) {
+                var hjsz = $("#J_Address").attr("placeholder");
+                if (hjsz == "请选择地址") {
+                    layer.msg("您还未选择!");
+                    mySwiper.slideTo(mySwiper.activeIndex - 1)
+                } else {
+                    value_array['hjsz'] = hjsz;
+                }
+
+//                console.log("1" + hjsz);
+            }
+
+            else {
+                var now_index = mySwiper.activeIndex;
+//                alert(mySwiper.activeIndex)
+                var active_slide = mySwiper.slides[now_index];
+                var radio = $(active_slide).find($(':input:radio:checked'))[0];
+                var label = $($(radio)).next().children()[1];
+                var active_value = $(label).html();
+                if (typeof(active_value) == "undefined") {
+                    layer.msg("您还未选择!");
+                    mySwiper.slideTo(now_index - 1)
+                }
+                    value_array[value_name[now_index]] = active_value;
+                    console.log(value_array)
+//                $(radio).innerHTML()
+//                console.log(active_value)
+//                var active_select =
+//                var  active_value =
+//                value_array.push(1);
+//                console.log(value_array)
+                if (mySwiper.isEnd) {
+                    $("#t1").hide();
+                    $("#t2").show();
+                }
+            }
+        }
     });
-
-
-    //    $("a.jion").on("click", function () {
-    //        $("#t1").hide();
-    //        $("#t2").show();
-    //    });
-
+    
 
 </script>
 
