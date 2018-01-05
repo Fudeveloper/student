@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>jQuery仿手机京东商城收货地址城市选择代码</title>
+    <title>city</title>
     <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport">
     <meta content="yes" name="apple-mobile-web-app-capable">
     <meta content="black" name="apple-mobile-web-app-status-bar-style">
@@ -32,25 +32,26 @@
      * 默认调用
      */
 
-        !function () {
-            var $target = $('#J_Address');
-            $target.hide();
-            $target.citySelect();
+    !function () {
+        var $target = $('#J_Address');
+        $target.hide();
+        $target.citySelect();
 
-            $target.on('click', function (event) {
-                event.stopPropagation();
-                $target.citySelect('open');
-            });
+        $target.on('click', function (event) {
+            event.stopPropagation();
+            $target.citySelect('open');
+        });
 
-            $target.on('done.ydui.cityselect', function (ret) {
-                $(this).val(ret.provance + '/' + ret.city + '/' + ret.area);
-                var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
-                parent.$('#J_Address').attr("placeholder",$(this).val());
-                parent.layer.close(index);
-            });
-            $target.click();
+        $target.on('done.ydui.cityselect', function (ret) {
+            $(this).val(ret.provance + '/' + ret.city + '/' + ret.area);
+            var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+            parent.$('#J_Address').attr("placeholder", $(this).val());
+            parent.layer.close(index);
+            $(".swiper-button-next", window.parent.document).click()
+        });
+        $target.click();
 
-        }();
+    }();
     /**
      * 设置默认值
      */

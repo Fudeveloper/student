@@ -25,7 +25,7 @@
         <h1><span>高校学生家庭经济情况量化测评表</span></h1>
     </header>
     <section class="content">
-        <h2>基本信息</h2>
+        <h3>基本信息</h3>
         <span class="input input--kaede">
 
 					<input class="input__field input__field--kaede" type="text" id="input_name"/>
@@ -35,7 +35,7 @@
 					</label>
 				</span>
         <span class="input input--kaede">
-					<input class="input__field input__field--kaede" type="text" id="input_sfz"/>
+					<input class="input__field input__field--kaede" type="text" id="input_sfz" style="font-size: 70%"/>
 					<label class="input__label input__label--kaede" for="input_sfz">
 						<span class="input__label-content input__label-content--kaede">身份证号码<div
                                 style="float: right" id="div_sfz"></div></span>
@@ -139,9 +139,9 @@
         });
 
 //        身份证号码框
-        $("#input_id").blur(function () {
+        $("#input_sfz").blur(function () {
             id = $(this).val();
-            $('#div_id').text(id)
+            $('#div_sfz').text(id)
         });
 
 //        学号框
@@ -220,7 +220,7 @@
             var str = "";
             value_array.forEach(function (t, number) {
                 if (!t) {
-                    $(spans[number]).css("border", "#0094ff solid 1.5px");
+                    $(spans[number]).css("border", "red solid 1.5px");
                     str = "您还有资料未填写";
                 }
             });
