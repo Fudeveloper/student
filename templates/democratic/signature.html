@@ -19,7 +19,6 @@
 <p style="text-align: center">
     <!--<b style="color: red">请按着鼠标写字签名。</b>-->
     <input type="button" value="保存" id="yes"/>
-    <input type="button" value="下载" id="download"/>
     <input type="button" value="重写" id="reset"/>
 </p>
 
@@ -38,8 +37,8 @@
         var $sigdiv = $("#signature");
         $sigdiv.jSignature({
             'UndoButton': true,
-            'width': width *0.98,
-            'height': height * 0.8,
+            'width': width *0.97,
+            'height': height * 0.93,
             'background-color': '#A9E8DC'
         }); // 初始化jSignature插件.
         $("#yes").click(function () {
