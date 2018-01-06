@@ -27,7 +27,7 @@ def index2(request):
 
 
 def index(request):
-    return render(request, 'quantization/index.html')
+    return render(request, 'quantization/signature.html')
 
 
 @csrf_exempt

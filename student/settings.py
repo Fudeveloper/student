@@ -76,16 +76,16 @@ WSGI_APPLICATION = 'student.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'student',
-        'USER': 'root',
-        'PASSWORD': 'lik',
-        'HOST': '192.168.76.129',
-        'PORT': '3306',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'student',
+#         'USER': 'root',
+#         'PASSWORD': 'lik',
+#         'HOST': '192.168.76.129',
+#         'PORT': '3306',
+#     }
+# }
 
 
 # Internationalization
