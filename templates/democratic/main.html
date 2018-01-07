@@ -51,10 +51,10 @@
                         <div class="f"><span>1</span>热爱所学专业，刻苦钻研，勇于创新，敢于实践，积极参加课外科技活动</div>
                         <div class="choose">
                             <ul class="dowebok">
-                                <li><input type="checkbox" name="checkbox_zcdd" data-labelauty="好（2分）">
+                                <li><input type="radio" name="radio_zcdd" data-labelauty="好（2分）">
                                 </li>
-                                <li><input type="checkbox" name="checkbox_zcdd" data-labelauty="一般（1分）"></li>
-                                <li><input type="checkbox" name="checkbox_zcdd" data-labelauty="差（0分）"></li>
+                                <li><input type="radio" name="radio_zcdd" data-labelauty="一般（1分）"></li>
+                                <li><input type="radio" name="radio_zcdd" data-labelauty="差（0分）"></li>
                             </ul>
                         </div>
                     </div>
@@ -65,10 +65,10 @@
                         <div class="f"><span>2</span>尊敬师长、尊重他人，团结友爱、关心集体、诚实守信，考试不作弊；热爱劳动，积极参加社会实践、公益劳动</div>
                         <div class="choose">
                             <ul class="dowebok">
-                                <li><input type="checkbox" name="checkbox_zcdd" data-labelauty="好（2分）">
+                                <li><input type="radio" name="radio_zcdd" data-labelauty="好（2分）">
                                 </li>
-                                <li><input type="checkbox" name="checkbox_zcdd" data-labelauty="一般（1分）"></li>
-                                <li><input type="checkbox" name="checkbox_zcdd" data-labelauty="差（0分）"></li>
+                                <li><input type="radio" name="radio_zcdd" data-labelauty="一般（1分）"></li>
+                                <li><input type="radio" name="radio_zcdd" data-labelauty="差（0分）"></li>
                             </ul>
                         </div>
                     </div>
@@ -162,8 +162,6 @@
 
 <script src="/static/js/swiper.min.js"></script>
 <script src="/static/js/jquery-labelauty.js"></script>
-<!--<script type="text/javascript" src="/static/js/ydui.citys.js"></script>-->
-<!--<script type="text/javascript" src="/static/js/ydui.js"></script>-->
 <script>
 
 
@@ -211,6 +209,7 @@
         $('.swiper-button-next').click(function () {
             logic(mySwiper);
             mySwiper.slideTo(mySwiper.activeIndex + 1, 1000)
+
         });
 
 
@@ -218,53 +217,28 @@
         $(':input:radio').labelauty();
 
         function logic(mySwiper) {
-            if (mySwiper.activeIndex == 0) {
-//                alert(0);
+            var now_index = mySwiper.activeIndex;
+//                alert(mySwiper.activeIndex)
+            var active_slide = mySwiper.slides[now_index];
+            console.log(active_slide)
+            var radio = $(active_slide).find($(':input:radio:checked'))[0];
+            console.log(radio)
 
-                var selects = $(':input:checkbox:checked');
-                var label = $($(selects)[0]).next().children()[1];
-                zcdd = $(label).html();
-
-                if (typeof(zcdd) == 'undefined') {
-                    zcdd = "";
-                }
-                value_array['zcdd'] = zcdd;
-                console.log(value_array)
-            } else if (mySwiper.activeIndex == 1) {
-                var hjsz = $("#J_Address").attr("placeholder");
-                if (hjsz == "请选择地址") {
-                    layer.msg("您还未选择!");
-                    mySwiper.slideTo(mySwiper.activeIndex - 1)
-                } else {
-                    value_array['hjsz'] = hjsz;
-                }
-
-//                console.log("1" + hjsz);
+            var label = $($(radio)).next().children()[1];
+            var active_value = $(label).html();
+            console.log(active_value);
+            if (typeof(active_value) == "undefined") {
+                layer.msg("您还未选择!");
+                this.stopPropagation();
+            } else {
+                value_array[value_name[now_index]] = active_value;
+                console.log(value_array);
             }
 
-            else {
-                var now_index = mySwiper.activeIndex;
-//                alert(mySwiper.activeIndex)
-                var active_slide = mySwiper.slides[now_index];
-                var radio = $(active_slide).find($(':input:radio:checked'))[0];
-                var label = $($(radio)).next().children()[1];
-                var active_value = $(label).html();
-                if (typeof(active_value) == "undefined") {
-                    layer.msg("您还未选择!");
-                    mySwiper.slideTo(now_index - 1)
-                }
-                value_array[value_name[now_index]] = active_value;
-                console.log(value_array)
-//                $(radio).innerHTML()
-//                console.log(active_value)
-//                var active_select =
-//                var  active_value =
-//                value_array.push(1);
-//                console.log(value_array)
-                if (mySwiper.isEnd) {
-                    $("#t1").hide();
-                    $("#t2").show();
-                }
+
+            if (mySwiper.isEnd) {
+                $("#t1").hide();
+                $("#t2").show();
             }
         }
     });

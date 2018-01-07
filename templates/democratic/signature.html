@@ -14,7 +14,7 @@
 
     </style>
 </head>
-<body>
+<body onorientationchange="updateOrientation();">
 <div id="signature"></div>
 <p style="text-align: center">
     <!--<b style="color: red">请按着鼠标写字签名。</b>-->
@@ -29,6 +29,7 @@
 <script src="/static/js/jsi/jSignature.min.js"></script>
 <script>
     $(function () {
+
         var width = $(window).width();
         var height = $(window).height();
         console.log(width);
@@ -47,7 +48,7 @@
             var i = new Image();
             i.src = "data:" + datapair[0] + "," + datapair[1];
             $(i).appendTo($("#someelement")); // append the image (SVG) to DOM.
-            con
+
         });
         //datapair = $sigdiv.jSignature("getData","base30");
         //$sigdiv.jSignature("setData", "data:" + datapair.join(","));
@@ -86,7 +87,11 @@
         }
 
         return new Blob([ab], {type: 'image/png'});
+
+
     }
+
+
 </script>
 
 </body>
