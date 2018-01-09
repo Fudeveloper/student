@@ -1,41 +1,430 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html lang="en-US">
 <head>
     <meta charset="UTF-8">
-    <title>高校学生家庭经济情况量化测评表</title>
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="/static/css/reset.css"/>
+    <link rel="stylesheet" href="/static/css/toup.css"/>
+    <link rel="stylesheet" href="/static/css/swiper.min.css">
+    <link rel="stylesheet" href="/static/css/jquery-labelauty.css">
     <script src="/static/plugins/layui/layui.js"></script>
-    <link rel="stylesheet" href="/static/plugins/layui/css/layui.css">
-    <link rel="stylesheet" href="/static/css/global.css" media="all">
+
+    <!--<link rel="stylesheet" href="/static/css/city.css">-->
+    <!--<script src="/static/js/ydui.flexible.js"></script>-->
+    <style>
+        ul {
+            list-style-type: none;
+        }
+
+        li {
+            display: block;
+            /*display: inline-block;*/
+            margin: -10px 0;
+
+        }
+
+        input.labelauty + label {
+            font: 12px "Microsoft Yahei";
+            color: black;
+            padding: 12px;
+        }
+    </style>
+    <script src="/static/js/jquery-1.12.4.min.js"></script>
+    <script src="/static/js/fontSize.js"></script>
+
+    <title>高校学生家庭经济情况量化测评表</title>
+
 </head>
+
 <body>
-<div class="layui-fluid">
-<fieldset class="layui-elem-field layui-field-title">
-<legend style="text-align: center;float: none">高校学生家庭经济情况量化测评表</legend>
-</fieldset>
-<div class="layui-row">
-<div class="layui-col-sm3">
-<div class="grid-demo grid-demo-bg1">姓名</div>
-</div>
-<div class="layui-col-sm3">
-<div class="grid-demo"></div>
-</div>
-<div class="layui-col-sm3">
-<div class="grid-demo grid-demo-bg1">身份证号码</div>
-</div>
-<div class="layui-col-sm3">
-<div class="grid-demo"></div>
-</div>
-</div>
-</div>
+
+<section class="toup" id="t1">
+    <div class="swipers">
+        <!-- 政策兜底资助类型 -->
+        <div class="swiper-container swiper-no-swiping">
+            <div class="swiper-wrapper swiper-no-swiping">
+
+                <div class="swiper-slide swiper-no-swiping">
+                    <div class="scores">
+                        <div class="f"><span>1</span>政策兜底资助类型(没有可不选)</div>
+                        <div class="choose">
+                            <ul class="dowebok">
+                                <li><input type="checkbox" name="checkbox_zcdd" data-labelauty="城乡低保家庭（含特困供养人员）子女">
+                                </li>
+                                <li><input type="checkbox" name="checkbox_zcdd" data-labelauty="建档立卡贫困户子女"></li>
+                                <li><input type="checkbox" name="checkbox_zcdd" data-labelauty="家庭经济困难残疾学生"></li>
+                                <li><input type="checkbox" name="checkbox_zcdd" data-labelauty="烈士子女或优抚家庭子女"></li>
+                                <li><input type="checkbox" name="checkbox_zcdd" data-labelauty="孤儿"></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--户籍所在县区-->
+                <div class="swiper-slide swiper-no-swiping">
+                    <div class="scores">
+                        <div class="f"><span>2</span>户籍所在县区</div>
+                        <div class="choose">
 
 
+                            <ul class="dowebok">
+                                <div class="m-cell">
+                                    <div class="cell-item">
+                                        <div class="cell-right cell-arrow">
+                                            <input type="text" class="cell-input" readonly id="J_Address"
+                                                   placeholder="请选择地址">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--家庭住地-->
+                <div class="swiper-slide swiper-no-swiping">
+                    <div class="scores">
+                        <div class="f"><span>3</span>家庭住地</div>
+                        <div class="choose">
+                            <ul class="dowebok">
+                                <li><input type="radio" name="radio_jtzd" data-labelauty="近两年家庭实际住地在县城及以上"></li>
+                                <li><input type="radio" name="radio_jtzd" data-labelauty="近两年家庭实际住地在乡镇及以下"></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--父亲职业-->
+                <div class="swiper-slide swiper-no-swiping">
+                    <div class="scores">
+                        <div class="f"><span>4</span>父亲职业</div>
+                        <div class="choose">
+                            <ul class="dowebok">
+                                <li><input type="radio" name="radio_fqzy" data-labelauty="公司股东或高管、私营业主"></li>
+                                <li><input type="radio" name="radio_fqzy" data-labelauty="公务员、事业单位或国有企业工作人员、个体经营户"></li>
+                                <li><input type="radio" name="radio_fqzy" data-labelauty="进城务工人员或合同制工作人员"></li>
+                                <li><input type="radio" name="radio_fqzy" data-labelauty="务农或临时务工"></li>
+                                <li><input type="radio" name="radio_fqzy" data-labelauty="因身体或其他原因无法就业、失踪（联）或去世"></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--母亲职业-->
+                <div class="swiper-slide swiper-no-swiping">
+                    <div class="scores">
+                        <div class="f"><span>5</span>母亲职业</div>
+                        <div class="choose">
+                            <ul class="dowebok">
+                                <li><input type="radio" name="radio_mqzy" data-labelauty="公司股东或高管、私营业主"></li>
+                                <li><input type="radio" name="radio_mqzy" data-labelauty="公务员、事业单位或国有企业工作人员、个体经营户"></li>
+                                <li><input type="radio" name="radio_mqzy" data-labelauty="进城务工人员或合同制工作人员"></li>
+                                <li><input type="radio" name="radio_mqzy" data-labelauty="务农或临时务工"></li>
+                                <li><input type="radio" name="radio_mqzy" data-labelauty="因身体或其他原因无法就业、失踪（联）或去世"></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--父亲劳动能力-->
+                <div class="swiper-slide swiper-no-swiping">
+                    <div class="scores">
+                        <div class="f"><span>6</span>父亲劳动能力</div>
+                        <div class="choose">
+                            <ul class="dowebok">
+                                <li><input type="radio" name="radio_fqld" data-labelauty="完全丧失劳动能力、失踪（联）或去世"></li>
+                                <li><input type="radio" name="radio_fqld" data-labelauty="1-2级伤残"></li>
+                                <li><input type="radio" name="radio_fqld" data-labelauty="3-4级伤残，或有一定劳动能力"></li>
+                                <li><input type="radio" name="radio_fqld" data-labelauty="身体健康但无一技之长"></li>
+                                <li><input type="radio" name="radio_fqld" data-labelauty="身体健康且有一技之长"></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--母亲劳动能力-->
+                <div class="swiper-slide swiper-no-swiping">
+                    <div class="scores">
+                        <div class="f"><span>7</span>母亲劳动能力</div>
+                        <div class="choose">
+                            <ul class="dowebok">
+                                <li><input type="radio" name="radio_mqld" data-labelauty="完全丧失劳动能力、失踪（联）或去世"></li>
+                                <li><input type="radio" name="radio_mqld" data-labelauty="1-2级伤残"></li>
+                                <li><input type="radio" name="radio_mqld" data-labelauty="3-4级伤残，或有一定劳动能力"></li>
+                                <li><input type="radio" name="radio_mqld" data-labelauty="身体健康但无一技之长"></li>
+                                <li><input type="radio" name="radio_mqld" data-labelauty="身体健康且有一技之长"></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--除父母亲之外其他家庭成员劳动能力-->
+                <div class="swiper-slide swiper-no-swiping">
+                    <div class="scores">
+                        <div class="f"><span>8</span>除父母亲之外其他家庭成员劳动能力</div>
+                        <div class="choose">
+                            <ul class="dowebok">
+                                <li><input type="radio" name="radio_cfmq" data-labelauty="无其他成员；或有其他成员且有劳动能力或固定收入"></li>
+                                <li><input type="radio" name="radio_cfmq" data-labelauty="其他家庭成员中部分有劳动能力或固定收入"></li>
+                                <li><input type="radio" name="radio_cfmq" data-labelauty="其他成员均无劳动能力或固定收入"></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--房屋情况-->
+                <div class="swiper-slide swiper-no-swiping">
+                    <div class="scores">
+                        <div class="f"><span>9</span>房屋情况</div>
+                        <div class="choose">
+                            <ul class="dowebok">
+                                <li><input type="radio" name="radio_fwqk" data-labelauty="无房"></li>
+                                <li><input type="radio" name="radio_fwqk" data-labelauty="农村简易房或城市民房"></li>
+                                <li><input type="radio" name="radio_fwqk" data-labelauty="农村简易砖瓦房或城市廉租房、公租房"></li>
+                                <li><input type="radio" name="radio_fwqk" data-labelauty="其他房屋或两套及以上"></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--就学人口-->
+                <div class="swiper-slide swiper-no-swiping">
+                    <div class="scores">
+                        <div class="f"><span>10</span>就学人口</div>
+                        <div class="choose">
+                            <ul class="dowebok">
+                                <li><input type="radio" name="radio_jxrk" data-labelauty="1人"></li>
+                                <li><input type="radio" name="radio_jxrk" data-labelauty="2人"></li>
+                                <li><input type="radio" name="radio_jxrk" data-labelauty="3人及以上"></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--赡养人口-->
+                <div class="swiper-slide swiper-no-swiping">
+                    <div class="scores">
+                        <div class="f"><span>11</span>赡养人口</div>
+                        <div class="choose">
+                            <ul class="dowebok">
+                                <li><input type="radio" name="radio_xyrk" data-labelauty="0人"></li>
+                                <li><input type="radio" name="radio_xyrk" data-labelauty="1人"></li>
+                                <li><input type="radio" name="radio_xyrk" data-labelauty="2人及以上"></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!--医疗支出-->
+                <div class="swiper-slide swiper-no-swiping">
+                    <div class="scores">
+                        <div class="f"><span>12</span>医疗支出</div>
+                        <div class="choose">
+                            <ul class="dowebok">
+                                <li><input type="radio" name="radio_ylzc" data-labelauty="家庭成员医疗费用个人负担部分在2000元及以内"></li>
+                                <li><input type="radio" name="radio_ylzc" data-labelauty="家庭成员医疗费用个人负担部分在2000-1万（含1万）">
+                                </li>
+                                <li><input type="radio" name="radio_ylzc" data-labelauty="家庭成员医疗费用个人负担部分在1万-3万（含3万）">
+                                </li>
+                                <li><input type="radio" name="radio_ylzc" data-labelauty="家庭成员医疗费用个人负担部分在3万以上或患重大疾病">
+                                </li>
+
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--家庭受灾-->
+                <div class="swiper-slide swiper-no-swiping">
+                    <div class="scores">
+                        <div class="f"><span>13</span>家庭受灾</div>
+                        <div class="choose">
+                            <ul class="dowebok">
+                                <li><input type="radio" name="radio_jtsz" data-labelauty="近两年内未遭受自然灾害"></li>
+                                <li><input type="radio" name="radio_jtsz" data-labelauty="近两年内遭受一般自然灾害，影响家庭收入"></li>
+                                <li><input type="radio" name="radio_jtsz" data-labelauty="近两年内遭受较重自然灾害，影响家庭收入且造成财产损失">
+                                </li>
+                                <li><input type="radio" name="radio_jtsz" data-labelauty="近两年内遭受严重自然灾害，造成人身伤害和财产重大损失">
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--家庭变故-->
+                <div class="swiper-slide swiper-no-swiping">
+                    <div class="scores">
+                        <div class="f"><span>14</span>家庭变故</div>
+                        <div class="choose">
+                            <ul class="dowebok">
+                                <li><input type="radio" name="radio_jtbg" data-labelauty="近两年内未出现家庭变故"></li>
+                                <li><input type="radio" name="radio_jtbg"
+                                           data-labelauty="近两年内家庭成员出现伤残、失踪或意外事故造成财产损失等情况">
+                                </li>
+                                <li><input type="radio" name="radio_jtbg" data-labelauty="近两年内家庭成员出现重大伤残、意外死亡或重大变故">
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--在校期间获得国家或学校资助情况-->
+                <div class="swiper-slide swiper-no-swiping">
+                    <div class="scores">
+                        <div class="f"><span>15</span>在校期间获得国家或学校资助情况</div>
+                        <div class="choose">
+                            <ul class="dowebok">
+                                <li><input type="radio" name="radio_zxqj" data-labelauty="曾经获得过一项资助"></li>
+                                <li><input type="radio" name="radio_zxqj" data-labelauty="连续三年获得过资助"></li>
+                                <li><input type="radio" name="radio_zxqj" data-labelauty="连续五年获得过资助"></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 上下start -->
+            <div class="preNexts">
+                <div class="swiper-button-prev">
+                    <div class="pre"></div>
+                    上一题
+                </div>
+                <div class="swiper-button-next">
+                    <div class="next"></div>
+                    下一题
+                </div>
+            </div>
+        </div>
+        <!-- 上下end -->
+    </div>
+</section>
+
+
+<section class="toup" id="t2">
+    <!-- <div class="logo">
+        <img src="images/logo.png"/>
+    </div> -->
+    <div class="swipers">
+        <div class="con con1">
+            <div class="smile">
+                <p>非常感谢您的配合!</p>
+                <p></p>
+                <p></p>
+                <p></p>
+            </div>
+        </div>
+        <a href="javascript:;" class="tijiao">提交</a>
+    </div>
+</section>
+
+<script src="/static/js/swiper.min.js"></script>
+<script src="/static/js/jquery-labelauty.js"></script>
+<!--<script type="text/javascript" src="/static/js/ydui.citys.js"></script>-->
+<!--<script type="text/javascript" src="/static/js/ydui.js"></script>-->
+<script>
+
+
+    layui.use(['layer', 'form'], function () {
+        var value_array = {};
+//        除了每年学费标准，测评得分
+        var value_name = ['zcdd', 'hjsz', 'jtzz', 'fqzy', 'mqzy', 'fqld', 'mqld', 'cfmq', 'fwqk', 'jxrk', 'syrk', 'ylzc', 'jtsz', 'jtbg', 'zxqj'];
+
+        var layer = layui.layer;
+        var mySwiper = new Swiper('.swiper-container', {
+            noSwiping: true,
+            pagination: '.swiper-pagination ',
+//            nextButton: '.swiper-button-next',
+            prevButton: '.swiper-button-prev',
+            slidesPerView: 1,
+            paginationClickable: false,
+            spaceBetween: 100,
+            loop: false
+        });
+        $("#t2,#t3").hide();
+
+        $('#J_Address').click(function () {
+
+            var height = $(window).height() + "px"
+            var width = $(window).width() + "px"
+            layer.open({
+                title: "请选择户籍所在县区",
+                area: [width, height],
+                skin: 'demo-class',
+                type: 2,
+                content: ['/quantization/city/', 'no'] //这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content: ['http://sentsin.com', 'no']
+            });
+        });
+
+        $(".swiper-container label,.swiper-container input[id!='J_Address']").click(function () {
+            var this_active = $(this).parents(".swiper-slide").index();
+            setTimeout(function () {
+                logic(mySwiper);
+//                mySwiper.activeIndex
+                mySwiper.slideTo(mySwiper.activeIndex + 1, 1000)
+//                $('.swiper-button-next').click();
+            }, 500);
+
+        });
+        $('.swiper-button-next').click(function () {
+            logic(mySwiper);
+            mySwiper.slideTo(mySwiper.activeIndex + 1, 1000)
+        });
+
+
+        $(':input:checkbox').labelauty();
+        $(':input:radio').labelauty();
+
+        function logic(mySwiper) {
+            if (mySwiper.activeIndex == 0) {
+//                alert(0);
+
+                var selects = $(':input:checkbox:checked');
+                var label = $($(selects)[0]).next().children()[1];
+                zcdd = $(label).html();
+
+                if (typeof(zcdd) == 'undefined') {
+                    zcdd = "";
+                }
+                value_array['zcdd'] = zcdd;
+                console.log(value_array)
+            } else if (mySwiper.activeIndex == 1) {
+                var hjsz = $("#J_Address").attr("placeholder");
+                if (hjsz == "请选择地址") {
+                    layer.msg("您还未选择!");
+                    mySwiper.slideTo(mySwiper.activeIndex - 1)
+                } else {
+                    value_array['hjsz'] = hjsz;
+                }
+
+//                console.log("1" + hjsz);
+            }
+
+            else {
+                var now_index = mySwiper.activeIndex;
+//                alert(mySwiper.activeIndex)
+                var active_slide = mySwiper.slides[now_index];
+                var radio = $(active_slide).find($(':input:radio:checked'))[0];
+                var label = $($(radio)).next().children()[1];
+                var active_value = $(label).html();
+                if (typeof(active_value) == "undefined") {
+                    layer.msg("您还未选择!");
+                    mySwiper.slideTo(now_index - 1)
+                }
+                    value_array[value_name[now_index]] = active_value;
+                    console.log(value_array)
+//                $(radio).innerHTML()
+//                console.log(active_value)
+//                var active_select =
+//                var  active_value =
+//                value_array.push(1);
+//                console.log(value_array)
+                if (mySwiper.isEnd) {
+                    $("#t1").hide();
+                    $("#t2").show();
+                }
+            }
+        }
+    });
+
+
+</script>
+
+
+<div style="text-align:center;margin:30px 0; font:normal 14px/24px 'MicroSoft YaHei';">
+    <p>Powered by：<a>福信-易班开发团队</a></p>
+</div>
 </body>
 
-<script type="text/javascript">
-    layui.use('layer', function () {
-        var layer = layui.layer;
-//        layer.msg('Hello World');
-
-    });
-</script>
 </html>

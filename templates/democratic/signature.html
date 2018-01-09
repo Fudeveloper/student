@@ -9,16 +9,17 @@
     <script src="/static/js/jquery.min.js"></script>
     <style>
         /*#signature {*/
-            /*background-color: lightgrey;*/
+        /*background-color: lightgrey;*/
         /*}*/
 
     </style>
 </head>
-<body onorientationchange="updateOrientation();">
+<body>
 <div id="signature"></div>
 <p style="text-align: center">
     <!--<b style="color: red">请按着鼠标写字签名。</b>-->
     <input type="button" value="保存" id="yes"/>
+    <input type="button" value="下载" id="download"/>
     <input type="button" value="重写" id="reset"/>
 </p>
 
@@ -28,17 +29,16 @@
 <![endif]-->
 <script src="/static/js/jsi/jSignature.min.js"></script>
 <script>
+    var data_src = "";
     $(function () {
-
         var width = $(window).width();
         var height = $(window).height();
         console.log(width);
         console.log(height);
-
         var $sigdiv = $("#signature");
         $sigdiv.jSignature({
 //            'UndoButton': true,
-            'width': width *0.97,
+            'width': width * 0.97,
             'height': height * 0.93,
             'background-color': 'lightgrey'
         }); // 初始化jSignature插件.
@@ -47,8 +47,18 @@
             var datapair = $sigdiv.jSignature("getData", "image");
             var i = new Image();
             i.src = "data:" + datapair[0] + "," + datapair[1];
+            data_src = i.src;
             $(i).appendTo($("#someelement")); // append the image (SVG) to DOM.
-
+            post_data = {"imgbase64": datapair[1]};
+            $.ajax({
+                type:"post",
+                url: "/democratic/save_signature/",
+                data: post_data,
+                success: function () {
+                    alert("lallll")
+                }
+            });
+            alert(datapair[1])
         });
         //datapair = $sigdiv.jSignature("getData","base30");
         //$sigdiv.jSignature("setData", "data:" + datapair.join(","));
@@ -62,12 +72,19 @@
     });
 
     function downloadFile(fileName, blob) {
-        var aLink = document.createElement('a');
-        var evt = document.createEvent("HTMLEvents");
-        evt.initEvent("click", false, false);//initEvent 不加后两个参数在FF下会报错, 感谢 Barret Lee 的反馈
-        aLink.download = fileName;
-        aLink.href = URL.createObjectURL(blob);
-        aLink.dispatchEvent(evt);
+        alert("123")
+//        var img = $('#imgId').attr("src");
+        var alink = document.createElement("a");
+        alink.href = data_src;
+        alink.download = "testImg.jpg";
+        alink.click();
+
+//        var aLink = document.createElement('a');
+//        var evt = document.createEvent("HTMLEvents");
+//        evt.initEvent("click", false, false);//initEvent 不加后两个参数在FF下会报错, 感谢 Barret Lee 的反馈
+//        aLink.download = fileName;
+//        aLink.href = URL.createObjectURL(blob);
+//        aLink.dispatchEvent(evt);
     }
 
     /**

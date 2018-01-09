@@ -4,7 +4,7 @@
     <meta charset="UTF-8"/>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>高校学生家庭经济情况量化测评表</title>
+    <title>高校家庭经济困难学生班级民主评议表</title>
     <style>
 
 
@@ -14,16 +14,18 @@
     <link rel="stylesheet" type="text/css" href="/static/fonts/font-awesome-4.2.0/css/font-awesome.min.css"/>
     <link rel="stylesheet" type="text/css" href="/static/css/demo.css"/>
     <link rel="stylesheet" type="text/css" href="/static/css/component.css"/>
-
+    <!--[if IE]>
+    <!--<script src="http://libs.useso.com/js/html5shiv/3.7/html5shiv.min.js"></script>-->
+    <![endif]-->
 
 </head>
 <body>
 <div class="container">
     <header class="codrops-header">
-        <h1><span>高校学生家庭经济情况量化测评表</span></h1>
+        <h1><span>高校家庭经济困难学生班级民主评议表</span></h1>
     </header>
     <section class="content">
-        <h3>基本信息</h3>
+        <h3>请核对以下信息</h3>
         <span class="input input--kaede">
 
 					<input class="input__field input__field--kaede" type="text" id="input_name"/>
@@ -93,7 +95,7 @@
 				</span>
 
         <button id="btn_submit" class="layui-btn layui-btn-lg layui-btn-radius layui-btn-normal" type="submit"
-                style="background-color: #A9E8DC">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp提交 &nbsp;&nbsp;&nbsp;&nbsp
+                style="background-color: #A9E8DC">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp确认 &nbsp;&nbsp;&nbsp;&nbsp
             &nbsp;&nbsp;&nbsp;&nbsp
         </button>
 
@@ -103,17 +105,21 @@
 </div><!-- /container -->
 <script src="/static/plugins/layui/layui.js"></script>
 <script src="/static/js/layuiConfig.js"></script>
+<script src="/static/plugins/layui/lay/modules/jquery_cookie.js"></script>
+<script src="/static/plugins/layui/lay/modules/csrftoken.js"></script>
 
 <script>
-
-    layui.use(['jquery', 'layer', 'form', 'jquery_cookie', 'csrftoken'], function () {
-        var $ = layui.jquery;
+    var console_log = function (obj) {
+        console.log(obj);
+    };
+    layui.use(['layer', 'form','mymod','jquery_cookie','csrftoken'], function () {
         var csrftoken = layui.csrftoken;
         var jquery_cookie = layui.jquery_cookie;
         var layer = layui.layer;
         var form = layui.form;
+        var $ = layui.jquery;
         var name;
-        var sfz;
+        var id;
         var gender;
         var nation;
         var department;
@@ -134,8 +140,8 @@
 
 //        身份证号码框
         $("#input_sfz").blur(function () {
-            sfz = $(this).val();
-            $('#div_sfz').text(sfz)
+            id = $(this).val();
+            $('#div_sfz').text(id)
         });
 
 //        学号框
@@ -204,10 +210,12 @@
         }
 
         $("#btn_submit").click(function () {
+//            alert(name)
+//            性别
             gender = $('input[name="sex"]:checked ').val();
 
             var spans = $(".input--kaede");
-            var value_array = [name, sfz, gender, nation, department, major, clazz, studentId];
+            var value_array = [name, id, gender, nation, department, major, clazz, studentId];
             var value_text = ["姓名", "身份证号码", "性别", "民族", "院系", "专业", "班级", "学号"];
             var str = "";
             value_array.forEach(function (t, number) {
@@ -217,12 +225,12 @@
                 }
             });
 //            if (str) {
-            if (str) {
+            if (false) {
                 layer.msg(str);
             } else {
                 var json_data = {
                     "name": name,
-                    "sfz": sfz,
+                    "id": id,
                     "gender": gender,
                     "nation": nation,
                     "department": department,
@@ -242,12 +250,7 @@
                                 layer.msg("数据出错");
                             } else if (data.result === "ok") {
                                 layer.msg("提交成功，即将跳转");
-                                $.cookie("studentId", studentId);
-                                setTimeout("window.location.href='/quantization/main/'", 800)
                             }
-                        },
-                        error: function () {
-                            layer.msg("提交出错");
                         }
                     }
                 )

@@ -19,6 +19,8 @@ from . import views
 
 urlpatterns = [
     url(r'^main/$', views.main, name='main'),
+    url(r'^index/$', views.index, name='index'),
     url(r'^signature/$', views.signature, name='signature'),
+    url(r'^save_signature/$', views.save_signature, name='save_signature'),
 
 ]

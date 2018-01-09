@@ -6,28 +6,10 @@ from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 
-def main(request):
-    return render(request, 'quantization/main.html')
-
-
-def test(request):
-    return render(request, 'quantization/test.html')
-
-
-def dy(request):
-    return render(request, 'mobile/dy.html')
-
-
-def common(request):
-    return render(request, 'mobile/common.html')
-
-
-def index2(request):
-    return render(request, 'quantization/index2.html')
 
 
 def index(request):
-    return render(request, 'quantization/signature.html')
+    return render(request, 'quantization/index.html')
 
 
 @csrf_exempt
@@ -35,18 +17,40 @@ def index_handler(request):
     data = request.POST
     print(data)
     if data:
+        clazz = data.get('clazz')
+        nation = data.get('nation')
+        department = data.get('department')
+        studentId = data.get('studentId')
+        name = data.get('name')
+        gender = data.get('gender')
+        major = data.get('major')
+        sfz = data.get('sfz')
+        print(clazz)
+        print(nation)
+        print(department)
+        print(studentId)
+        print(name)
+        print(gender)
+        print(major)
+        print(sfz)
+        try:
+            new_studentInfo = StudentInfo(clazz=clazz, nation=nation, department=department, studentId=studentId, name=name,
+                                      gender=gender, major=major, sfz=sfz)
+            new_studentInfo.save()
+        except Exception as e:
+            print(e)
+
         result = "ok"
+
+        print(data.get('clazz'))
+
     else:
         result = "error"
     return JsonResponse({"result": result})
 
 
-def base(request):
-    return render(request, 'quantization/base.html')
-
-
-def income(request):
-    return render(request, 'quantization/income.html')
+def main(request):
+    return render(request, 'quantization/main.html')
 
 
 def city(request):
