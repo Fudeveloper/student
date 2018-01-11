@@ -183,7 +183,7 @@ LOGGING = {
             'level': 'INFO',
             'propagate': False
         },
-        'cms.views': {
+        'student.views': {
             'handlers': ['default', 'error'],
             'level': 'DEBUG',
             'propagate': True

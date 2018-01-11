@@ -2,7 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse, FileResponse, StreamingHttpResponse
 from .models import *
 from django.views.decorators.csrf import csrf_exempt
-
+import logging
+logger = logging.getLogger('student.views')
 
 # Create your views here.
 
@@ -17,6 +18,7 @@ def index_handler(request):
     data = request.POST
     print(data)
     if data:
+        result = "ok"
         clazz = data.get('clazz')
         nation = data.get('nation')
         department = data.get('department')
@@ -39,11 +41,8 @@ def index_handler(request):
             new_studentInfo.save()
         except Exception as e:
             print(e)
-
-        result = "ok"
-
-        print(data.get('clazz'))
-
+            logger.error(e)
+            result = "error"
     else:
         result = "error"
     return JsonResponse({"result": result})
