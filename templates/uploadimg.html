@@ -1,14 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ch-hans">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+    <title>{{datum_name}}证明材料上传</title>
+    <script src="/static/plugins/layui/layui.js"></script>
+    <script type="text/javascript">
+        layui.use(['jquery', 'layer'], function () {
+            var $ = layui.jquery;
+            var layer = layui.layer;
+            $("#back").click(function () {
+                var index = parent.layer.getFrameIndex(window.name);
+                parent.layer.close(index);
+                parent.$(".swiper-button-prev").click();
+            });
+
+        });
+    </script>
+
 </head>
 <body>
 <form method="POST" enctype="multipart/form-data">
-{% csrf_token %}
-<input type="file" name="img">
-<button type="submit">上传</button>
+    {% csrf_token %}
+    <input type="file" name="studentdatum">
+    <br/>
+    {% ifequal error 'success'%}
+    <script type="text/javascript">
+        layui.use(['jquery', 'layer'], function () {
+            var $ = layui.jquery;
+            var layer = layui.layer;
+            layer.msg("上传成功");
+            setTimeout(
+                "var index = parent.layer.getFrameIndex(window.name);parent.layer.close(index)", 1000
+            )
+        });
+    </script>
+    <!--<div>未选择文件</div>-->
+    {% endifequal%}
+    <button type="submit">上传材料</button>
+    <button type="button" id="back">返回重选</button>
 </form>
+
+
 </body>
+
 </html>

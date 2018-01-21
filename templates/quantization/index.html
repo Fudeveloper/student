@@ -121,7 +121,6 @@
         var clazz;
         var studentId;
 
-
         setSelect_department();
         setSelect_nation();
         setSelect_major();
@@ -242,11 +241,12 @@
                                 layer.msg("数据出错");
                             } else if (data.result === "ok") {
                                 layer.msg("提交成功，即将跳转");
-                                $.cookie("studentId", studentId);
+                                $.cookie("studentId", studentId, {path: "/"});
                                 setTimeout("window.location.href='/quantization/main/'", 800)
                             }
                         },
                         error: function () {
+                            console.log(json_data)
                             layer.msg("提交出错");
                         }
                     }

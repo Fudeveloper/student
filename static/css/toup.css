@@ -64,6 +64,7 @@
 }
 
 .scores .f {
+    text-align: center;
     margin: 0rem 0 0.2rem 0;
     font-size: 0.25rem;
     width: 100%;
@@ -91,6 +92,7 @@
 .choose .input {
     margin-bottom: 0.25rem;
     position: relative;
+    text-align: center;
 }
 
 .choose input[type="radio"] {

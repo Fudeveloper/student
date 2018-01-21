@@ -23,4 +23,7 @@ urlpatterns = [
     url(r'^signature/$', views.signature, name='signature'),
     url(r'^save_signature/$', views.save_signature, name='save_signature'),
 
+    url(r'^authorize/$', views.authorize, name='authorize'),
+
+
 ]

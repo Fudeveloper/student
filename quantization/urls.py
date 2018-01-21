@@ -27,6 +27,10 @@ urlpatterns = [
     url(r'^main/$', views.main, name='main'),
     url(r'^city/$', views.city, name='city'),
 
-    url(r'^uploadimg/$', views.uploadimg, name='uploadimg'),
+    url(r'^uploadimg/(.*?)$', views.uploadimg, name='uploadimg'),
+    url(r'^main_handler/$', views.main_handler, name='main_handler'),
+
+    url(r'^check_city/$', views.check_city, name='check_city'),
+
 
 ]

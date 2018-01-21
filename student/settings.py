@@ -51,6 +51,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+
 )
 
 ROOT_URLCONF = 'student.urls'
@@ -66,6 +67,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
             ],
         },
     },
@@ -82,7 +84,7 @@ DATABASES = {
         'NAME': 'student',
         'USER': 'root',
         'PASSWORD': 'lik',
-        'HOST': '192.168.76.129',
+        'HOST': '127.0.0.1',
         'PORT': '3306',
     }
 }
@@ -107,7 +109,7 @@ STATICFILES_DIRS = [
 ]
 
 # 设置静态文件路径为主目录下的media文件夹
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media').replace('\\', '/')
+MEDIA_ROOT = os.path.join('media').replace('\\', '/')
 MEDIA_URL = '/media/'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/

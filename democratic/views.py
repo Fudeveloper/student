@@ -36,3 +36,8 @@ def save_signature(request):
     else:
         print(HttpResponse("123" + request.method))
         return HttpResponse("123" + request.method)
+
+
+def authorize(request):
+    # return render(request, 'democratic/authorize.html')
+    return HttpResponse("ok")

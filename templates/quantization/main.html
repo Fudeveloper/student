@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en-US">
+<html lang="ch-hans">
 <head>
     <meta charset="UTF-8">
     <meta content="yes" name="apple-mobile-web-app-capable">
@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="/static/css/toup.css"/>
     <link rel="stylesheet" href="/static/css/swiper.min.css">
     <link rel="stylesheet" href="/static/css/jquery-labelauty.css">
-    <script src="/static/plugins/layui/layui.js"></script>
+
 
     <!--<link rel="stylesheet" href="/static/css/city.css">-->
     <!--<script src="/static/js/ydui.flexible.js"></script>-->
@@ -32,8 +32,6 @@
             padding: 12px;
         }
     </style>
-    <script src="/static/js/jquery-1.12.4.min.js"></script>
-    <script src="/static/js/fontSize.js"></script>
 
     <title>高校学生家庭经济情况量化测评表</title>
 
@@ -52,12 +50,12 @@
                         <div class="f"><span>1</span>政策兜底资助类型(没有可不选)</div>
                         <div class="choose">
                             <ul class="dowebok">
-                                <li><input type="checkbox" name="checkbox_zcdd" data-labelauty="城乡低保家庭（含特困供养人员）子女">
+                                <li><input type="radio" name="radio_zcdd" data-labelauty="城乡低保家庭（含特困供养人员）子女">
                                 </li>
-                                <li><input type="checkbox" name="checkbox_zcdd" data-labelauty="建档立卡贫困户子女"></li>
-                                <li><input type="checkbox" name="checkbox_zcdd" data-labelauty="家庭经济困难残疾学生"></li>
-                                <li><input type="checkbox" name="checkbox_zcdd" data-labelauty="烈士子女或优抚家庭子女"></li>
-                                <li><input type="checkbox" name="checkbox_zcdd" data-labelauty="孤儿"></li>
+                                <li><input type="radio" name="radio_zcdd" data-labelauty="建档立卡贫困户子女"></li>
+                                <li><input type="radio" name="radio_zcdd" data-labelauty="家庭经济困难残疾学生"></li>
+                                <li><input type="radio" name="radio_zcdd" data-labelauty="烈士子女或优抚家庭子女"></li>
+                                <li><input type="radio" name="radio_zcdd" data-labelauty="孤儿"></li>
                             </ul>
                         </div>
                     </div>
@@ -72,7 +70,7 @@
                             <ul class="dowebok">
                                 <div class="m-cell">
                                     <div class="cell-item">
-                                        <div class="cell-right cell-arrow">
+                                        <div class="cell-right cell-arrow" style="text-align: center">
                                             <input type="text" class="cell-input" readonly id="J_Address"
                                                    placeholder="请选择地址">
                                         </div>
@@ -116,7 +114,7 @@
                         <div class="f"><span>5</span>母亲职业</div>
                         <div class="choose">
                             <ul class="dowebok">
-                                <li><input type="radio" name="radio_mqzy" data-labelauty="公司股东或高管、私营业主"></li>
+                                <li><input type="radio" name="radio_mqzy" data-labelauty="公司股东或高管、私营业主、全职太太"></li>
                                 <li><input type="radio" name="radio_mqzy" data-labelauty="公务员、事业单位或国有企业工作人员、个体经营户"></li>
                                 <li><input type="radio" name="radio_mqzy" data-labelauty="进城务工人员或合同制工作人员"></li>
                                 <li><input type="radio" name="radio_mqzy" data-labelauty="务农或临时务工"></li>
@@ -308,20 +306,27 @@
         <a href="javascript:;" class="tijiao">提交</a>
     </div>
 </section>
-
+<script src="/static/js/jquery-1.12.4.min.js"></script>
+<script src="/static/plugins/layui/layui.js"></script>
+<script src="/static/js/fontSize.js"></script>
 <script src="/static/js/swiper.min.js"></script>
 <script src="/static/js/jquery-labelauty.js"></script>
+<script src="/static/js/calcScore.js"></script>
+
 <!--<script type="text/javascript" src="/static/js/ydui.citys.js"></script>-->
 <!--<script type="text/javascript" src="/static/js/ydui.js"></script>-->
 <script>
 
 
     layui.use(['layer', 'form'], function () {
+        var layer = layui.layer;
+        var score = 0;
+        var height = $(window).height() + "px";
+        var width = $(window).width() + "px";
         var value_array = {};
 //        除了每年学费标准，测评得分
         var value_name = ['zcdd', 'hjsz', 'jtzz', 'fqzy', 'mqzy', 'fqld', 'mqld', 'cfmq', 'fwqk', 'jxrk', 'syrk', 'ylzc', 'jtsz', 'jtbg', 'zxqj'];
-
-        var layer = layui.layer;
+        var score_array = [];
         var mySwiper = new Swiper('.swiper-container', {
             noSwiping: true,
             pagination: '.swiper-pagination ',
@@ -335,9 +340,6 @@
         $("#t2,#t3").hide();
 
         $('#J_Address').click(function () {
-
-            var height = $(window).height() + "px"
-            var width = $(window).width() + "px"
             layer.open({
                 title: "请选择户籍所在县区",
                 area: [width, height],
@@ -355,66 +357,174 @@
                 mySwiper.slideTo(mySwiper.activeIndex + 1, 1000)
 //                $('.swiper-button-next').click();
             }, 500);
-
         });
         $('.swiper-button-next').click(function () {
             logic(mySwiper);
             mySwiper.slideTo(mySwiper.activeIndex + 1, 1000)
         });
 
+        $('.tijiao').click(function () {
+            $.ajax(
+                {
+                    url: "/quantization/index_handler/",
+                    async: true,
+                    data: value_array,
+                    type: "post",
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.result === "error") {
+                            layer.msg("数据出错");
+                        } else if (data.result === "ok") {
+                            layer.msg("提交成功，即将跳转");
+                            $.cookie("studentId", studentId, {path: "/"});
+                            setTimeout("window.location.href='/quantization/main/'", 800)
+                        }
+                    },
+                    error: function () {
+                        layer.msg("提交出错");
+                    }
+                }
+            )
+        });
+
+//        根据图片类型打开图片上传页面
+        function UploadimgByIMGtype(imgType) {
+            layer.open({
+                closeBtn: false,
+                title: "请上传证明材料",
+                area: [width, height],
+                skin: 'demo-class',
+                type: 2,
+                content: ['/quantization/uploadimg/' + imgType, 'no'] //这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content: ['http://sentsin.com', 'no']
+            });
+        }
+
+//        获取当前swiper被选择的radio的值
+        function getActiveValue(now_index) {
+            console.log(now_index)
+            var active_slide = mySwiper.slides[now_index];
+            var radio = $(active_slide).find($(':input:radio:checked'))[0];
+            var label = $($(radio)).next().children()[1];
+            return $(label).html();
+        }
+
+//         回退swiper并提示
+        function back(now_index) {
+            layer.msg("您还未选择!");
+            mySwiper.slideTo(now_index - 1);
+        }
 
         $(':input:checkbox').labelauty();
         $(':input:radio').labelauty();
 
+//        主要逻辑
         function logic(mySwiper) {
-            if (mySwiper.activeIndex == 0) {
-//                alert(0);
-
-                var selects = $(':input:checkbox:checked');
+            var now_index = mySwiper.activeIndex;
+            var active_value;
+            if (now_index === 0) {
+//              政策兜底
+                var selects = $(':input:radio:checked');
+                console.log($(selects[0]));
                 var label = $($(selects)[0]).next().children()[1];
-                zcdd = $(label).html();
+                active_value = $(label).html();
 
-                if (typeof(zcdd) == 'undefined') {
-                    zcdd = "";
-                }
-                value_array['zcdd'] = zcdd;
-                console.log(value_array)
-            } else if (mySwiper.activeIndex == 1) {
-                var hjsz = $("#J_Address").attr("placeholder");
-                if (hjsz == "请选择地址") {
-                    layer.msg("您还未选择!");
-                    mySwiper.slideTo(mySwiper.activeIndex - 1)
+                if (typeof(active_value) === "undefined") {
+                    active_value = "";
                 } else {
-                    value_array['hjsz'] = hjsz;
+                    UploadimgByIMGtype("baseDatum");
                 }
 
-//                console.log("1" + hjsz);
+            } else if (now_index === 1) {
+
+                active_value = $("#J_Address").attr("placeholder");
+                if (active_value === "请选择地址") {
+                    back(now_index);
+                } else {
+                    value_array['hjsz'] = active_value;
+                    active_value = active_value.split('/')[2];
+                }
+            } else if (now_index === 5 || now_index === 6) {
+//                父亲劳动能力
+//                母亲劳动能力
+                var fqld_ansewers = ["完全丧失劳动能力、失踪（联）或去世", "1-2级伤残", "3-4级伤残，或有一定劳动能力", "身体健康但无一技之长", "身体健康且有一技之长"];
+                active_value = getActiveValue(now_index);
+                alert(active_value);
+                if (typeof(active_value) === "undefined") {
+                    back(now_index);
+                    return;
+                } else if ($.inArray(active_value, fqld_ansewers) <= 2
+                ) {
+                    if (now_index === 5) {
+                        UploadimgByIMGtype("fatherDatum");
+                    } else {
+                        UploadimgByIMGtype("motherDatum");
+                    }
+                }
+
+            } else if (now_index === 11) {
+//                医疗支出
+                var ylzc_ansewers = ["家庭成员医疗费用个人负担部分在2000元及以内", "家庭成员医疗费用个人负担部分在2000-1万（含1万）", "家庭成员医疗费用个人负担部分在1万-3万（含3万）", "家庭成员医疗费用个人负担部分在3万以上或患重大疾病"];
+                active_value = getActiveValue(now_index);
+                alert(active_value);
+                if (typeof(active_value) === "undefined") {
+                    back(now_index);
+                    return;
+                } else if ($.inArray(active_value, ylzc_ansewers) >= 1
+                ) {
+                    UploadimgByIMGtype("medicalDatum");
+                }
+
+            } else if (now_index === 12) {
+//                家庭受灾
+                var jtsc_ansewers = ["近两年内未遭受自然灾害", "近两年内遭受一般自然灾害，影响家庭收入", "近两年内遭受较重自然灾害，影响家庭收入且造成财产损失", "近两年内遭受严重自然灾害，造成人身伤害和财产重大损失"];
+                active_value = getActiveValue(now_index);
+                alert(active_value);
+                if (typeof(active_value) === "undefined") {
+                    back(now_index);
+                    return;
+                } else if ($.inArray(active_value, jtsc_ansewers) >= 1
+                ) {
+                    UploadimgByIMGtype("disasterDatum");
+                }
+
+            } else if (now_index === 13) {
+//                家庭变故
+                var jtbg_ansewers = ["近两年内未出现家庭变故", "近两年内家庭成员出现伤残、失踪或意外事故造成财产损失等情况", "近两年内家庭成员出现重大伤残、意外死亡或重大变故"];
+                active_value = getActiveValue(now_index);
+                alert(active_value);
+                if (typeof(active_value) === "undefined") {
+                    back(now_index);
+                    return;
+                } else if ($.inArray(active_value, jtbg_ansewers) >= 1
+                ) {
+                    UploadimgByIMGtype("eventDatum");
+                }
+
             }
 
             else {
-                var now_index = mySwiper.activeIndex;
-//                alert(mySwiper.activeIndex)
-                var active_slide = mySwiper.slides[now_index];
-                var radio = $(active_slide).find($(':input:radio:checked'))[0];
-                var label = $($(radio)).next().children()[1];
-                var active_value = $(label).html();
-                if (typeof(active_value) == "undefined") {
-                    layer.msg("您还未选择!");
-                    mySwiper.slideTo(now_index - 1)
+                active_value = getActiveValue(now_index);
+                if (typeof(active_value) === "undefined") {
+                    back(now_index);
+                    return;
                 }
-                    value_array[value_name[now_index]] = active_value;
-                    console.log(value_array)
-//                $(radio).innerHTML()
-//                console.log(active_value)
-//                var active_select =
-//                var  active_value =
-//                value_array.push(1);
-//                console.log(value_array)
+                console.log(value_array);
                 if (mySwiper.isEnd) {
                     $("#t1").hide();
                     $("#t2").show();
+
                 }
             }
+//            记录 & 计分
+            var score = calcScore(now_index, active_value);
+            score_array[now_index] = score;
+            if (now_index === 1) {
+                return;
+            }
+            value_array[value_name[now_index]] = active_value;
+            console.log(value_array);
+            console.log(score_array);
+            alert(score);
         }
     });
 
