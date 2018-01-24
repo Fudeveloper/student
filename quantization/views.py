@@ -5,9 +5,9 @@ from django.views.decorators.csrf import csrf_exempt
 import logging
 import os
 import json
+from decorate import *
 from django.conf import settings
 import check_poor_city
-
 
 logger = logging.getLogger('student.views')
 
@@ -27,29 +27,64 @@ def index_handler(request):
 
         if data:
             print("-------------------123")
-            studentId = data['studentId']
-            exist_student = StudentInfo.objects.filter(studentId=studentId)
-            if exist_student:
-                data.__delitem__("studentId")
-                print(data)
-                exist_student.update(**data)
-            else:
-                try:
+            print(data)
+            if "studentId" in data.keys():
+                studentId = data['studentId']
+                exist_student = StudentInfo.objects.filter(studentId=studentId)
+                if exist_student:
+                    data.__delitem__("studentId")
+                    print(data)
+                    exist_student.update(**data)
+                else:
                     StudentInfo.objects.create(**data)
-                except Exception as e:
-                    logger.error(e)
-                    result = "error"
+            else:
+                result = "error"
+                # except Exception as e:
+                #     logger.error(e)
+                #     result = "error"
         else:
             result = "error"
     return JsonResponse({"result": result})
 
 
+@auth
 def main(request):
     return render(request, 'quantization/main.html')
 
 
+@csrf_exempt
 def main_handler(request):
-    return HttpResponse("main_handler")
+    result = "ok"
+    if request.method == 'POST':
+        print("-----------------------------------")
+        data = request.POST.dict()
+
+        if data:
+            print("-------------------123")
+            print(data)
+            if "studentId" in data.keys():
+                studentId = data['studentId']
+                exist_student = StudentAnswer.objects.filter(pk=studentId)
+                print(exist_student)
+                if exist_student:
+                    data.__delitem__("studentId")
+                    # print(data)
+                    try:
+                        exist_student.update(**data)
+                    except Exception as e:
+                        logger.error(e)
+                else:
+                    student_answer = {
+                        "studentId": StudentInfo.objects.get(studentId=studentId),
+                    }
+                    StudentAnswer.objects.create(**student_answer)
+                    StudentAnswer.objects.update(**data)
+            else:
+                print("---------------无studentid")
+                result = "error"
+        else:
+            result = "error"
+    return JsonResponse({"result": result})
 
 
 def city(request):

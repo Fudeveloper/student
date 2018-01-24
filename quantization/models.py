@@ -28,8 +28,8 @@ class StudentInfo(models.Model):
 
 class StudentAnswer(models.Model):
     # 学号
-    studentId = models.ForeignKey(StudentInfo, on_delete=models.CASCADE, related_name='StudentAnswer', unique=True,
-                                  primary_key=True)
+    studentId = models.OneToOneField(StudentInfo, on_delete=models.CASCADE, related_name='StudentAnswer', unique=True,
+                                     primary_key=True)
     # 政策兜底资助类型
     baseDatum = models.ImageField(null=True, blank=True, )
 
@@ -42,49 +42,56 @@ class StudentAnswer(models.Model):
     # base = models.CharField(max_length=80)
     #
     # # 父亲劳动能力证明
-    # fatherDatum = models.ImageField(null=True, blank=True)
+    fatherDatum = models.ImageField(null=True, blank=True)
     # father = models.CharField(max_length=80)
     #
     # # 母亲劳动能力证明
-    # motherDatum = models.ImageField(null=True, blank=True)
+    motherDatum = models.ImageField(null=True, blank=True)
     # mother = models.CharField(max_length=80)
     #
     # # 医疗支出证明
-    # medicalDatum = models.ImageField(null=True, blank=True)
+    medicalDatum = models.ImageField(null=True, blank=True)
     # medical = models.CharField(max_length=80)
     #
     # # 家庭受灾证明
-    # disasterDatum = models.ImageField(null=True, blank=True)
+    disasterDatum = models.ImageField(null=True, blank=True)
     # disaster = models.CharField(max_length=80)
     #
     # # 家庭变故证明
-    # eventDatum = models.ImageField(null=True, blank=True)
+    eventDatum = models.ImageField(null=True, blank=True)
     # event = models.CharField(max_length=80)
-    #
-    # # 户籍所在县区
-    # hjsz = models.CharField(max_length=80)
-    # # 家庭住地
-    # jtzd = models.CharField(max_length=80)
-    # # 每年学费标准
-    # mnxf = models.CharField(max_length=80)
-    # # 父亲职业
-    # fqzy = models.CharField(max_length=80)
-    # # 母亲职业
-    # mqzy = models.CharField(max_length=80)
-    # # 父亲劳动能力
-    # fqld = models.CharField(max_length=80)
-    # # 母亲劳动能力
-    # mqld = models.CharField(max_length=80)
-    # # 除父母亲之外其他家庭成员劳动能力
-    # cfmq = models.CharField(max_length=80)
-    # # 房屋情况
-    # fwqk = models.CharField(max_length=80)
-    # # 就学人口
-    # jxrk = models.CharField(max_length=80)
-    # # 赡养人口
-    # syrk = models.CharField(max_length=80)
-    # # 在校期间获得国家或学校资助情况
-    # jtbg = models.CharField(max_length=80)
-    # # 测评得分
-    # score = models.CharField(max_length=10)
 
+    # 政策兜底
+    zcdd = models.CharField(max_length=80, null=True, blank=True)
+    # 户籍所在县区
+    hjsz = models.CharField(max_length=80, null=True, blank=True)
+    # 家庭住地
+    jtzd = models.CharField(max_length=80, null=True, blank=True)
+    # 每年学费标准
+    mnxf = models.CharField(max_length=80, null=True, blank=True)
+    # 父亲职业
+    fqzy = models.CharField(max_length=80, null=True, blank=True)
+    # 母亲职业
+    mqzy = models.CharField(max_length=80, null=True, blank=True)
+    # 父亲劳动能力
+    fqld = models.CharField(max_length=80, null=True, blank=True)
+    # 母亲劳动能力
+    mqld = models.CharField(max_length=80, null=True, blank=True)
+    # 除父母亲之外其他家庭成员劳动能力
+    cfmq = models.CharField(max_length=80, null=True, blank=True)
+    # 房屋情况
+    fwqk = models.CharField(max_length=80, null=True, blank=True)
+    # 就学人口
+    jxrk = models.CharField(max_length=80, null=True, blank=True)
+    # 赡养人口
+    syrk = models.CharField(max_length=80, null=True, blank=True)
+    # 医疗支出
+    ylzc = models.CharField(max_length=80, null=True, blank=True)
+    # 家庭受灾
+    jtsz = models.CharField(max_length=80, null=True, blank=True)
+    # 家庭变故
+    jtbg = models.CharField(max_length=80, null=True, blank=True)
+    # 在校期间获得国家或学校资助情况
+    zxqj = models.CharField(max_length=80, null=True, blank=True)
+    # # 测评得分
+    score = models.CharField(max_length=10, null=True, blank=True)

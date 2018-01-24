@@ -22,7 +22,6 @@ urlpatterns = [
     url(r'^index/$', views.index, name='index'),
     # url(r'^common/$', views.common, name='common'),
     url(r'^index/$', views.index, name='index'),
-
     url(r'^index_handler/$', views.index_handler, name='index_handler'),
     url(r'^main/$', views.main, name='main'),
     url(r'^city/$', views.city, name='city'),

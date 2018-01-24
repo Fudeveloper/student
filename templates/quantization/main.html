@@ -308,6 +308,8 @@
 </section>
 <script src="/static/js/jquery-1.12.4.min.js"></script>
 <script src="/static/plugins/layui/layui.js"></script>
+<!--<script src="/static/plugins/layui/lay/modules/jquery_cookie.js"></script>-->
+<script src="/static/js/layuiConfig.js"></script>
 <script src="/static/js/fontSize.js"></script>
 <script src="/static/js/swiper.min.js"></script>
 <script src="/static/js/jquery-labelauty.js"></script>
@@ -318,14 +320,16 @@
 <script>
 
 
-    layui.use(['layer', 'form'], function () {
+    layui.use(['jquery', 'layer', 'form', "jquery_cookie"], function () {
+        var $ = layui.jquery;
+        var studentId = $.cookie("studentId")
         var layer = layui.layer;
         var score = 0;
         var height = $(window).height() + "px";
         var width = $(window).width() + "px";
         var value_array = {};
 //        除了每年学费标准，测评得分
-        var value_name = ['zcdd', 'hjsz', 'jtzz', 'fqzy', 'mqzy', 'fqld', 'mqld', 'cfmq', 'fwqk', 'jxrk', 'syrk', 'ylzc', 'jtsz', 'jtbg', 'zxqj'];
+        var value_name = ['zcdd', 'hjsz', 'jtzd', 'fqzy', 'mqzy', 'fqld', 'mqld', 'cfmq', 'fwqk', 'jxrk', 'syrk', 'ylzc', 'jtsz', 'jtbg', 'zxqj'];
         var score_array = [];
         var mySwiper = new Swiper('.swiper-container', {
             noSwiping: true,
@@ -364,9 +368,17 @@
         });
 
         $('.tijiao').click(function () {
+            var sum = 0;
+            score_array.forEach(function (t) {
+                sum += t;
+            });
+//            alert(sum)
+
+            value_array['studentId'] = studentId;
+            value_array['score'] = sum;
             $.ajax(
                 {
-                    url: "/quantization/index_handler/",
+                    url: "/quantization/main_handler/",
                     async: true,
                     data: value_array,
                     type: "post",
@@ -375,9 +387,7 @@
                         if (data.result === "error") {
                             layer.msg("数据出错");
                         } else if (data.result === "ok") {
-                            layer.msg("提交成功，即将跳转");
-                            $.cookie("studentId", studentId, {path: "/"});
-                            setTimeout("window.location.href='/quantization/main/'", 800)
+                            layer.msg("提交成功,您的评分为："+sum+"分");
                         }
                     },
                     error: function () {
@@ -448,7 +458,7 @@
 //                母亲劳动能力
                 var fqld_ansewers = ["完全丧失劳动能力、失踪（联）或去世", "1-2级伤残", "3-4级伤残，或有一定劳动能力", "身体健康但无一技之长", "身体健康且有一技之长"];
                 active_value = getActiveValue(now_index);
-                alert(active_value);
+//                alert(active_value);
                 if (typeof(active_value) === "undefined") {
                     back(now_index);
                     return;
@@ -465,7 +475,7 @@
 //                医疗支出
                 var ylzc_ansewers = ["家庭成员医疗费用个人负担部分在2000元及以内", "家庭成员医疗费用个人负担部分在2000-1万（含1万）", "家庭成员医疗费用个人负担部分在1万-3万（含3万）", "家庭成员医疗费用个人负担部分在3万以上或患重大疾病"];
                 active_value = getActiveValue(now_index);
-                alert(active_value);
+//                alert(active_value);
                 if (typeof(active_value) === "undefined") {
                     back(now_index);
                     return;
@@ -478,7 +488,7 @@
 //                家庭受灾
                 var jtsc_ansewers = ["近两年内未遭受自然灾害", "近两年内遭受一般自然灾害，影响家庭收入", "近两年内遭受较重自然灾害，影响家庭收入且造成财产损失", "近两年内遭受严重自然灾害，造成人身伤害和财产重大损失"];
                 active_value = getActiveValue(now_index);
-                alert(active_value);
+//                alert(active_value);
                 if (typeof(active_value) === "undefined") {
                     back(now_index);
                     return;
@@ -491,7 +501,7 @@
 //                家庭变故
                 var jtbg_ansewers = ["近两年内未出现家庭变故", "近两年内家庭成员出现伤残、失踪或意外事故造成财产损失等情况", "近两年内家庭成员出现重大伤残、意外死亡或重大变故"];
                 active_value = getActiveValue(now_index);
-                alert(active_value);
+//                alert(active_value);
                 if (typeof(active_value) === "undefined") {
                     back(now_index);
                     return;
@@ -524,7 +534,7 @@
             value_array[value_name[now_index]] = active_value;
             console.log(value_array);
             console.log(score_array);
-            alert(score);
+//            alert(score);
         }
     });
 
