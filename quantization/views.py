@@ -109,6 +109,7 @@ def uploadimg(request, img_type):
                 return HttpResponse("非法操作")
             # 保存上传的图片
             dir_path = os.path.join(settings.MEDIA_ROOT, img_type)
+
             print("-------------------------------------------------------------")
             print(dir_path)
             if not os.path.exists(dir_path):
@@ -116,6 +117,7 @@ def uploadimg(request, img_type):
                 os.mkdir(dir_path)
             img = request.FILES.get('studentdatum')
             img_path = os.path.join(settings.MEDIA_ROOT, img_type, student_id + "_{}.jpg".format(img_type))
+            save_path = os.path.join(settings.MEDIA_URL, img_type, student_id + "_{}.jpg".format(img_type))
             if os.path.exists(img_path):
                 os.remove(img_path)
             with open(img_path, "wb+") as destination:
@@ -126,11 +128,11 @@ def uploadimg(request, img_type):
             if not current_student_answer:
                 student_answer = {
                     "studentId": StudentInfo.objects.get(studentId=student_id),
-                    img_type: img_path
+                    img_type: save_path
                 }
                 StudentAnswer.objects.create(**student_answer)
             else:
-                update_dic = {img_type: img_path}
+                update_dic = {img_type: save_path}
                 current_student_answer.update(**update_dic)
             error = "success"
         else:

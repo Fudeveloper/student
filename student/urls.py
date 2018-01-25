@@ -19,10 +19,10 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns = [
-    url(r'^admin/', include(admin.site.urls)),
-    url(r'^quantization/', include('quantization.urls', namespace='quantization')),
-    url(r'^democratic/', include('democratic.urls', namespace='democratic')),
-    # url(r'^mobile/', include('democratic.urls', namespace='democratic')),
-
-]
-urlpatterns += static(settings.MEDIA_ROOT, document_root=settings.MEDIA_URL)
+                  url(r'^admin/', include(admin.site.urls)),
+                  url(r'^quantization/', include('quantization.urls', namespace='quantization')),
+                  url(r'^democratic/', include('democratic.urls', namespace='democratic')),
+                  # url(r'^mobile/', include('democratic.urls', namespace='democratic')),
+                  url(r'^media/(?P<path>.*)$', 'django.views.static.serve',
+                      {'document_root': settings.MEDIA_ROOT, 'show_indexes': True}),
+              ]

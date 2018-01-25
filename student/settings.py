@@ -106,8 +106,10 @@ STATICFILES_DIRS = [
 ]
 
 # 设置静态文件路径为主目录下的media文件夹
+
+
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media').replace("\\", "/")
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
