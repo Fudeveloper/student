@@ -33,10 +33,11 @@
 					</label>
 				</span>
         <span class="input input--kaede">
-					<input class="input__field input__field--kaede" type="text" id="input_sfz" style="font-size: 70%"/>
+					<input class="input__field input__field--kaede" type="text" id="input_sfz" style="font-size: 50%"/>
 					<label class="input__label input__label--kaede" for="input_sfz">
 						<span class="input__label-content input__label-content--kaede">身份证号码<div
-                                style="float: right" id="div_sfz"></div></span>
+                                style="float: right;font-size: 75%;text-align: center;margin-top: 5px;"
+                                id="div_sfz"></div></span>
 					</label>
 				</span>
         <span class="input input--kaede">
@@ -85,7 +86,8 @@
 				</span>
 
         <span class="input input--kaede">
-					<input class="input__field input__field--kaede" type="text" id="input_studentId"/>
+					<input class="input__field input__field--kaede" type="text" id="input_studentId"
+                           style="font-size: 80%"/>
 					<label class="input__label input__label--kaede" for="input_studentId">
 						<span class="input__label-content input__label-content--kaede">学号<div
                                 style="float: right;padding: -0.5em" id="div_studentId"></div></span>
@@ -93,8 +95,7 @@
 				</span>
 
         <button id="btn_submit" class="layui-btn layui-btn-lg layui-btn-radius layui-btn-normal" type="submit"
-                style="background-color: #A9E8DC">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp提交 &nbsp;&nbsp;&nbsp;&nbsp
-            &nbsp;&nbsp;&nbsp;&nbsp
+                style="background-color: #A9E8DC;width: 60%">提交
         </button>
 
     </section>
@@ -128,18 +129,37 @@
 //        姓名框
         $("#input_name").blur(function () {
             name = $(this).val();
+            var reg = /^[\u4e00-\u9fa5]{2,4}$/;
+            if (reg.test(name) === false) {
+                if (name.trim() !== "") {
+                    layer.msg("请输入正确的姓名");
+                }
+                return;
+            }
             $('#div_name').text(name)
         });
 
 //        身份证号码框
         $("#input_sfz").blur(function () {
             sfz = $(this).val();
+            var reg = /^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/;
+            if (reg.test(sfz) === false) {
+                layer.msg("请输入正确的身份证号");
+                return;
+            }
             $('#div_sfz').text(sfz)
         });
 
 //        学号框
         $("#input_studentId").blur(function () {
             studentId = $(this).val();
+            var reg = /\d{10}/;
+            if (reg.test(studentId) === false) {
+                if (studentId.trim() !== "") {
+                    layer.msg("学号应为10位数字");
+                }
+                return;
+            }
             $('#div_studentId').text(studentId)
         });
 
@@ -246,7 +266,7 @@
                             }
                         },
                         error: function () {
-                            console.log(json_data)
+                            console.log(json_data);
                             layer.msg("提交出错");
                         }
                     }
