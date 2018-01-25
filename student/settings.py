@@ -14,8 +14,7 @@ import pymysql
 pymysql.install_as_MySQLdb()
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-from django.conf.urls.static import static
-from django.conf import settings
+from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -33,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
+    'suit',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -67,7 +67,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-
+                "django.template.context_processors.media",
             ],
         },
     },
@@ -89,7 +89,6 @@ DATABASES = {
     }
 }
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
@@ -98,9 +97,7 @@ LANGUAGE_CODE = 'zh-hans'
 TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
-
-USE_L10N = True
-
+USE_L10N = False
 USE_TZ = True
 
 STATIC_URL = '/static/'
@@ -109,8 +106,8 @@ STATICFILES_DIRS = [
 ]
 
 # 设置静态文件路径为主目录下的media文件夹
-MEDIA_ROOT = os.path.join('media').replace('\\', '/')
 MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
@@ -192,3 +189,24 @@ LOGGING = {
         },
     }
 }
+
+SUIT_CONFIG = {  # suit页面配置
+    'ADMIN_NAME': '高校家庭经济困难学生评测后台',  # 登录界面提示
+    'LIST_PER_PAGE': 20,  # 表中显示行数
+    'MENU_OPEN_FIRST_CHILD': True,
+    'MENU': (
+        '-',
+        {'app': 'auth', 'label': u'权限管理', 'icon': 'icon-lock', 'name': u"名字"},
+        '-',
+        {'app': 'quantization', 'label': u'量化测评', 'icon': 'icon-user'},
+        '-',
+        {'app': 'democratic', 'label': u'民主测评', 'icon': 'icon-user'},
+    )
+    # label表示name，app表示上边的install的app，models表示用了哪些models
+}
+DATETIME_FORMAT = 'Y-m-d H:i:s'
+DATE_FORMAT = 'Y-m-d'
+
+TEMPLATE_CONTEXT_PROCESSORS = TCP + (
+    'django.core.context_processors.request',
+)

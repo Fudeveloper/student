@@ -100,3 +100,7 @@ Traceback (most recent call last):
   File "/root/.virtualenvs/student/lib/python3.5/site-packages/django/db/models/options.py", line 554, in get_field
     raise FieldDoesNotExist('%s has no field named %r' % (self.object_name, field_name))
 django.core.exceptions.FieldDoesNotExist: StudentAnswer has no field named 'zcdd'
+2018-01-25 10:50:45,279 [Thread-2:140032004032256] [django.request:170] [base:get_response] [WARNING]- Not Found: /user/login/
+2018-01-25 10:50:45,432 [Thread-3:140032004032256] [django.request:170] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2018-01-25 10:55:36,108 [Thread-109:140031984797440] [django.request:170] [base:get_response] [WARNING]- Not Found: /user/login/
+2018-01-25 14:43:59,424 [Thread-29:139739237185280] [django.request:170] [base:get_response] [WARNING]- Not Found: /admin/theme/data
