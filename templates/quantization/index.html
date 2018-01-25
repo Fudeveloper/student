@@ -68,18 +68,20 @@
                                 style="float: right;padding: -0.5em" id="div_department"></div></span>
 					</label>
 				</span>
+
         <span class="input input--kaede">
-            <select class="input__field input__field--kaede" type="text" id="select_major"
-                    style="font-size: 70%"></select>
-					<label class="input__label input__label--kaede" for="select_major">
+					<input class="input__field input__field--kaede" type="text" id="input_major"
+                           style="font-size: 80%"/>
+					<label class="input__label input__label--kaede" for="input_major">
 						<span class="input__label-content input__label-content--kaede">专业<div
                                 style="float: right;padding: -0.5em" id="div_major"></div></span>
 					</label>
 				</span>
+
         <span class="input input--kaede">
-            <select class="input__field input__field--kaede" type="text" id="select_class"
-                    style="font-size: 70%"></select>
-					<label class="input__label input__label--kaede" for="select_class">
+					<input class="input__field input__field--kaede" type="text" id="input_class"
+                           style="font-size: 80%"/>
+					<label class="input__label input__label--kaede" for="input_class">
 						<span class="input__label-content input__label-content--kaede">班级<div
                                 style="float: right;padding: -0.5em" id="div_class"></div></span>
 					</label>
@@ -124,8 +126,8 @@
 
         setSelect_department();
         setSelect_nation();
-        setSelect_major();
-        setSelect_class();
+//        setSelect_major();
+//        setSelect_class();
 //        姓名框
         $("#input_name").blur(function () {
             var preName = $(this).val();
@@ -156,13 +158,34 @@
                 $('#div_sfz').text(sfz);
             }
         });
-
+//        专业框
+        $("#input_major").blur(function () {
+            var premajor = $(this).val();
+            if (premajor === "") {
+                $('#div_major').text("");
+            } else {
+                $(this).parent().css("border", "");
+                major = premajor;
+                $('#div_major').text(major);
+            }
+//            班级框
+        });
+        $("#input_class").blur(function () {
+            var preclazz = $(this).val();
+            if (preclazz ==="") {
+                $('#div_class').text("");
+            } else {
+                $(this).parent().css("border", "");
+                clazz = preclazz;
+                $('#div_class').text(preclazz);
+            }
+        });
 //        学号框
         $("#input_studentId").blur(function () {
             var prestudentId = $(this).val();
             var reg = /\d{10}/;
             if (reg.test(prestudentId) === false) {
-                if (studentId.trim() !== "") {
+                if (prestudentId.trim() !== "") {
                     layer.msg("学号应为10位数字");
                     $('#div_studentId').text("");
                 }
@@ -195,7 +218,8 @@
         //        院系下拉框
         function setSelect_department() {
             var select_department = $('#select_department');
-            var departments = ["计算机工程系", "电子系", "传媒系"];
+            var departments = ["应用语言系", "电大联办点", "计算机工程系", "建筑工程系", "机电工程系",
+                "传媒艺术系", "电子工程系", "商贸管理系", "机械工程系", "自动化工程系"];
             for (var i = 0; i < departments.length; i++) {
                 var a = departments[i];
                 select_department.append("<option value=" + a + ">" + a + "</option>");
@@ -209,7 +233,7 @@
         //        专业下拉框
         function setSelect_major() {
             var select_major = $('#select_major');
-            var majors = ["软件技术", "物联网", "移动互联"];
+            var majors = [];
             for (var i = 0; i < majors.length; i++) {
                 var a = majors[i];
                 select_major.append("<option value=" + a + ">" + a + "</option>");
