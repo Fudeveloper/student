@@ -113,14 +113,14 @@
         var jquery_cookie = layui.jquery_cookie;
         var layer = layui.layer;
         var form = layui.form;
-        var name;
-        var sfz;
-        var gender;
-        var nation;
-        var department;
-        var major;
-        var clazz;
-        var studentId;
+        var name = "";
+        var sfz = "";
+        var gender = "";
+        var nation = "";
+        var department = "";
+        var major = "";
+        var clazz = "";
+        var studentId = "";
 
         setSelect_department();
         setSelect_nation();
@@ -128,151 +128,156 @@
         setSelect_class();
 //        姓名框
         $("#input_name").blur(function () {
-            name = $(this).val();
+            var preName = $(this).val();
             var reg = /^[\u4e00-\u9fa5]{2,4}$/;
-            if (reg.test(name) === false) {
-                if (name.trim() !== "") {
+            if (reg.test(preName) === false) {
+                if (preName.trim() !== "") {
                     layer.msg("请输入正确的姓名");
                 }
-                return;
+            } else {
+                name = preName;
+                $('#div_name').text(name)
             }
-            $('#div_name').text(name)
         });
 
 //        身份证号码框
         $("#input_sfz").blur(function () {
-            sfz = $(this).val();
+            var presfz = $(this).val();
             var reg = /^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/;
             if (reg.test(sfz) === false) {
                 layer.msg("请输入正确的身份证号");
-                return;
+            } else {
+                sfz = presfz;
+                $('#div_sfz').text(sfz);
             }
-            $('#div_sfz').text(sfz)
         });
 
 //        学号框
         $("#input_studentId").blur(function () {
-            studentId = $(this).val();
+            var prestudentId = $(this).val();
             var reg = /\d{10}/;
             if (reg.test(studentId) === false) {
                 if (studentId.trim() !== "") {
                     layer.msg("学号应为10位数字");
                 }
-                return;
-            }
-            $('#div_studentId').text(studentId)
-        });
-
-//        民族下拉框
-        function setSelect_nation() {
-            var select_nation = $('#select_nation');
-            var nations = ["汉族", "蒙古族", "回族", "藏族", "维吾尔族", "苗族", "彝族", "壮族", "布依族", "朝鲜族", "满族", "侗族", "瑶族", "白族", "土家族",
-                "哈尼族", "哈萨克族", "傣族", "黎族", "傈僳族", "佤族", "畲族", "高山族", "拉祜族", "水族", "东乡族", "纳西族", "景颇族", "柯尔克孜族",
-                "土族", "达斡尔族", "仫佬族", "羌族", "布朗族", "撒拉族", "毛南族", "仡佬族", "锡伯族", "阿昌族", "普米族", "塔吉克族", "怒族", "乌孜别克族",
-                "俄罗斯族", "鄂温克族", "德昂族", "保安族", "裕固族", "京族", "塔塔尔族", "独龙族", "鄂伦春族", "赫哲族", "门巴族", "珞巴族", "基诺族"];
-            for (var i = 0; i < nations.length; i++) {
-                var a = nations[i];
-                select_nation.append("<option value=" + a + ">" + a + "</option>");
-            }
-            select_nation.blur(function () {
-                nation = select_nation.val();
-                $('#div_nation').text(nation)
-            });
-        }
-
-//        院系下拉框
-        function setSelect_department() {
-            var select_department = $('#select_department');
-            var departments = ["计算机工程系", "电子系", "传媒系"];
-            for (var i = 0; i < departments.length; i++) {
-                var a = departments[i];
-                select_department.append("<option value=" + a + ">" + a + "</option>");
-            }
-            select_department.blur(function () {
-                department = select_department.val();
-                $('#div_department').text(department)
-            });
-        }
-
-//        专业下拉框
-        function setSelect_major() {
-            var select_major = $('#select_major');
-            var majors = ["软件技术", "物联网", "移动互联"];
-            for (var i = 0; i < majors.length; i++) {
-                var a = majors[i];
-                select_major.append("<option value=" + a + ">" + a + "</option>");
-            }
-            select_major.blur(function () {
-                major = select_major.val();
-                $('#div_major').text(major)
-            })
-        }
-
-//        班级下拉框
-        function setSelect_class() {
-            var select_class = $('#select_class');
-            var classes = ["软件技术1611", "软件技术1612", "移动互联1611", "移动互联1612"];
-            for (var i = 0; i < classes.length; i++) {
-                var a = classes[i];
-                select_class.append("<option value=" + a + ">" + a + "</option>");
-            }
-            select_class.blur(function () {
-                clazz = select_class.val();
-                $('#div_class').text(clazz)
-            })
-        }
-
-        $("#btn_submit").click(function () {
-            gender = $('input[name="sex"]:checked ').val();
-
-            var spans = $(".input--kaede");
-            var value_array = [name, sfz, gender, nation, department, major, clazz, studentId];
-            var value_text = ["姓名", "身份证号码", "性别", "民族", "院系", "专业", "班级", "学号"];
-            var str = "";
-            value_array.forEach(function (t, number) {
-                if (!t) {
-                    $(spans[number]).css("border", "red solid 1.5px");
-                    str = "您还有资料未填写";
-                }
-            });
-//            if (str) {
-            if (str) {
-                layer.msg(str);
             } else {
-                var json_data = {
-                    "name": name,
-                    "sfz": sfz,
-                    "gender": gender,
-                    "nation": nation,
-                    "department": department,
-                    "major": major,
-                    "clazz": clazz,
-                    "studentId": studentId
-                };
-                $.ajax(
-                    {
-                        url: "/quantization/index_handler/",
-                        async: true,
-                        data: json_data,
-                        type: "post",
-                        dataType: "json",
-                        success: function (data) {
-                            if (data.result === "error") {
-                                layer.msg("数据出错");
-                            } else if (data.result === "ok") {
-                                layer.msg("提交成功，即将跳转");
-                                $.cookie("studentId", studentId, {path: "/"});
-                                setTimeout("window.location.href='/quantization/main/'", 800)
-                            }
-                        },
-                        error: function () {
-                            console.log(json_data);
-                            layer.msg("提交出错");
-                        }
-                    }
-                )
+                studentId = prestudentId;
+                $('#div_studentId').text(studentId)
+
             }
+
+    });
+
+    //        民族下拉框
+    function setSelect_nation() {
+        var select_nation = $('#select_nation');
+        var nations = ["汉族", "蒙古族", "回族", "藏族", "维吾尔族", "苗族", "彝族", "壮族", "布依族", "朝鲜族", "满族", "侗族", "瑶族", "白族", "土家族",
+            "哈尼族", "哈萨克族", "傣族", "黎族", "傈僳族", "佤族", "畲族", "高山族", "拉祜族", "水族", "东乡族", "纳西族", "景颇族", "柯尔克孜族",
+            "土族", "达斡尔族", "仫佬族", "羌族", "布朗族", "撒拉族", "毛南族", "仡佬族", "锡伯族", "阿昌族", "普米族", "塔吉克族", "怒族", "乌孜别克族",
+            "俄罗斯族", "鄂温克族", "德昂族", "保安族", "裕固族", "京族", "塔塔尔族", "独龙族", "鄂伦春族", "赫哲族", "门巴族", "珞巴族", "基诺族"];
+        for (var i = 0; i < nations.length; i++) {
+            var a = nations[i];
+            select_nation.append("<option value=" + a + ">" + a + "</option>");
+        }
+        select_nation.blur(function () {
+            nation = select_nation.val();
+            $('#div_nation').text(nation)
+        });
+    }
+
+    //        院系下拉框
+    function setSelect_department() {
+        var select_department = $('#select_department');
+        var departments = ["计算机工程系", "电子系", "传媒系"];
+        for (var i = 0; i < departments.length; i++) {
+            var a = departments[i];
+            select_department.append("<option value=" + a + ">" + a + "</option>");
+        }
+        select_department.blur(function () {
+            department = select_department.val();
+            $('#div_department').text(department)
+        });
+    }
+
+    //        专业下拉框
+    function setSelect_major() {
+        var select_major = $('#select_major');
+        var majors = ["软件技术", "物联网", "移动互联"];
+        for (var i = 0; i < majors.length; i++) {
+            var a = majors[i];
+            select_major.append("<option value=" + a + ">" + a + "</option>");
+        }
+        select_major.blur(function () {
+            major = select_major.val();
+            $('#div_major').text(major)
         })
+    }
+
+    //        班级下拉框
+    function setSelect_class() {
+        var select_class = $('#select_class');
+        var classes = ["软件技术1611", "软件技术1612", "移动互联1611", "移动互联1612"];
+        for (var i = 0; i < classes.length; i++) {
+            var a = classes[i];
+            select_class.append("<option value=" + a + ">" + a + "</option>");
+        }
+        select_class.blur(function () {
+            clazz = select_class.val();
+            $('#div_class').text(clazz)
+        })
+    }
+
+    $("#btn_submit").click(function () {
+        gender = $('input[name="sex"]:checked ').val();
+
+        var spans = $(".input--kaede");
+        var value_array = [name, sfz, gender, nation, department, major, clazz, studentId];
+        var value_text = ["姓名", "身份证号码", "性别", "民族", "院系", "专业", "班级", "学号"];
+        var str = "";
+        value_array.forEach(function (t, number) {
+            if (!t) {
+                $(spans[number]).css("border", "red solid 1.5px");
+                str = "您还有资料未填写";
+            }
+        });
+//            if (str) {
+        if (str) {
+            layer.msg(str);
+        } else {
+            var json_data = {
+                "name": name,
+                "sfz": sfz,
+                "gender": gender,
+                "nation": nation,
+                "department": department,
+                "major": major,
+                "clazz": clazz,
+                "studentId": studentId
+            };
+            $.ajax(
+                {
+                    url: "/quantization/index_handler/",
+                    async: true,
+                    data: json_data,
+                    type: "post",
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.result === "error") {
+                            layer.msg("数据出错");
+                        } else if (data.result === "ok") {
+                            layer.msg("提交成功，即将跳转");
+                            $.cookie("studentId", studentId, {path: "/"});
+                            setTimeout("window.location.href='/quantization/main/'", 800)
+                        }
+                    },
+                    error: function () {
+                        console.log(json_data);
+                        layer.msg("提交出错");
+                    }
+                }
+            )
+        }
+    })
 
 
     })
