@@ -22,91 +22,35 @@
         <h1><span>高校学生经济困难学生班级民主评议表</span></h1>
     </header>
     <section class="content">
-        <h3>{{title}}</h3>
+        <h3>请完善以下信息</h3>
         <span class="input input--kaede">
 					<input class="input__field input__field--kaede" type="text" id="input_studentId"
                            style="font-size: 80%"/>
-					<label class="input__label input__label--kaede" for="{{for}}">
-						<span class="input__label-content input__label-content--kaede">学号<div
-                                style="float: right;padding: -0.5em" id="div_studentId">{{studentId}}</div></span>
+					<label class="input__label input__label--kaede" for="input_studentId">
+						<span class="input__label-content input__label-content--kaede">被评测人学号<div
+                                style="float: right;padding: -0.5em" id="div_studentId"></div></span>
 					</label>
 				</span>
         <span class="input input--kaede">
 
 					<input class="input__field input__field--kaede" type="text" id="input_name"/>
-					<label class="input__label input__label--kaede" for="">
-						<span class="input__label-content input__label-content--kaede">姓名<div
-                                style="float: right" id="div_name">{{name}}</div></span>
+					<label class="input__label input__label--kaede" for="input_name">
+						<span class="input__label-content input__label-content--kaede">评测人姓名<div
+                                style="float: right" id="div_name"></div></span>
 					</label>
 				</span>
         <span class="input input--kaede">
-					<input class="input__field input__field--kaede" type="text" id="input_sfz" style="font-size: 50%"/>
-					<label class="input__label input__label--kaede" for="">
-						<span class="input__label-content input__label-content--kaede">身份证号码<div
+					<input class="input__field input__field--kaede" type="text" id="input_job"/>
+					<label class="input__label input__label--kaede" for="input_job">
+						<span class="input__label-content input__label-content--kaede">评测人职务<div
                                 style="float: right;font-size: 75%;text-align: center;margin-top: 5px;"
-                                id="div_sfz">{{sfz}}</div></span>
-					</label>
-				</span>
-        <span class="input input--kaede">
-					<form class="layui-form layui-form-pane" action="">
-      <div class="layui-form-item " pane style="border: 0px">
-        <label class="layui-form-label "
-               style="color: #6a7989;font-weight: bold;font-size: 70.25%;float: none;background-color: transparent;text-align: left;border: 0px;">性别</label>
-        <div class="layui-input-block">
-			{%if gender == "男" %}
-		  <input type="radio" name="sex" value="男" title="男" checked>
-          <input type="radio" name="sex" value="女" title="女">
-			{% elif gender == "女" %}
-		  <input type="radio" name="sex" value="男" title="男" checked>
-          <input type="radio" name="sex" value="女" title="女" checked>
-			{%else%}
-          <input type="radio" name="sex" value="男" title="男">
-          <input type="radio" name="sex" value="女" title="女">
-						{% endif %}
-        </div>
-      </div>
-    </form>
-				</span>
-
-        <span class="input input--kaede">
-					            <select class="input__field input__field--kaede" id="select_nation"
-                                        style="font-size: 70%"></select>
-					<label class="input__label input__label--kaede" for="">
-						<span class="input__label-content input__label-content--kaede">民族<div
-                                style="float: right;padding: -0.5em" id="div_nation">{{nation}}</div></span>
-					</label>
-				</span>
-        <span class="input input--kaede">
-            <select class="input__field input__field--kaede" id="select_department" style="font-size: 70%"></select>
-					<label class="input__label input__label--kaede" for="">
-						<span class="input__label-content input__label-content--kaede">院系<div
-                                style="float: right;padding: -0.5em" id="div_department">{{department}}</div></span>
+                                id="div_job"></div></span>
 					</label>
 				</span>
 
-        <span class="input input--kaede">
-					<input class="input__field input__field--kaede" type="text" id="input_major"
-                           style="font-size: 80%"/>
-					<label class="input__label input__label--kaede" for="">
-						<span class="input__label-content input__label-content--kaede">专业<div
-                                style="float: right;padding: -0.5em" id="div_major">{{major}}</div></span>
-					</label>
-				</span>
-
-        <span class="input input--kaede">
-					<input class="input__field input__field--kaede" type="text" id="input_class"
-                           style="font-size: 80%"/>
-					<label class="input__label input__label--kaede" for="">
-						<span class="input__label-content input__label-content--kaede">班级<div
-                                style="float: right;padding: -0.5em" id="div_class">{{clazz}}</div></span>
-					</label>
-				</span>
-
-        {%if submit_appear == "true"%}
         <button id="btn_submit" class="layui-btn layui-btn-lg layui-btn-radius layui-btn-normal" type="submit"
-                style="background-color: #A9E8DC;width: 60%">确认
+                style="background-color: #A9E8DC;width: 60%">提交
         </button>
-        {%endif%}
     </section>
 
 
@@ -122,14 +66,10 @@
         var jquery_cookie = layui.jquery_cookie;
         var layer = layui.layer;
         var form = layui.form;
-        var name = "";
-        var sfz = "";
-        var gender = "";
-        var nation = "";
-        var department = "";
-        var major = "";
-        var clazz = "";
-        var filledStudentId = "";
+        var name;
+        var filledStudentId;
+        var job;
+        var value_array = {};
 
 //        学号框
         $("#input_studentId").blur(function () {
@@ -140,6 +80,7 @@
                 if (prestudentId.trim() !== "") {
                     layer.msg("学号应为10位数字");
                     $('#div_studentId').text("");
+                    filledStudentId = undefined;
                 }
             } else {
                 $(this).parent().css("border", "");
@@ -153,8 +94,8 @@
                         success: function (data) {
                             if (data.result === "false") {
                                 layer.msg("未查询到该学生信息");
-                            } else if (data.result === "false") {
-                                $.cookie("filled_student_id", filledStudentId, {path: "/"});
+                            } else if (data.result === "true") {
+
                             }
                         },
                         error: function () {
@@ -165,11 +106,89 @@
                 )
             }
         });
-
-
-        $("#btn_submit").click(function () {
-            window.location.href = '/democratic/main/';
+        $("#input_name").blur(function () {
+            var preName = $(this).val();
+            var reg = /^[\u4e00-\u9fa5]{2,4}$/;
+            if (reg.test(preName) === false && preName !== "") {
+                if (preName.trim() !== "") {
+                    layer.msg("请输入正确的姓名");
+                    $('#div_name').text("");
+                    name = undefined;
+                    value_array['name'] = name;
+                }
+            } else {
+                $(this).parent().css("border", "");
+                name = preName;
+                $('#div_name').text(name);
+                value_array['name'] = name;
+            }
         });
+//        职务框
+        $("#input_job").blur(function () {
+            var prejob = $(this).val();
+            var reg = /^[\u4e00-\u9fa5]{0,20}$/;
+            if (reg.test(prejob) === false) {
+                if (prejob.trim() !== "") {
+                    layer.msg("职务应为中文");
+                    job = undefined;
+                    value_array['job'] = job;
+                    $('#div_job').text("");
+                }
+            } else {
+                $(this).parent().css("border", "");
+                job = prejob;
+                $('#div_job').text(job);
+                value_array['job'] = job;
+
+            }
+        });
+        $("#btn_submit").click(function () {
+
+            var spans = $(".input--kaede");
+            var value_array = [filledStudentId, name, job];
+            var str = "";
+            value_array.forEach(function (t, number) {
+
+                if (!t) {
+                    $(spans[number]).css("border", "red solid 1.5px");
+                    str = "您还有资料未填写";
+                } else {
+                    $(spans[number]).css("border", "");
+                }
+            });
+//            if (str) {
+            if (str) {
+                layer.msg(str);
+            } else {
+                var json_data = {
+                    "filledStudentId": filledStudentId,
+                    "name": name,
+                    "job": job
+                };
+                $.ajax(
+                    {
+                        url: "/democratic/main_handler/",
+                        async: true,
+                        data: json_data,
+                        type: "post",
+                        dataType: "json",
+                        success: function (data) {
+                            if (data.result === "error") {
+                                layer.msg("数据出错");
+                            } else if (data.result === "ok") {
+                                layer.msg("提交成功，即将跳转");
+                                $.cookie("filled_student_id", filledStudentId, {path: "/"});
+                                setTimeout("window.location.href='/democratic/main/'", 800)
+                            }
+                        },
+                        error: function () {
+                            console.log(json_data);
+                            layer.msg("提交出错");
+                        }
+                    }
+                )
+            }
+        })
 
 
     })

@@ -31,23 +31,31 @@ def signature(request):
 
 
 @csrf_exempt
-def save_signature(request):
+def save_signature(request, filled_student_id):
     print("enter save")
     if request.method == "POST":
-        print("post")
+        print("--------------------------")
+        img_path = os.path.join(settings.MEDIA_ROOT, "signatureImage",
+                                filled_student_id + "_{}.jpg".format("signature"))
+        save_path = os.path.join(settings.MEDIA_URL, "signatureImage",
+                                 filled_student_id + "_{}.jpg".format("signature"))
         post = request.POST
         imgbase64 = post.get('imgbase64')
         imgdata = base64.b64decode(imgbase64)
-        if not os.path.exists(os.path.join(settings.MEDIA_ROOT, "signatureImage")):
-            os.mkdir(os.path.join(settings.MEDIA_ROOT, "signatureImage"))
-        filepath = os.path.join(settings.MEDIA_ROOT, "signatureImage", "default.jpg")
-        with open(filepath, "wb+") as f:
-            f.write(imgdata)
-        print("保存成功")
-        return HttpResponse("post")
-    else:
-        print(HttpResponse("123" + request.method))
-        return HttpResponse("123" + request.method)
+        if os.path.exists(img_path):
+            os.remove(img_path)
+        if not os.path.exists(os.path.join(settings.MEDIA_URL, "signatureImage")):
+            os.mkdir(os.path.join(settings.MEDIA_URL, "signatureImage"))
+        # filepath = os.path.join(settings.MEDIA_ROOT, "signatureImage", "default.jpg")
+        with open(img_path, "wb+") as destination:
+            destination.write(imgdata)
+        current_fill_student = FillStudentInfo.objects.filter(pk=filled_student_id)
+        if not current_fill_student:
+            return JsonResponse({"status": "false"})
+        update_dic = {"signature": save_path}
+        current_fill_student.update(**update_dic)
+        return JsonResponse({"status": "true"})
+
 
 
 def authorize(request):
@@ -107,5 +115,27 @@ def index_handler(request):
             result = "error"
     return JsonResponse({"result": result})
 
-def fill_sig(request):
-    return render(request, 'democratic/fill_sig.html')
+
+def main_handler(request):
+    result = "ok"
+    if request.method == 'POST':
+        print("-----------------------------------")
+        data = request.POST.dict()
+        if data:
+            print("-------------------123")
+            print(data)
+            if "filledStudentId" in data.keys():
+                filledStudentId = data['filledStudentId']
+                exist_student = FillStudentInfo.objects.filter(pk=filledStudentId)
+                print(exist_student)
+                if exist_student:
+                    data.__delitem__("studentId")
+                    # print(data)
+                    exist_student.update(**data)
+        else:
+            print("---------------无studentid")
+            result = "error"
+    else:
+        result = "error"
+
+    return JsonResponse({"result": result})

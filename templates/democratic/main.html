@@ -143,23 +143,6 @@
 </section>
 
 
-<section class="toup" id="t2">
-    <!-- <div class="logo">
-        <img src="images/logo.png"/>
-    </div> -->
-    <div class="swipers">
-        <div class="con con1">
-            <div class="smile">
-                <p>非常感谢您的配合!</p>
-                <p></p>
-                <p></p>
-                <p></p>
-            </div>
-        </div>
-        <a href="javascript:;" class="tijiao">提交</a>
-    </div>
-</section>
-
 <script src="/static/js/jquery-1.12.4.min.js"></script>
 <script src="/static/plugins/layui/layui.js"></script>
 <script src="/static/js/layuiConfig.js"></script>
@@ -173,13 +156,12 @@
 
     layui.use(['jquery', 'layer', 'form', "jquery_cookie"], function () {
         var $ = layui.jquery;
-        var studentId = $.cookie("filled_student_id");
+        var filledStudentId = $.cookie("filled_student_id");
         var layer = layui.layer;
-        var height = $(window).height() + "px";
-        var width = $(window).width() + "px";
         var value_array = {};
-        var value_name = ['xxtd','pdxy','sjxf','rcyz','hsxf','qtgd'];
+        var value_name = ['xxtd', 'pdxy', 'sjxf', 'rcyz', 'hsxf', 'qtgd'];
         var score_array = [];
+        var presend_array = {};
         var mySwiper = new Swiper('.swiper-container', {
             noSwiping: true,
             pagination: '.swiper-pagination ',
@@ -193,7 +175,6 @@
         $("#t2").hide();
 
 
-
         $(".swiper-container label,.swiper-container input[id!='J_Address']").click(function () {
             var this_active = $(this).parents(".swiper-slide").index();
             setTimeout(function () {
@@ -204,19 +185,8 @@
             }, 500);
         });
         $('.swiper-button-next').click(function () {
-            logic(mySwiper);
             mySwiper.slideTo(mySwiper.activeIndex + 1, 1000)
-        });
-
-        $('.tijiao').click(function () {
-            var sum = 0;
-            score_array.forEach(function (t) {
-                sum += t;
-            });
-
-            value_array['studentId'] = studentId;
-            value_array['score'] = sum;
-            alert(sum);
+            logic(mySwiper);
         });
 
 
@@ -249,17 +219,43 @@
                 return;
             }
             console.log(value_array);
-            if (mySwiper.isEnd) {
-                $("#t1").hide();
-                $("#t2").show();
-            }
+
 //            记录 & 计分
             var score = calcDemocraticScore(now_index, active_value);
 //            alert(score);
             score_array[now_index] = score;
             value_array[value_name[now_index]] = active_value;
-            console.log(value_array);
-            console.log(score_array);
+
+            if (mySwiper.isEnd) {
+                var sum = 0;
+                score_array.forEach(function (t) {
+                    sum += t;
+                });
+                presend_array['filledStudentId'] = filledStudentId;
+                presend_array['score'] = sum;
+                console.log(presend_array);
+                $.ajax(
+                    {
+                        url: "/democratic/index_handler/",
+                        async: true,
+                        data: presend_array,
+                        type: "post",
+                        dataType: "json",
+                        success: function (data) {
+                            if (data.result === "error") {
+                                layer.msg("数据出错");
+                            } else if (data.result === "ok") {
+                                layer.msg("提交成功，请签名");
+                                setTimeout("window.location.href='/democratic/signature/'", 800)
+                            }
+                        },
+                        error: function () {
+                            console.log(value_array);
+                            layer.msg("提交出错");
+                        }
+                    }
+                )
+            }
         }
     });
 
