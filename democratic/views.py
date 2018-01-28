@@ -44,17 +44,19 @@ def save_signature(request, filled_student_id):
         imgdata = base64.b64decode(imgbase64)
         if os.path.exists(img_path):
             os.remove(img_path)
-        if not os.path.exists(os.path.join(settings.MEDIA_URL, "signatureImage")):
-            os.mkdir(os.path.join(settings.MEDIA_URL, "signatureImage"))
+        if not os.path.exists(os.path.join(settings.MEDIA_ROOT, "signatureImage")):
+            os.mkdir(os.path.join(settings.MEDIA_ROOT, "signatureImage"))
         # filepath = os.path.join(settings.MEDIA_ROOT, "signatureImage", "default.jpg")
         with open(img_path, "wb+") as destination:
             destination.write(imgdata)
-        current_fill_student = FillStudentInfo.objects.filter(pk=filled_student_id)
+        current_fill_student = FillStudentInfo.objects.filter(filledStudentId_id=filled_student_id)
+
         if not current_fill_student:
             return JsonResponse({"status": "false"})
         update_dic = {"signature": save_path}
         current_fill_student.update(**update_dic)
         return JsonResponse({"status": "true"})
+
 
 
 
