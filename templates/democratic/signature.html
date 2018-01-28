@@ -36,6 +36,9 @@
         console.log(width);
         console.log(height);
         var $sigdiv = $("#signature");
+        window.addEventListener('orientationchange', function () {
+            location.reload(false);
+        });
         $sigdiv.jSignature({
 //            'UndoButton': true,
             'width': width * 0.97,
