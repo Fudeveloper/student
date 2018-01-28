@@ -2,7 +2,6 @@
 <html lang="zh" class="no-js">
 <head>
     <meta charset="UTF-8"/>
-    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>高校学生家庭经济情况量化测评表</title>
     <style>
@@ -136,7 +135,7 @@
                 if (preName.trim() !== "") {
                     layer.msg("请输入正确的姓名");
                     $('#div_name').text("");
-
+                    name = undefined;
                 }
             } else {
                 $(this).parent().css("border", "");
@@ -150,8 +149,11 @@
             var presfz = $(this).val();
             var reg = /^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/;
             if (reg.test(presfz) === false) {
-                layer.msg("请输入正确的身份证号");
-                $('#div_sfz').text("");
+                if (presfz !== "") {
+                    layer.msg("请输入正确的身份证号");
+                    $('#div_sfz').text("");
+                    sfz = undefined;
+                }
             } else {
                 $(this).parent().css("border", "");
                 sfz = presfz;
@@ -172,7 +174,7 @@
         });
         $("#input_class").blur(function () {
             var preclazz = $(this).val();
-            if (preclazz ==="") {
+            if (preclazz === "") {
                 $('#div_class').text("");
             } else {
                 $(this).parent().css("border", "");
@@ -188,6 +190,7 @@
                 if (prestudentId.trim() !== "") {
                     layer.msg("学号应为10位数字");
                     $('#div_studentId').text("");
+                    studentId = undefined;
                 }
             } else {
                 $(this).parent().css("border", "");
@@ -263,7 +266,6 @@
 
             var spans = $(".input--kaede");
             var value_array = [name, sfz, gender, nation, department, major, clazz, studentId];
-            var value_text = ["姓名", "身份证号码", "性别", "民族", "院系", "专业", "班级", "学号"];
             var str = "";
             value_array.forEach(function (t, number) {
 

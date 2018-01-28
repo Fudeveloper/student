@@ -160,17 +160,26 @@
     </div>
 </section>
 
+<script src="/static/js/jquery-1.12.4.min.js"></script>
+<script src="/static/plugins/layui/layui.js"></script>
+<script src="/static/js/layuiConfig.js"></script>
+<script src="/static/js/fontSize.js"></script>
 <script src="/static/js/swiper.min.js"></script>
 <script src="/static/js/jquery-labelauty.js"></script>
+<script src="/static/js/calcDemocraticScore.js"></script>
+
 <script>
 
 
-    layui.use(['layer', 'form'], function () {
-        var value_array = {};
-//        除了每年学费标准，测评得分
-        var value_name = ['zcdd', 'hjsz', 'jtzz', 'fqzy', 'mqzy', 'fqld', 'mqld', 'cfmq', 'fwqk', 'jxrk', 'syrk', 'ylzc', 'jtsz', 'jtbg', 'zxqj'];
-
+    layui.use(['jquery', 'layer', 'form', "jquery_cookie"], function () {
+        var $ = layui.jquery;
+        var studentId = $.cookie("filled_student_id");
         var layer = layui.layer;
+        var height = $(window).height() + "px";
+        var width = $(window).width() + "px";
+        var value_array = {};
+        var value_name = ['xxtd','pdxy','sjxf','rcyz','hsxf','qtgd'];
+        var score_array = [];
         var mySwiper = new Swiper('.swiper-container', {
             noSwiping: true,
             pagination: '.swiper-pagination ',
@@ -181,20 +190,9 @@
             spaceBetween: 100,
             loop: false
         });
-        $("#t2,#t3").hide();
+        $("#t2").hide();
 
-        $('#J_Address').click(function () {
 
-            var height = $(window).height() + "px"
-            var width = $(window).width() + "px"
-            layer.open({
-                title: "请选择户籍所在县区",
-                area: [width, height],
-                skin: 'demo-class',
-                type: 2,
-                content: ['/quantization/city/', 'no'] //这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content: ['http://sentsin.com', 'no']
-            });
-        });
 
         $(".swiper-container label,.swiper-container input[id!='J_Address']").click(function () {
             var this_active = $(this).parents(".swiper-slide").index();
@@ -204,42 +202,64 @@
                 mySwiper.slideTo(mySwiper.activeIndex + 1, 1000)
 //                $('.swiper-button-next').click();
             }, 500);
-
         });
         $('.swiper-button-next').click(function () {
             logic(mySwiper);
             mySwiper.slideTo(mySwiper.activeIndex + 1, 1000)
-
         });
 
+        $('.tijiao').click(function () {
+            var sum = 0;
+            score_array.forEach(function (t) {
+                sum += t;
+            });
+
+            value_array['studentId'] = studentId;
+            value_array['score'] = sum;
+            alert(sum);
+        });
+
+
+//        获取当前swiper被选择的radio的值
+        function getActiveValue(now_index) {
+            console.log(now_index)
+            var active_slide = mySwiper.slides[now_index];
+            var radio = $(active_slide).find($(':input:radio:checked'))[0];
+            var label = $($(radio)).next().children()[1];
+            return $(label).html();
+        }
+
+//         回退swiper并提示
+        function back(now_index) {
+            layer.msg("您还未选择!");
+            mySwiper.slideTo(now_index - 1);
+        }
 
         $(':input:checkbox').labelauty();
         $(':input:radio').labelauty();
 
+//        主要逻辑
         function logic(mySwiper) {
             var now_index = mySwiper.activeIndex;
-//                alert(mySwiper.activeIndex)
-            var active_slide = mySwiper.slides[now_index];
-            console.log(active_slide)
-            var radio = $(active_slide).find($(':input:radio:checked'))[0];
-            console.log(radio)
+            var active_value;
 
-            var label = $($(radio)).next().children()[1];
-            var active_value = $(label).html();
-            console.log(active_value);
-            if (typeof(active_value) == "undefined") {
-                layer.msg("您还未选择!");
-                this.stopPropagation();
-            } else {
-                value_array[value_name[now_index]] = active_value;
-                console.log(value_array);
+            active_value = getActiveValue(now_index);
+            if (typeof(active_value) === "undefined") {
+                back(now_index);
+                return;
             }
-
-
+            console.log(value_array);
             if (mySwiper.isEnd) {
                 $("#t1").hide();
                 $("#t2").show();
             }
+//            记录 & 计分
+            var score = calcDemocraticScore(now_index, active_value);
+//            alert(score);
+            score_array[now_index] = score;
+            value_array[value_name[now_index]] = active_value;
+            console.log(value_array);
+            console.log(score_array);
         }
     });
 

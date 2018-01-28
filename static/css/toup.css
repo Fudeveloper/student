@@ -157,7 +157,7 @@
 .con {
     border: 3px solid #fff;
     border-radius: 10px;
-    padding: 0.35rem 0.4rem 0.6rem 0.4rem;
+    padding: 0.35rem 0.4rem 0.2rem 0.4rem;
     -webkit-box-shadow: 0px 0px 10px #9bb5c4 inset;
     -moz-box-shadow: 0px 0px 10px #9bb5c4 inset;
     box-shadow: 0px 0px 10px #9bb5c4 inset;
@@ -176,7 +176,7 @@
     line-height: 0.36rem;
     font-size: 0.24rem;
     margin-bottom: 0.30rem;
-    text-align: justify;
+    text-align: center;
     word-wrap: break-word;
 }
 
@@ -212,12 +212,7 @@
     margin-bottom: 0.8rem;
 }
 
-.smile {
-    width: 100%;
-    padding-top: 1.78rem;
-    background: url(../images/smile.png) right top no-repeat;
-    background-size: 2.19rem;
-}
+
 
 
 

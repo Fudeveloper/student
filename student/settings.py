@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'quantization',
+    'democratic',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -200,9 +201,9 @@ SUIT_CONFIG = {  # suit页面配置
         '-',
         {'app': 'auth', 'label': u'权限管理', 'icon': 'icon-lock', 'name': u"名字"},
         '-',
-        {'app': 'quantization', 'label': u'量化测评', 'icon': 'icon-user'},
+        {'app': 'quantization', 'label': u'量化测评', 'icon': 'icon-user', 'name': u"量化测评"},
         '-',
-        {'app': 'democratic', 'label': u'民主测评', 'icon': 'icon-user'},
+        {'app': 'democratic', 'label': u'民主测评', 'icon': 'icon-user', 'name': u"民主评议"},
     )
     # label表示name，app表示上边的install的app，models表示用了哪些models
 }

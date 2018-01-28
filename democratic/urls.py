@@ -24,6 +24,12 @@ urlpatterns = [
     url(r'^save_signature/$', views.save_signature, name='save_signature'),
 
     url(r'^authorize/$', views.authorize, name='authorize'),
+    url(r'^fill/$', views.fill, name='fill'),
+    url(r'^select_student/(\d*)$', views.select_student, name='select_student'),
+    url(r'^index_handler/$', views.index_handler, name='index_handler'),
+    url(r'^fill_sig/$', views.fill_sig, name='fill_sig'),
+
+
 
 
 ]

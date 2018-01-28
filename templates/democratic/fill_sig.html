@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh" class="no-js">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>高校学生经济困难学生班级民主评议表</title>
+    <style>
+
+
+    </style>
+    <link rel="stylesheet" href="/static/plugins/layui/css/layui.css" media="all">
+    <link rel="stylesheet" type="text/css" href="/static/css/normalize.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/fonts/font-awesome-4.2.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/demo.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/component.css"/>
+
+
+</head>
+<body>
+<div class="container">
+    <section class="content">
+
+        <div id="signature"></div>
+        <p style="text-align: center">
+            <!--<b style="color: red">请按着鼠标写字签名。</b>-->
+            <input type="button" value="保存" id="yes"/>
+            <input type="button" value="下载" id="download"/>
+            <input type="button" value="重写" id="reset"/>
+        </p>
+
+        <div id="someelement"></div>
+    </section>
+
+</div>
+
+<script src="/static/js/jsi/jquery.js"></script>
+
+<script src="/static/js/jsi/jSignature.min.js"></script>
+<script src="/static/js/jsi/flashcanvas.js"></script>
+<script src="/static/plugins/layui/layui.js"></script>
+<script src="/static/js/layuiConfig.js"></script>
+
+<script>
+
+    layui.use(['jquery', 'layer', 'form', 'jquery_cookie', 'csrftoken'], function () {
+
+        var $ = layui.jquery;
+        var csrftoken = layui.csrftoken;
+        var jquery_cookie = layui.jquery_cookie;
+        var layer = layui.layer;
+        var form = layui.form;
+        var width = $(window).width()-60;
+        var height = $(window).height()-60;
+        var data_src = "";
+        console.log(width);
+        console.log(height);
+        var $sigdiv = $("#signature");
+        window.addEventListener('orientationchange', function () {
+            alert("123")
+            location.reload(false);
+        });
+        $sigdiv.jSignature({
+//            'UndoButton': true,
+            'width': width,
+            'height': height,
+            'background-color': 'lightgrey'
+        }); // 初始化jSignature插件.
+        $("#yes").click(function () {
+            //将画布内容转换为图片
+            var datapair = $sigdiv.jSignature("getData", "image");
+            var i = new Image();
+            i.src = "data:" + datapair[0] + "," + datapair[1];
+            data_src = i.src;
+            $(i).appendTo($("#someelement")); // append the image (SVG) to DOM.
+            post_data = {"imgbase64": datapair[1]};
+            $.ajax({
+                type: "post",
+                url: "/democratic/save_signature/",
+                data: post_data,
+                success: function () {
+                    alert("lallll")
+                }
+            });
+            alert(datapair[1])
+        });
+        //datapair = $sigdiv.jSignature("getData","base30");
+        //$sigdiv.jSignature("setData", "data:" + datapair.join(","));
+        $("#download").click(function () {
+            downloadFile("a.png", convertBase64UrlToBlob($("img").attr("src")));
+        });
+        $("#reset").click(function () {
+            $sigdiv.jSignature("reset"); //重置画布，可以进行重新作画.
+            $("#someelement").html("");
+        });
+
+        function downloadFile(fileName, blob) {
+            alert("123")
+//        var img = $('#imgId').attr("src");
+            var alink = document.createElement("a");
+            alink.href = data_src;
+            alink.download = "testImg.jpg";
+            alink.click();
+
+//        var aLink = document.createElement('a');
+//        var evt = document.createEvent("HTMLEvents");
+//        evt.initEvent("click", false, false);//initEvent 不加后两个参数在FF下会报错, 感谢 Barret Lee 的反馈
+//        aLink.download = fileName;
+//        aLink.href = URL.createObjectURL(blob);
+//        aLink.dispatchEvent(evt);
+        }
+
+        /**
+         * 将以base64的图片url数据转换为Blob
+         * @param urlData
+         *            用url方式表示的base64图片数据
+         */
+        function convertBase64UrlToBlob(urlData) {
+
+            var bytes = window.atob(urlData.split(',')[1]);        //去掉url的头，并转换为byte
+
+            //处理异常,将ascii码小于0的转换为大于0
+            var ab = new ArrayBuffer(bytes.length);
+            var ia = new Uint8Array(ab);
+            for (var i = 0; i < bytes.length; i++) {
+                ia[i] = bytes.charCodeAt(i);
+            }
+
+            return new Blob([ab], {type: 'image/png'});
+
+
+        }
+
+    })
+</script>
+
+</body>
+</html>

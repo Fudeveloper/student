@@ -47,7 +47,7 @@ def index_handler(request):
     return JsonResponse({"result": result})
 
 
-@auth
+@auth_quantization
 def main(request):
     return render(request, 'quantization/main.html')
 
