@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse, FileResponse, StreamingHttpResponse
 from .models import StudentInfo, StudentAnswer
 from django.views.decorators.csrf import csrf_exempt
@@ -8,6 +8,7 @@ import json
 from decorate import *
 from django.conf import settings
 import check_poor_city
+import requests
 
 logger = logging.getLogger('student.views')
 
@@ -148,3 +149,71 @@ def check_city(request):
     send_city = post.get("city")
     print(send_city)
     return HttpResponse(check_poor_city.check_poor_city(send_city))
+
+
+def auth(request):
+    # 防跨站伪造参数
+    state = "lalallsa"
+    # 授权地址
+    auth_url = "http://192.168.76.129:8000/quantization/auth/"
+    # 回调地址
+    callback_url = "http://192.168.76.129:8000/quantization/callback/"
+    YIBAN_URL = "https://openapi.yiban.cn/"
+
+    API_OAUTH_CODE = "oauth/authorize"
+
+    API_OAUTH_TOKEN = "oauth/access_token"
+
+    API_TOKEN_QUERY = "oauth/token_info"
+
+    API_TOKEN_REVOKE = "oauth/revoke_token"
+
+    app_key = "75695fe36534c768"
+    app_secret = "58670b849a89c5ad6e2bc97a23690e94"
+    url = "{0}{1}?client_id={2}&redirect_uri={3}&state={4}&display=mobile".format(YIBAN_URL, API_OAUTH_CODE, app_key,
+                                                                                  callback_url,
+                                                                                  state)
+    return redirect(url)
+
+
+def callback(request):
+    callback_url = "http://192.168.76.129:8000/quantization/callback/"
+
+    app_key = "75695fe36534c768"
+    app_secret = "58670b849a89c5ad6e2bc97a23690e94"
+    data = request.GET
+    state = data.get("state")
+    code = data.get("code")
+    post_data = {"client_id": app_key, "client_secret": app_secret, "code": code,
+                 "redirect_uri": callback_url}
+    res = requests.post("https://openapi.yiban.cn/oauth/access_token", data=post_data)
+    print(res.text)
+    json_data = json.loads(res.text)
+    if "access_token" in json_data.keys():
+        access_token = json_data['access_token']
+    elif "msgCN" in json_data.keys():
+        return HttpResponse(json_data["msgCN"])
+    else:
+        return HttpResponse("授权失败，请重试")
+    print(access_token)
+    json_access = {"access_token": access_token}
+    # 查询校方认证信息
+    auth_res = requests.get("https://openapi.yiban.cn/user/verify_me", params=json_access)
+    json_auth_res = json.loads(auth_res.text)
+    if "status" in json_auth_res:
+        if json_auth_res["status"] == "success":
+            infos = json_auth_res["info"]
+            # 真实姓名
+            real_name = infos["yb_realname"]
+            # 学号
+            yb_studentid = infos["yb_studentid"]
+            # 系别
+            yb_collegename = infos["yb_collegename"]
+            context = {"real_name": real_name, "yb_studentid": yb_studentid, "yb_collegename": yb_collegename}
+            return render(request, 'quantization/index.html', context=context)
+        else:
+            return HttpResponse("授权错误")
+    elif "msgCN" in json_data.keys():
+        return HttpResponse(json_data["msgCN"])
+    else:
+        return HttpResponse("授权失败，请重试")

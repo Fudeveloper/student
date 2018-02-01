@@ -24,11 +24,26 @@
     <section class="content">
         <h3>基本信息</h3>
         <span class="input input--kaede">
+					<input class="input__field input__field--kaede" type="text" id="input_studentId"
+                           style="font-size: 80%"/>
+					<label class="input__label input__label--kaede" for="">
+						<span class="input__label-content input__label-content--kaede">学号<div
+                                style="float: right;padding: -0.5em" id="div_studentId">{{yb_studentid}}</div></span>
+					</label>
+				</span>
+        <span class="input input--kaede">
 
 					<input class="input__field input__field--kaede" type="text" id="input_name"/>
-					<label class="input__label input__label--kaede" for="input_name">
+					<label class="input__label input__label--kaede" for="">
 						<span class="input__label-content input__label-content--kaede">姓名<div
-                                style="float: right" id="div_name"></div></span>
+                                style="float: right" id="div_name">{{real_name}}</div></span>
+					</label>
+				</span>
+        <span class="input input--kaede">
+            <select class="input__field input__field--kaede" id="select_department" style="font-size: 70%"></select>
+					<label class="input__label input__label--kaede" for="">
+						<span class="input__label-content input__label-content--kaede">院系<div
+                                style="float: right;padding: -0.5em" id="div_department">{{yb_collegename}}</div></span>
 					</label>
 				</span>
         <span class="input input--kaede">
@@ -60,13 +75,7 @@
                                 style="float: right;padding: -0.5em" id="div_nation"></div></span>
 					</label>
 				</span>
-        <span class="input input--kaede">
-            <select class="input__field input__field--kaede" id="select_department" style="font-size: 70%"></select>
-					<label class="input__label input__label--kaede" for="select_department">
-						<span class="input__label-content input__label-content--kaede">院系<div
-                                style="float: right;padding: -0.5em" id="div_department"></div></span>
-					</label>
-				</span>
+
 
         <span class="input input--kaede">
 					<input class="input__field input__field--kaede" type="text" id="input_major"
@@ -86,14 +95,6 @@
 					</label>
 				</span>
 
-        <span class="input input--kaede">
-					<input class="input__field input__field--kaede" type="text" id="input_studentId"
-                           style="font-size: 80%"/>
-					<label class="input__label input__label--kaede" for="input_studentId">
-						<span class="input__label-content input__label-content--kaede">学号<div
-                                style="float: right;padding: -0.5em" id="div_studentId"></div></span>
-					</label>
-				</span>
 
         <button id="btn_submit" class="layui-btn layui-btn-lg layui-btn-radius layui-btn-normal" type="submit"
                 style="background-color: #A9E8DC;width: 60%">提交
@@ -114,35 +115,36 @@
         var jquery_cookie = layui.jquery_cookie;
         var layer = layui.layer;
         var form = layui.form;
-        var name = "";
+        var name = "{{ real_name|safe }}";
+        var studentId = "{{ yb_studentid|safe }}";
+        var department = "{{ yb_collegename|safe }}";
         var sfz = "";
         var gender = "";
         var nation = "";
-        var department = "";
         var major = "";
         var clazz = "";
-        var studentId = "";
 
-        setSelect_department();
+        alert(studentId);
+//        setSelect_department();
         setSelect_nation();
 //        setSelect_major();
 //        setSelect_class();
 //        姓名框
-        $("#input_name").blur(function () {
-            var preName = $(this).val();
-            var reg = /^[\u4e00-\u9fa5]{2,4}$/;
-            if (reg.test(preName) === false) {
-                if (preName.trim() !== "") {
-                    layer.msg("请输入正确的姓名");
-                    $('#div_name').text("");
-                    name = undefined;
-                }
-            } else {
-                $(this).parent().css("border", "");
-                name = preName;
-                $('#div_name').text(name)
-            }
-        });
+//        $("#input_name").blur(function () {
+//            var preName = $(this).val();
+//            var reg = /^[\u4e00-\u9fa5]{2,4}$/;
+//            if (reg.test(preName) === false) {
+//                if (preName.trim() !== "") {
+//                    layer.msg("请输入正确的姓名");
+//                    $('#div_name').text("");
+//                    name = undefined;
+//                }
+//            } else {
+//                $(this).parent().css("border", "");
+//                name = preName;
+//                $('#div_name').text(name)
+//            }
+//        });
 
 //        身份证号码框
         $("#input_sfz").blur(function () {
@@ -170,8 +172,9 @@
                 major = premajor;
                 $('#div_major').text(major);
             }
-//            班级框
         });
+
+		//            班级框
         $("#input_class").blur(function () {
             var preclazz = $(this).val();
             if (preclazz === "") {
@@ -183,23 +186,23 @@
             }
         });
 //        学号框
-        $("#input_studentId").blur(function () {
-            var prestudentId = $(this).val();
-            var reg = /\d{10}/;
-            if (reg.test(prestudentId) === false) {
-                if (prestudentId.trim() !== "") {
-                    layer.msg("学号应为10位数字");
-                    $('#div_studentId').text("");
-                    studentId = undefined;
-                }
-            } else {
-                $(this).parent().css("border", "");
-                studentId = prestudentId;
-                $('#div_studentId').text(studentId)
-
-            }
-
-        });
+//        $("#input_studentId").blur(function () {
+//            var prestudentId = $(this).val();
+//            var reg = /\d{10}/;
+//            if (reg.test(prestudentId) === false) {
+//                if (prestudentId.trim() !== "") {
+//                    layer.msg("学号应为10位数字");
+//                    $('#div_studentId').text("");
+//                    studentId = undefined;
+//                }
+//            } else {
+//                $(this).parent().css("border", "");
+//                studentId = prestudentId;
+//                $('#div_studentId').text(studentId)
+//
+//            }
+//
+//        });
 
         //        民族下拉框
         function setSelect_nation() {
@@ -219,19 +222,19 @@
         }
 
         //        院系下拉框
-        function setSelect_department() {
-            var select_department = $('#select_department');
-            var departments = ["应用语言系", "电大联办点", "计算机工程系", "建筑工程系", "机电工程系",
-                "传媒艺术系", "电子工程系", "商贸管理系", "机械工程系", "自动化工程系"];
-            for (var i = 0; i < departments.length; i++) {
-                var a = departments[i];
-                select_department.append("<option value=" + a + ">" + a + "</option>");
-            }
-            select_department.blur(function () {
-                department = select_department.val();
-                $('#div_department').text(department)
-            });
-        }
+//        function setSelect_department() {
+//            var select_department = $('#select_department');
+//            var departments = ["应用语言系", "电大联办点", "计算机工程系", "建筑工程系", "机电工程系",
+//                "传媒艺术系", "电子工程系", "商贸管理系", "机械工程系", "自动化工程系"];
+//            for (var i = 0; i < departments.length; i++) {
+//                var a = departments[i];
+//                select_department.append("<option value=" + a + ">" + a + "</option>");
+//            }
+//            select_department.blur(function () {
+//                department = select_department.val();
+//                $('#div_department').text(department)
+//            });
+//        }
 
         //        专业下拉框
         function setSelect_major() {
@@ -265,7 +268,7 @@
             gender = $('input[name="sex"]:checked ').val();
 
             var spans = $(".input--kaede");
-            var value_array = [name, sfz, gender, nation, department, major, clazz, studentId];
+            var value_array = [name,studentId,department, sfz, gender, nation,  major, clazz, ];
             var str = "";
             value_array.forEach(function (t, number) {
 
