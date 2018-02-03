@@ -34,11 +34,13 @@ def signature(request):
 def save_signature(request, filled_student_id):
     print("enter save")
     if request.method == "POST":
+        pk = request.COOKIES.get("pk")
+        current_fill_student = FillStudentInfo.objects.filter(pk=pk)
         print("--------------------------")
         img_path = os.path.join(settings.MEDIA_ROOT, "signatureImage",
-                                filled_student_id + "_{}.jpg".format("signature"))
-        save_path = os.path.join(settings.MEDIA_URL, "signatureImage",
-                                 filled_student_id + "_{}.jpg".format("signature"))
+                                filled_student_id + "_{}_{}.jpg".format("signature", pk))
+        save_path = os.path.join("signatureImage",
+                                 filled_student_id + "_{}_{}.jpg".format("signature", pk))
         post = request.POST
         imgbase64 = post.get('imgbase64')
         imgdata = base64.b64decode(imgbase64)
@@ -49,15 +51,13 @@ def save_signature(request, filled_student_id):
         # filepath = os.path.join(settings.MEDIA_ROOT, "signatureImage", "default.jpg")
         with open(img_path, "wb+") as destination:
             destination.write(imgdata)
-        current_fill_student = FillStudentInfo.objects.filter(filledStudentId_id=filled_student_id)
+        # FillStudentInfo.objects.create(pk=filled_student_id)
 
         if not current_fill_student:
             return JsonResponse({"status": "false"})
         update_dic = {"signature": save_path}
         current_fill_student.update(**update_dic)
         return JsonResponse({"status": "true"})
-
-
 
 
 def authorize(request):
@@ -94,44 +94,51 @@ def select_student(request, filled_student_id):
 def index_handler(request):
     result = "ok"
     if request.method == 'POST':
-        print("-----------------------------------")
         data = request.POST.dict()
 
         if data:
-            print("-------------------123")
             print(data)
             if "filledStudentId" in data.keys():
                 filledStudentId = data['filledStudentId']
-                exist_student = FillStudentInfo.objects.filter(filledStudentId=filledStudentId)
-                data.__delitem__("filledStudentId")
-                if not exist_student:
-                    fill_data = {
-                        "filledStudentId": StudentInfo.objects.get(studentId=filledStudentId),
-                    }
-                    FillStudentInfo.objects.create(**fill_data)
-                exist_student.update(**data)
+                # FillStudentInfo.objects.create(pk=filledStudentId)
+                name = data["name"]
+                job = data["job"]
+                # print(name)
+                # print(job)
+                s = StudentInfo.objects.get(pk=filledStudentId)
+                fsi = FillStudentInfo(name=name, job=job)
+                fsi.save()
+                fsi.filledStudentId.add(s)
+                print(fsi.pk)
+                print(s.fillstudentinfo_set.all())
+
+                fsi.save()
+                # 取得存入时数据的id，以供保存成绩，签名时使用
+                pk = fsi.pk
             else:
+                pk = -1
                 print("not in")
                 result = "error"
         else:
+            pk = -1
             result = "error"
-    return JsonResponse({"result": result})
+    return JsonResponse({"result": result, "pk": pk})
 
 
+@csrf_exempt
 def main_handler(request):
+    pk = request.COOKIES.get("pk")
     result = "ok"
     if request.method == 'POST':
-        print("-----------------------------------")
         data = request.POST.dict()
         if data:
-            print("-------------------123")
             print(data)
             if "filledStudentId" in data.keys():
                 filledStudentId = data['filledStudentId']
-                exist_student = FillStudentInfo.objects.filter(pk=filledStudentId)
+                exist_student = FillStudentInfo.objects.filter(pk=pk)
                 print(exist_student)
                 if exist_student:
-                    data.__delitem__("studentId")
+                    data.__delitem__("filledStudentId")
                     # print(data)
                     exist_student.update(**data)
         else:

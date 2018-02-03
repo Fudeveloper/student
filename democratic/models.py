@@ -5,9 +5,9 @@ from quantization.models import StudentInfo
 # Create your models here.
 # 评测人信息
 class FillStudentInfo(models.Model):
-    filledStudentId = models.ForeignKey(StudentInfo, on_delete=models.CASCADE, related_name='FillStudentInfo',
-                                        unique=False,
-                                        primary_key=True, verbose_name="被评测人学号")
+    # models.ManyToManyField()
+    filledStudentId = models.ManyToManyField(StudentInfo,
+                                             verbose_name="受评测人学号")
     name = models.CharField(null=True, blank=True, max_length=10, verbose_name="评测人姓名")
 
     job = models.CharField(null=True, blank=True, max_length=40, verbose_name="职务")
@@ -16,8 +16,8 @@ class FillStudentInfo(models.Model):
 
     signature = models.ImageField(null=True, blank=True, verbose_name="签字图片")
 
-    def __str__(self):
-        return self.pk
+    # def __str__(self):
+    #     return self.filledStudentId
 
     class Meta:
         verbose_name = '民主评议'

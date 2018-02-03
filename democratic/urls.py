@@ -26,7 +26,7 @@ urlpatterns = [
     url(r'^authorize/$', views.authorize, name='authorize'),
     url(r'^select_student/(\d*)$', views.select_student, name='select_student'),
     url(r'^index_handler/$', views.index_handler, name='index_handler'),
-
+    url(r'^main_handler/$', views.main_handler, name='main_handler'),
 
 
 

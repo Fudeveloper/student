@@ -1,6 +1,5 @@
 from django.db import models
 
-
 # Create your models here.
 class StudentInfo(models.Model):
     # 不写则，django默认创建ID列，自增，主键
@@ -12,7 +11,7 @@ class StudentInfo(models.Model):
     # 性别
     gender = models.CharField(max_length=2, verbose_name="性别")
     # 民族
-    nation = models.CharField(max_length=20, verbose_name="名族")
+    nation = models.CharField(max_length=20, verbose_name="民族")
     # 院系
     department = models.CharField(max_length=40, verbose_name="院系")
     # 专业
@@ -23,6 +22,7 @@ class StudentInfo(models.Model):
     studentId = models.CharField(max_length=11, primary_key=True, unique=True, verbose_name="学号")
 
     def __str__(self):
+        # return self.studentId+"__"+self.name
         return self.studentId
 
     class Meta:
@@ -99,3 +99,5 @@ class StudentAnswer(models.Model):
     class Meta:
         verbose_name = '学生量化评测数据'
         verbose_name_plural = '学生量化评测数据'
+
+

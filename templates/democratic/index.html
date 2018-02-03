@@ -175,10 +175,13 @@
                         success: function (data) {
                             if (data.result === "error") {
                                 layer.msg("数据出错");
-                            } else if (data.result === "ok") {
+                            } else if (data.result === "ok" || data.pk !== -1) {
                                 layer.msg("提交成功，即将跳转");
                                 $.cookie("filled_student_id", filledStudentId, {path: "/"});
+                                $.cookie("pk", data.pk, {path: "/"});
                                 setTimeout("window.location.href='/democratic/main/'", 800)
+                            } else {
+                                layer.msg("数据出错");
                             }
                         },
                         error: function () {

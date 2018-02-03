@@ -118,7 +118,7 @@ def uploadimg(request, img_type):
                 os.mkdir(dir_path)
             img = request.FILES.get('studentdatum')
             img_path = os.path.join(settings.MEDIA_ROOT, img_type, student_id + "_{}.jpg".format(img_type))
-            save_path = os.path.join(settings.MEDIA_URL, img_type, student_id + "_{}.jpg".format(img_type))
+            save_path = os.path.join( img_type, student_id + "_{}.jpg".format(img_type))
             if os.path.exists(img_path):
                 os.remove(img_path)
             with open(img_path, "wb+") as destination:
