@@ -2,9 +2,7 @@
 import os
 import re
 import xadmin as admin
-import base64
-
-import io
+import export_helper
 from django.conf import settings
 from xadmin import views
 # Register your models here.
@@ -17,13 +15,14 @@ from django.utils.html import format_html
 from django.http import HttpResponse
 from xlwt import *
 
+
 class StudentInfoAdmin(object):
     list_display = (
         'name', 'sfz', 'studentId', 'department', 'major', 'clazz', 'gender', 'nation', "get_score",
         "get_democratic_score")
     search_fields = ('name', 'sfz', 'studentId')
     list_filter = ('clazz', "major", "gender", "StudentAnswer__score")
-    actions = ["SaveExecl", ]
+    actions = ["save_democratic", "save_quantization"]
 
     def get_score(self, instance):
         exist_student = StudentAnswer.objects.filter(studentId_id=instance.studentId)
@@ -35,83 +34,161 @@ class StudentInfoAdmin(object):
     get_score.short_description = '量化测评得分'
     get_score.is_column = True
     get_score.allow_tags = True
-    get_score.allow_sort = True
-    get_score.admin_order_field = 'get_score'
+    # get_score.allow_sort = True
+    get_score.admin_order_field = 'StudentAnswer__score'
 
-    def SaveExecl(self, request, queryset):
-        with open("static/doc/democratic.xml") as f:
-            global file_str
-            file_str = f.read()
-            # print(file_str)
-        print(len(queryset))
-        student = queryset[0]
+    def save_democratic(self, request, queryset):
+        sum = 0
+        # 读取模板
+        try:
+            with open("static/doc/democratic.xml") as f:
+                global file_str
+                file_str = f.read()
+        except FileNotFoundError:
+            print("---file not found---")
+            return None
 
-        value_name = student.name
-        value_sfz = student.sfz
-        value_gender = student.gender
-        value_nation = student.nation
-        value_department = student.department
-        value_major = student.major
-        value_clazz = student.clazz
-        value_studetId = student.studentId
-        dem_up_value = [value_name, value_sfz, value_gender, value_nation, value_department, value_major, value_clazz,
-                        value_studetId]
-        # print(dem_value)
+        value_studetId, file_str = export_helper.fill_up(queryset, file_str)
+        # 填写下半部分表格
         s = StudentInfo.objects.filter(pk=value_studetId)[0]
-        sf = s.fillstudentinfo_set.all()[0]
-        print(sf.name, sf.job, sf.signature)
-
+        # 查询有多少人评过分
+        students = s.fillstudentinfo_set.all()
+        if len(students) <= 5:
+            people_num = len(students)
+            missing_people_num = 5 - people_num
+        else:
+            people_num = 5
+            missing_people_num = 0
+        # 填写有数据的
+        for i in range(people_num):
+            index = 1 + i
+            sf = students[i]
+            people_value_str_array = ["name_{}".format(index), "job_{}".format(index), "score_{}".format(index)]
+            people_value_array = [sf.name, sf.job, sf.score]
+            sum += float(sf.score)
+            for j in range(len(people_value_str_array)):
+                pre_replace_str = people_value_str_array[j]
+                value_str = people_value_array[j]
+                file_str = re.sub(pre_replace_str, value_str, file_str)
+            img_path = os.path.join(settings.MEDIA_ROOT, str(sf.signature))
+            print(img_path)
+            will_replace = export_helper.gener_signature_buildin_text(str(index))
+            file_str = export_helper.gener_replaced_file_str(file_str, img_path, will_replace, index)
         print("---------")
-
-        # settings.MEDIA_ROOT
-        img_path = os.path.join(settings.MEDIA_ROOT, str(sf.signature))
-        print(img_path)
-        with open(img_path, 'rb') as img:  # 二进制方式打开图文件
-            img_base64= base64.b64encode(img.read())
-        
-        # print(queryset.fillstudentinfo.all())
-        print()
-        print("---------")
-
-        dem_up_value_replace = ["value_name", "value_sfz", "value_gender", "value_nation", "value_department",
-                                "value_major",
-                                "value_clazz", "value_studetId", "name_1", "job_1", "score_1", "signature_1"]
-        for i in range(len(dem_up_value)):
-            value_str = dem_up_value[i]
-            pre_replace_str = dem_up_value_replace[i]
-            file_str = re.sub(pre_replace_str, value_str, file_str)
+        # 写入平均得分
+        ave = sum / people_num
+        file_str = export_helper.write_ave(file_str, ave)
+        # 清空无人填写的word行
+        for i in range(missing_people_num):
+            index = people_num + i + 1
+            people_value_str_array = ["name_{}".format(index), "job_{}".format(index), "score_{}".format(index),
+                                      "signature_{}".format(index)]
+            for j in range(len(people_value_str_array)):
+                pre_replace_str = people_value_str_array[j]
+                file_str = re.sub(pre_replace_str, "", file_str)
 
         dem_down_value = []
-        dem_down_value_replace = []
-        for i in range(1,5):
-            dem_down_value_replace.append(["name_{}".format(str(i)), "Job_{}".format(str(i)), "score_{}".format(str(i)),
-                                           "signature_{}".format(str(i))])
+        # dem_down_value_replace = []
+        # for i in range(1, 5):
+        #     dem_down_value_replace.append(["name_{}".format(str(i)), "job_{}".format(str(i)), "score_{}".format(str(i)),
+        #                                    "signature_{}".format(str(i))])
 
-        print(dem_down_value_replace)
+        # vnd.ms-word默认以word方式打开，octet - stream默认为下载
+
         response = HttpResponse(content_type='application/vnd.ms-word')
         response['Content-Disposition'] = 'attachment; filename=test.doc'
         # ws.save(response)
         response.write(file_str)
         return response
 
-    SaveExecl.short_description = "填表_量化测评"
+    save_democratic.short_description = "填表_民主评议"
+
+    def save_quantization(self, request, queryset):
+
+        # 读取模板
+        try:
+            with open("static/doc/quantization.xml") as f:
+                global file_str
+                file_str = f.read()
+        except FileNotFoundError:
+            print("---file not found---")
+            return None
+        # 填写上半部分表格
+        value_studetId, file_str = export_helper.fill_up(queryset, file_str)
+        # 填写下半部分表格
+        student_answer = StudentAnswer.objects.filter(pk=value_studetId)[0]
+        if not student_answer:
+            print("---not student answer---")
+            return None
+        # 填写数据部分
+        people_value_str_array = ["value_zcdd", "value_hjsz", "value_jtzd", "value_mnxf", "value_fqzy", "value_mqzy",
+                                  "value_fqld", "value_mqld", "value_cfmq", "value_fwqk", "value_jxrk", "value_syrk",
+                                  "value_ylzc", "value_jtsz", "value_jtbg", "value_zxqj", "value_score"]
+        people_value_array = [student_answer.zcdd, student_answer.hjsz, student_answer.jtzd, student_answer.mnxf,
+                              student_answer.fqzy, student_answer.mqzy, student_answer.fqld, student_answer.mqld,
+                              student_answer.cfmq, student_answer.fwqk, student_answer.jxrk, student_answer.syrk,
+                              student_answer.ylzc, student_answer.jtsz, student_answer.jtbg, student_answer.zxqj,
+                              student_answer.score]
+        print("------")
+        print(people_value_array)
+        print("-------")
+        for j in range(len(people_value_str_array)):
+            pre_replace_str = people_value_str_array[j]
+            value_str = people_value_array[j]
+            if not value_str:
+                value_str = ""
+            file_str = re.sub(pre_replace_str, value_str, file_str)
+
+        # 填图部分
+        people_img_str_array = ["img_zcdd", "img_fqld", "img_mqld", "img_ylzc", "img_jtsz", "img_jtbg"]
+        people_img_database = [student_answer.baseDatum, student_answer.fatherDatum, student_answer.motherDatum,
+                               student_answer.medicalDatum, student_answer.disasterDatum, student_answer.eventDatum]
+
+        for i in range(len(people_img_str_array)):
+            pre_replace_str = people_img_str_array[i]
+            img_field = people_img_database[i]
+            if not img_field:
+                file_str = re.sub(pre_replace_str, "", file_str)
+            else:
+                img_path = os.path.join(settings.MEDIA_ROOT, str(img_field))
+                will_replace = export_helper.gener_xml_buildin_text(pre_replace_str)
+                file_str = export_helper.gener_replaced_file_str(file_str, str(img_path), will_replace,i)
+        # file_str = export_helper.gener_replaced_file_str(file_str, img_path, index)
+        # vnd.ms-word默认以word方式打开，octet - stream默认为下载
+        response = HttpResponse(content_type='application/vnd.ms-word')
+        response['Content-Disposition'] = 'attachment; filename=test.doc'
+        # ws.save(response)
+        response.write(file_str)
+        return response
+
+    save_quantization.short_description = "填表_量化测评"
 
     def get_democratic_score(self, instance):
+        print("+++++++")
+        infos = instance.fillstudentinfo_set.all()
+
+        if len(infos) <= 5:
+            people_num = len(infos)
+        else:
+            people_num = 5
         # exist_student = FillStudentInfo.objects.filter(filledStudentId_id=instance.studentId)
-        # if exist_student:
-        #     ave = 0
-        #     nums = len(exist_student)
-        #     for i in range(nums):
-        #         ave += int(exist_student[i].score) / nums
-        #     return "已有{}人评测，平均分：{}分".format(nums, ave)
-        #     # return exist_student[0].score
-        # else:
-        return '暂未完成测评'
+        if infos:
+            ave = 0
+            for i in range(people_num):
+                ave += round(int(infos[i].score) / people_num, 1)
+            if people_num == 5:
+                return "已完成评测，平均分：{}分".format(ave)
+            return "已有{}人评测，平均分：{}分".format(people_num, ave)
+            # return exist_student[0].score
+        else:
+            return '暂未完成测评'
 
     get_democratic_score.short_description = '民主评议得分'
     get_democratic_score.is_column = True
     get_democratic_score.allow_tags = True
-    get_democratic_score.admin_order_field = 'get_democratic_score'
+
+
+# get_democratic_score.admin_order_field = 'get_democratic_score'
 
 
 admin.site.register(models.StudentInfo, StudentInfoAdmin)
