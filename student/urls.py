@@ -19,13 +19,17 @@ from django.conf.urls.static import static
 from django.conf import settings
 import xadmin
 from django.views.static import serve
+from quantization import views
+
 urlpatterns = [
-                  url(r'^xadmin/', xadmin.site.urls),
-                  url(r'^quantization/', include('quantization.urls', namespace='quantization')),
-                  url(r'^democratic/', include('democratic.urls', namespace='democratic')),
-                  # url(r'^mobile/', include('democratic.urls', namespace='democratic')),
-                  url(r'^media/(?P<path>.*)$', serve, {"document_root": settings.MEDIA_ROOT}),
-                  # url(r'^media/(?P<path>.*)$', 'django.views.static.serve',
-                  #     {'document_root': settings.MEDIA_ROOT, 'show_indexes': True}),
-              ]
-              # + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    url(r'^$', view=views.one, name="root_index"),
+    url(r'^auth/$', view=views.auth, name="auth"),
+    url(r'^xadmin/', xadmin.site.urls),
+    url(r'^quantization/', include('quantization.urls', namespace='quantization')),
+    url(r'^democratic/', include('democratic.urls', namespace='democratic')),
+    # url(r'^mobile/', include('democratic.urls', namespace='democratic')),
+    url(r'^media/(?P<path>.*)$', serve, {"document_root": settings.MEDIA_ROOT}),
+    # url(r'^media/(?P<path>.*)$', 'django.views.static.serve',
+    #     {'document_root': settings.MEDIA_ROOT, 'show_indexes': True}),
+]
+# + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

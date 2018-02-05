@@ -18,6 +18,7 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
+    url(r'^one/$', views.one, name='one'),
 
     url(r'^index/$', views.index, name='index'),
     # url(r'^common/$', views.common, name='common'),
@@ -30,10 +31,5 @@ urlpatterns = [
     url(r'^main_handler/$', views.main_handler, name='main_handler'),
 
     url(r'^check_city/$', views.check_city, name='check_city'),
-
-
-    url(r'^auth/$', views.auth, name='auth'),
-
-    url(r'^callback/$', views.callback, name='callback'),
 
 ]

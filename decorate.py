@@ -21,3 +21,11 @@ def auth_democratic(func):
         return func(request, *args, **kwargs)
 
     return inner
+
+
+def auth_yb(func):
+    def inner(request, *args, **kwargs):
+        if 'real_name' not in request.session:
+            return redirect('/auth')
+        return func(request, *args, **kwargs)
+    return inner

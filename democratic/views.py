@@ -10,9 +10,10 @@ from quantization import models
 from decorate import *
 from quantization.models import StudentInfo
 
-
+@auth_yb
 def index(request):
-    context = {"title": "请填写被评测人学号", "for": "input_studentId"}
+    real_name =  request.session["real_name"]
+    context = {"real_name": real_name}
     return render(request, 'democratic/index.html', context)
 
 

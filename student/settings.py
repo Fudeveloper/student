@@ -217,3 +217,11 @@ DATE_FORMAT = 'Y-m-d'
 # TEMPLATE_CONTEXT_PROCESSORS = TCP + (
 #     'django.core.context_processors.request',
 # )
+# 易班Oauth配置
+STATE = "fjxx"
+CALLBACK_URL = "http://192.168.76.129:8000/"
+YIBAN_URL = "https://openapi.yiban.cn/"
+
+API_OAUTH_CODE = "oauth/authorize"
+APP_KEY = "75695fe36534c768"
+APP_SECRET = "58670b849a89c5ad6e2bc97a23690e94"
