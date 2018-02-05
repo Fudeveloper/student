@@ -32,7 +32,6 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = (
-    'suit',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -197,20 +196,20 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media').replace('\\', '/')
 #     }
 # }
 
-SUIT_CONFIG = {  # suit页面配置
-    'ADMIN_NAME': '高校家庭经济困难学生评测后台',  # 登录界面提示
-    'LIST_PER_PAGE': 20,  # 表中显示行数
-    'MENU_OPEN_FIRST_CHILD': True,
-    'MENU': (
-        '-',
-        {'app': 'auth', 'label': u'权限管理', 'icon': 'icon-lock', 'name': u"名字"},
-        '-',
-        {'app': 'quantization', 'label': u'量化测评', 'icon': 'icon-user', 'name': u"量化测评"},
-        '-',
-        {'app': 'democratic', 'label': u'民主测评', 'icon': 'icon-user', 'name': u"民主评议"},
-    )
-    # label表示name，app表示上边的install的app，models表示用了哪些models
-}
+# SUIT_CONFIG = {  # suit页面配置
+#     'ADMIN_NAME': '高校家庭经济困难学生评测后台',  # 登录界面提示
+#     'LIST_PER_PAGE': 20,  # 表中显示行数
+#     'MENU_OPEN_FIRST_CHILD': True,
+#     'MENU': (
+#         '-',
+#         {'app': 'auth', 'label': u'权限管理', 'icon': 'icon-lock', 'name': u"名字"},
+#         '-',
+#         {'app': 'quantization', 'label': u'量化测评', 'icon': 'icon-user', 'name': u"量化测评"},
+#         '-',
+#         {'app': 'democratic', 'label': u'民主测评', 'icon': 'icon-user', 'name': u"民主评议"},
+#     )
+#     # label表示name，app表示上边的install的app，models表示用了哪些models
+# }
 DATETIME_FORMAT = 'Y-m-d H:i:s'
 DATE_FORMAT = 'Y-m-d'
 
