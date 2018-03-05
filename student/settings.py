@@ -107,7 +107,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
-STATIC_ROOT = '/all_static/'
+STATIC_ROOT = os.path.join(BASE_DIR, '/all_static/').replace('\\', '/')
 # 设置静态文件路径为主目录下的media文件夹
 
 MEDIA_URL = '/media/'
@@ -218,9 +218,9 @@ DATE_FORMAT = 'Y-m-d'
 # )
 # 易班Oauth配置
 STATE = "fjxx"
-CALLBACK_URL = "http://123.207.68.28/auth/"
+CALLBACK_URL = "http://f.yiban.cn/iapp193777"
 YIBAN_URL = "https://openapi.yiban.cn/"
 
 API_OAUTH_CODE = "oauth/authorize"
-APP_KEY = "75695fe36534c768"
-APP_SECRET = "58670b849a89c5ad6e2bc97a23690e94"
+APP_KEY = "da3523218859f303"
+APP_SECRET = "f87025ae2a02f4f8f6a8f63ec06aeff2"
