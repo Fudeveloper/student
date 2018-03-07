@@ -86,7 +86,7 @@ def main_handler(request):
                     StudentAnswer.objects.create(**student_answer)
                     StudentAnswer.objects.update(**data)
             else:
-                print("---------------无studentid")
+                # print("---------------无studentid")
                 result = "error"
         else:
             result = "error"
@@ -111,7 +111,7 @@ def uploadimg(request, img_type):
             # 检测用户是否通过index页面进入
             student_id = request.COOKIES.get('studentId')
             if not student_id:
-                print(student_id)
+                # print(student_id)
                 return HttpResponse("非法操作")
             # 保存上传的图片
             dir_path = os.path.join(settings.MEDIA_ROOT, img_type)

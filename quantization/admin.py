@@ -76,7 +76,11 @@ class StudentInfoAdmin(object):
             file_str = export_helper.gener_replaced_file_str(file_str, img_path, will_replace, index)
         print("---------")
         # 写入平均得分
-        ave = sum / people_num
+        if people_num == 0:
+            ave = 0
+            return HttpResponse("暂未有人评价此学生")
+        else:
+            ave = sum / people_num
         file_str = export_helper.write_ave(file_str, ave)
         # 清空无人填写的word行
         for i in range(missing_people_num):
@@ -152,7 +156,7 @@ class StudentInfoAdmin(object):
             else:
                 img_path = os.path.join(settings.MEDIA_ROOT, str(img_field))
                 will_replace = export_helper.gener_xml_buildin_text(pre_replace_str)
-                file_str = export_helper.gener_replaced_file_str(file_str, str(img_path), will_replace,i)
+                file_str = export_helper.gener_replaced_file_str(file_str, str(img_path), will_replace, i)
         # file_str = export_helper.gener_replaced_file_str(file_str, img_path, index)
         # vnd.ms-word默认以word方式打开，octet - stream默认为下载
         response = HttpResponse(content_type='application/vnd.ms-word')
