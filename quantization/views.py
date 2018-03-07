@@ -211,3 +211,11 @@ def one(request):
                                                                                   settings.CALLBACK_URL,
                                                                                   settings.STATE)
         return redirect(url)
+
+def auth(request):
+    url = "{0}{1}?client_id={2}&redirect_uri={3}&state={4}&display=mobile".format(settings.YIBAN_URL,
+                                                                                  settings.API_OAUTH_CODE,
+                                                                                  settings.APP_KEY,
+                                                                                  settings.CALLBACK_URL,
+                                                                                  settings.STATE)
+    return redirect(url)
