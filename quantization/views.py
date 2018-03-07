@@ -157,22 +157,15 @@ def check_city(request):
     return HttpResponse(check_poor_city.check_poor_city(send_city))
 
 
-def auth(request):
-    url = "{0}{1}?client_id={2}&redirect_uri={3}&state={4}&display=mobile".format(settings.YIBAN_URL,
-                                                                                  settings.API_OAUTH_CODE,
-                                                                                  settings.APP_KEY,
-                                                                                  settings.CALLBACK_URL,
-                                                                                  settings.STATE)
-    return redirect(url)
-
-
 def one(request):
     data = request.GET
+    yb_uid = data.get("yb_uid")
+    # print(yb_uid)
     state = data.get("state")
     code = data.get("code")
-    post_data = {"client_id": settings.APP_KEY, "client_secret": settings.APP_SECRET, "code": code,
-                 "redirect_uri": settings.CALLBACK_URL}
-    res = requests.post("https://openapi.yiban.cn/oauth/access_token", data=post_data)
+    post_data = {"client_id": settings.APP_KEY, "yb_uid":yb_uid}
+    res = requests.post("https://openapi.yiban.cn/oauth/token_info", data=post_data)
+    print(res)
     json_data = json.loads(res.text)
     print(json_data)
     if "access_token" in json_data.keys():
@@ -180,9 +173,16 @@ def one(request):
     elif "msgCN" in json_data.keys():
         return HttpResponse(json_data["msgCN"])
     else:
-        return HttpResponse("授权失败，请重试")
+        url = "{0}{1}?client_id={2}&redirect_uri={3}&state={4}&display=mobile".format(settings.YIBAN_URL,
+                                                                                  settings.API_OAUTH_CODE,
+                                                                                  settings.APP_KEY,
+                                                                                  settings.CALLBACK_URL,
+                                                                                  settings.STATE)
+        return redirect(url)
+
     json_access = {"access_token": access_token}
     # 查询校方认证信息
+
     auth_res = requests.get("https://openapi.yiban.cn/user/verify_me", params=json_access)
     json_auth_res = json.loads(auth_res.text)
     print(json_auth_res)
@@ -205,4 +205,9 @@ def one(request):
     elif "msgCN" in json_data.keys():
         return HttpResponse(json_data["msgCN"])
     else:
-        return HttpResponse("授权失败，请重试")
+        url = "{0}{1}?client_id={2}&redirect_uri={3}&state={4}&display=mobile".format(settings.YIBAN_URL,
+                                                                                  settings.API_OAUTH_CODE,
+                                                                                  settings.APP_KEY,
+                                                                                  settings.CALLBACK_URL,
+                                                                                  settings.STATE)
+        return redirect(url)

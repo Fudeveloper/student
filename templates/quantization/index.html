@@ -24,38 +24,38 @@
     <section class="content">
         <h3>基本信息</h3>
         <span class="input input--kaede">
-					<input class="input__field input__field--kaede" type="text" id="input_studentId"
-                           style="font-size: 80%"/>
-					<label class="input__label input__label--kaede" for="">
-						<span class="input__label-content input__label-content--kaede">学号<div
-                                style="float: right;padding: -0.5em" id="div_studentId">{{yb_studentid}}</div></span>
-					</label>
-				</span>
+                                        <input class="input__field input__field--kaede" type="text" id="input_studentId"
+                           style="font-size: 80%" tabindex=-1/>
+                                        <label class="input__label input__label--kaede" for="">
+                                                <span class="input__label-content input__label-content--kaede">学号<div
+                                style="float: right;padding: -0.5em" id="div_studentId" tabindex=-1>{{yb_studentid}}</div></span>
+                                        </label>
+                                </span>
         <span class="input input--kaede">
 
-					<input class="input__field input__field--kaede" type="text" id="input_name"/>
-					<label class="input__label input__label--kaede" for="">
-						<span class="input__label-content input__label-content--kaede">姓名<div
+                                        <input class="input__field input__field--kaede" type="text" id="input_name" tabindex=-1/>
+                                        <label class="input__label input__label--kaede" for="">
+                                                <span class="input__label-content input__label-content--kaede">姓名<div
                                 style="float: right" id="div_name">{{real_name}}</div></span>
-					</label>
-				</span>
+                                        </label>
+                                </span>
         <span class="input input--kaede">
-            <select class="input__field input__field--kaede" id="select_department" style="font-size: 70%"></select>
-					<label class="input__label input__label--kaede" for="">
-						<span class="input__label-content input__label-content--kaede">院系<div
+            <select class="input__field input__field--kaede" id="select_department" style="font-size: 70%" tabindex=-1></select>
+                                        <label class="input__label input__label--kaede" for="">
+                                                <span class="input__label-content input__label-content--kaede">院系<div
                                 style="float: right;padding: -0.5em" id="div_department">{{yb_collegename}}</div></span>
-					</label>
-				</span>
+                                        </label>
+                                </span>
         <span class="input input--kaede">
-					<input class="input__field input__field--kaede" type="text" id="input_sfz" style="font-size: 50%"/>
-					<label class="input__label input__label--kaede" for="input_sfz">
-						<span class="input__label-content input__label-content--kaede">身份证号码<div
+                                        <input class="input__field input__field--kaede" type="text" id="input_sfz" style="font-size: 50%"/>
+                                        <label class="input__label input__label--kaede" for="input_sfz">
+                                                <span class="input__label-content input__label-content--kaede">身份证号码<div
                                 style="float: right;font-size: 75%;text-align: center;margin-top: 5px;"
                                 id="div_sfz"></div></span>
-					</label>
-				</span>
+                                        </label>
+                                </span>
         <span class="input input--kaede">
-					<form class="layui-form layui-form-pane" action="">
+                                        <form class="layui-form layui-form-pane" action="">
       <div class="layui-form-item " pane style="border: 0px">
         <label class="layui-form-label "
                style="color: #6a7989;font-weight: bold;font-size: 70.25%;float: none;background-color: transparent;text-align: left;border: 0px;">性别</label>
@@ -65,35 +65,35 @@
         </div>
       </div>
     </form>
-				</span>
+                                </span>
 
         <span class="input input--kaede">
-					            <select class="input__field input__field--kaede" id="select_nation"
+                                                    <select class="input__field input__field--kaede" id="select_nation"
                                         style="font-size: 70%"></select>
-					<label class="input__label input__label--kaede" for="select_nation">
-						<span class="input__label-content input__label-content--kaede">民族<div
+                                        <label class="input__label input__label--kaede" for="select_nation">
+                                                <span class="input__label-content input__label-content--kaede">民族<div
                                 style="float: right;padding: -0.5em" id="div_nation"></div></span>
-					</label>
-				</span>
+                                        </label>
+                                </span>
 
 
         <span class="input input--kaede">
-					<input class="input__field input__field--kaede" type="text" id="input_major"
+                                        <input class="input__field input__field--kaede" type="text" id="input_major"
                            style="font-size: 80%"/>
-					<label class="input__label input__label--kaede" for="input_major">
-						<span class="input__label-content input__label-content--kaede">专业<div
+                                        <label class="input__label input__label--kaede" for="input_major">
+                                                <span class="input__label-content input__label-content--kaede">专业<div
                                 style="float: right;padding: -0.5em" id="div_major"></div></span>
-					</label>
-				</span>
+                                        </label>
+                                </span>
 
         <span class="input input--kaede">
-					<input class="input__field input__field--kaede" type="text" id="input_class"
+                                        <input class="input__field input__field--kaede" type="text" id="input_class"
                            style="font-size: 80%"/>
-					<label class="input__label input__label--kaede" for="input_class">
-						<span class="input__label-content input__label-content--kaede">班级<div
+                                        <label class="input__label input__label--kaede" for="input_class">
+                                                <span class="input__label-content input__label-content--kaede">班级<div
                                 style="float: right;padding: -0.5em" id="div_class"></div></span>
-					</label>
-				</span>
+                                        </label>
+                                </span>
 
 
         <button id="btn_submit" class="layui-btn layui-btn-lg layui-btn-radius layui-btn-normal" type="submit"
@@ -173,7 +173,7 @@
             }
         });
 
-		//            班级框
+                //            班级框
         $("#input_class").blur(function () {
             var preclazz = $(this).val();
             if (preclazz === "") {

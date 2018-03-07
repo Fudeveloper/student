@@ -224,3 +224,6 @@ YIBAN_URL = "https://openapi.yiban.cn/"
 API_OAUTH_CODE = "oauth/authorize"
 APP_KEY = "da3523218859f303"
 APP_SECRET = "f87025ae2a02f4f8f6a8f63ec06aeff2"
+
+# code =
+# "http://{}?code={}&state={}".format(CALLBACK_URL,code,STATE)
