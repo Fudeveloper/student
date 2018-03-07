@@ -106,6 +106,8 @@ class StudentInfoAdmin(object):
             return response
         except FileNotFoundError as e:
             return HttpResponse("未找到图片")
+        except Exception as e:
+            return HttpResponse("发生错误，{e}".format(e))
 
     save_democratic.short_description = "填表_民主评议"
 
