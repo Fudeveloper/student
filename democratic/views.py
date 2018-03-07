@@ -33,11 +33,11 @@ def signature(request):
 
 @csrf_exempt
 def save_signature(request, filled_student_id):
-    print("enter save")
+    # print("enter save")
     if request.method == "POST":
         pk = request.COOKIES.get("pk")
         current_fill_student = FillStudentInfo.objects.filter(pk=pk)
-        print("--------------------------")
+        # print("--------------------------")
         img_path = os.path.join(settings.MEDIA_ROOT, "signatureImage",
                                 filled_student_id + "_{}_{}.jpg".format("signature", pk))
         save_path = os.path.join("signatureImage",
@@ -98,7 +98,7 @@ def index_handler(request):
         data = request.POST.dict()
 
         if data:
-            print(data)
+            # print(data)
             if "filledStudentId" in data.keys():
                 filledStudentId = data['filledStudentId']
                 # FillStudentInfo.objects.create(pk=filledStudentId)
@@ -110,15 +110,15 @@ def index_handler(request):
                 fsi = FillStudentInfo(name=name, job=job)
                 fsi.save()
                 fsi.filledStudentId.add(s)
-                print(fsi.pk)
-                print(s.fillstudentinfo_set.all())
+                # print(fsi.pk)
+                # print(s.fillstudentinfo_set.all())
 
                 fsi.save()
                 # 取得存入时数据的id，以供保存成绩，签名时使用
                 pk = fsi.pk
             else:
                 pk = -1
-                print("not in")
+                # print("not in")
                 result = "error"
         else:
             pk = -1
@@ -133,7 +133,7 @@ def main_handler(request):
     if request.method == 'POST':
         data = request.POST.dict()
         if data:
-            print(data)
+            # print(data)
             if "filledStudentId" in data.keys():
                 filledStudentId = data['filledStudentId']
                 exist_student = FillStudentInfo.objects.filter(pk=pk)
@@ -143,7 +143,7 @@ def main_handler(request):
                     # print(data)
                     exist_student.update(**data)
         else:
-            print("---------------无studentid")
+            # print("---------------无studentid")
             result = "error"
     else:
         result = "error"

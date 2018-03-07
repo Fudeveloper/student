@@ -28,18 +28,18 @@ def index(request):
 def index_handler(request):
     result = "ok"
     if request.method == 'POST':
-        print("-----------------------------------")
+        # print("-----------------------------------")
         data = request.POST.dict()
 
         if data:
-            print("-------------------123")
-            print(data)
+            # print("-------------------123")
+            # print(data)
             if "studentId" in data.keys():
                 studentId = data['studentId']
                 exist_student = StudentInfo.objects.filter(studentId=studentId)
                 if exist_student:
                     data.__delitem__("studentId")
-                    print(data)
+                    # print(data)
                     exist_student.update(**data)
                 else:
                     StudentInfo.objects.create(**data)
@@ -62,16 +62,16 @@ def main(request):
 def main_handler(request):
     result = "ok"
     if request.method == 'POST':
-        print("-----------------------------------")
+        # print("-----------------------------------")
         data = request.POST.dict()
 
         if data:
-            print("-------------------123")
-            print(data)
+            # print("-------------------123")
+            # print(data)
             if "studentId" in data.keys():
                 studentId = data['studentId']
                 exist_student = StudentAnswer.objects.filter(pk=studentId)
-                print(exist_student)
+                # print(exist_student)
                 if exist_student:
                     data.__delitem__("studentId")
                     # print(data)
@@ -99,10 +99,10 @@ def city(request):
 
 @csrf_exempt
 def uploadimg(request, img_type):
-    print(img_type)
+    # print(img_type)
     if img_type not in ["baseDatum", "fatherDatum", "motherDatum", "medicalDatum", "disasterDatum", "eventDatum"]:
         return HttpResponse("非法操作")
-    print("COOKIES{}".format(request.COOKIES))
+    # print("COOKIES{}".format(request.COOKIES))
     # print("student_id:{}".format(student_id))
     error = ""
     if request.method == 'POST':
@@ -116,10 +116,10 @@ def uploadimg(request, img_type):
             # 保存上传的图片
             dir_path = os.path.join(settings.MEDIA_ROOT, img_type)
 
-            print("-------------------------------------------------------------")
-            print(dir_path)
+            # print("-------------------------------------------------------------")
+            # print(dir_path)
             if not os.path.exists(dir_path):
-                print("路径不存在")
+                # print("路径不存在")
                 os.mkdir(dir_path)
             img = request.FILES.get('studentdatum')
             img_path = os.path.join(settings.MEDIA_ROOT, img_type, student_id + "_{}.jpg".format(img_type))
@@ -153,7 +153,7 @@ def uploadimg(request, img_type):
 def check_city(request):
     post = request.POST
     send_city = post.get("city")
-    print(send_city)
+    # print(send_city)
     return HttpResponse(check_poor_city.check_poor_city(send_city))
 
 
@@ -165,9 +165,9 @@ def one(request):
     code = data.get("code")
     post_data = {"client_id": settings.APP_KEY, "yb_uid":yb_uid}
     res = requests.post("https://openapi.yiban.cn/oauth/token_info", data=post_data)
-    print(res)
+    # print(res)
     json_data = json.loads(res.text)
-    print(json_data)
+    # print(json_data)
     if "access_token" in json_data.keys():
         access_token = json_data['access_token']
     elif "msgCN" in json_data.keys():
@@ -185,7 +185,7 @@ def one(request):
 
     auth_res = requests.get("https://openapi.yiban.cn/user/verify_me", params=json_access)
     json_auth_res = json.loads(auth_res.text)
-    print(json_auth_res)
+    # print(json_auth_res)
     if "status" in json_auth_res:
         if json_auth_res["status"] == "success":
             infos = json_auth_res["info"]
