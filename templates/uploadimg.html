@@ -13,6 +13,8 @@
             $("#back").click(function () {
                 var index = parent.layer.getFrameIndex(window.name);
                 parent.layer.close(index);
+parent.$(':input:radio:checked').removeAttr("checked")
+                parent.$(':input:radio:checked').attr("checked", 'false');
                 parent.$(".swiper-button-prev").click();
             });
 
